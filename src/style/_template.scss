@@ -1,0 +1,51 @@
+//   @extend %test;
+
+%text-h1 {
+  font-size: 40px;
+  line-height: 150%;
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+  @media (max-width: 320px) {
+    font-size: 28px;
+  }
+}
+
+%text-h2 {
+  font-size: 24px;
+  line-height: 150%;
+  @media (max-width: 320px) {
+    font-size: 20px;
+    line-height: 180%;
+  }
+}
+
+%text-h3 {
+  font-size: 20px;
+  line-height: 160%;
+  @media (max-width: 320px) {
+    font-size: 18px;
+    line-height: 156%;
+  }
+}
+
+%text-nav {
+  font-size: 18px;
+  line-height: 133%;
+}
+
+%text-button {
+  font-size: 16px;
+  line-height: 150%;
+}
+
+%text-body-title {
+  font-size: 16px;
+  line-height: 125%;
+}
+
+%text-body-description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}

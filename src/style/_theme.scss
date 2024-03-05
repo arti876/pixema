@@ -1,0 +1,35 @@
+.dark * {
+  --system-colors-primary-1: #7b61ff;
+  --system-colors-primary-2: #917cff;
+  --system-colors-secondary: #80858b;
+
+  --background-colors-black: #000000;
+  --background-colors-dark: #242426;
+  --background-colors-graphite: #323537;
+
+  --contextual-colors-error: #ff5154;
+  --contextual-colors-light: #afb2b6;
+  --contextual-colors-white: #ffffff;
+
+  --tertiary-colors-green: #00a340;
+  --tertiary-colors-yellow: #f3a608;
+  --tertiary-colors-orange: #f45d2d;
+}
+
+.light * {
+  --system-colors-primary-1: #7b61ff;
+  --system-colors-primary-2: #917cff;
+  --system-colors-secondary: #80858b;
+
+  --background-colors-black: #ffffff;
+  --background-colors-dark: #242426;
+  --background-colors-graphite: #ffffff;
+
+  --contextual-colors-error: #ff5154;
+  --contextual-colors-light: #afb2b6;
+  --contextual-colors-white: #242426;
+
+  --tertiary-colors-green: #00a340;
+  --tertiary-colors-yellow: #f3a608;
+  --tertiary-colors-orange: #f45d2d;
+}

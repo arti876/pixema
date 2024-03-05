@@ -1,0 +1,22 @@
+* {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  color: var(--background-colors-graphite);
+  background-color: var(--background-colors-black);
+}
+
+.wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 62px;
+  @media (max-width: 768px) {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  @media (max-width: 320px) {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+}
