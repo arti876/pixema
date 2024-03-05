@@ -1,5 +1,5 @@
-.dark * {
-  --system-colors-primary-1: #7b61ff;
+.dark {
+  --system-colors-primary: #7b61ff;
   --system-colors-primary-2: #917cff;
   --system-colors-secondary: #80858b;
 
@@ -16,8 +16,8 @@
   --tertiary-colors-orange: #f45d2d;
 }
 
-.light * {
-  --system-colors-primary-1: #7b61ff;
+.light {
+  --system-colors-primary: #7b61ff;
   --system-colors-primary-2: #917cff;
   --system-colors-secondary: #80858b;
 

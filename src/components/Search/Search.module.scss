@@ -1,0 +1,57 @@
+.form {
+  position: relative;
+}
+
+.inputSearch {
+  width: 100%;
+  background-color: var(--background-colors-graphite);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  padding: 16px 50px 16px 20px;
+  color: var(--contextual-colors-white);
+  &::placeholder {
+    color: var(--system-colors-secondary);
+  }
+  &:focus {
+    outline: 2px solid var(--system-colors-primary);
+  }
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.icoContainer {
+  position: absolute;
+  display: flex;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  .icoFilter {
+    width: 16px;
+    height: 14px;
+    fill: var(--system-colors-secondary);
+    background-color: transparent;
+  }
+  .dot {
+    display: none;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    bottom: 0;
+    left: -10%;
+    background-color: var(--system-colors-primary);
+  }
+}
+
+.icoContainerActive {
+  .icoFilter {
+    fill: var(--contextual-colors-white);
+  }
+  .dot {
+    display: block;
+  }
+}

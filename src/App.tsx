@@ -1,17 +1,11 @@
-import style from './app.module.scss';
-import { useAppDispatch, useAppSelector } from './store/store';
-import { switchingTheme } from './store/themeSlice';
-import { ThemeVariant } from '.';
+import { Routes, Route } from 'react-router-dom';
+import { useAppSelector } from './store/store';
+import { RoutePath, ThemeVariant } from '.';
 import { useEffect } from 'react';
+import AppLayout from './pages/AppLayout';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
-  const dispatch = useAppDispatch();
-
-  function handleClick() {
-    dispatch(switchingTheme(ThemeVariant.LIGHT));
-    console.log(ThemeVariant.LIGHT);
-  }
 
   useEffect(() => {
     if (theme === ThemeVariant.DARK) {
@@ -22,10 +16,8 @@ export default function App() {
   }, [theme]);
 
   return (
-    <div className='wrapper text dark'>
-      <button type='button' onClick={handleClick} className={style.testStyle}>
-        Hello
-      </button>
-    </div>
+    <Routes>
+      <Route path={RoutePath.ROOT} element={<AppLayout />}></Route>
+    </Routes>
   );
 }
