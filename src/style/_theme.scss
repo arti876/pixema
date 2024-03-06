@@ -1,4 +1,6 @@
 .dark {
+  background-color: var(--background-colors-black);
+
   --system-colors-primary: #7b61ff;
   --system-colors-primary-2: #917cff;
   --system-colors-secondary: #80858b;
@@ -17,6 +19,8 @@
 }
 
 .light {
+  background-color: var(--background-colors-black);
+
   --system-colors-primary: #7b61ff;
   --system-colors-primary-2: #917cff;
   --system-colors-secondary: #80858b;

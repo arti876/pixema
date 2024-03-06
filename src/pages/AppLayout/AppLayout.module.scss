@@ -5,10 +5,3 @@
 .container2 {
   flex-grow: 1;
 }
-
-.container3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(266px, auto));
-  gap: 40px;
-  margin: 56px 0px 64px 0px;
-}

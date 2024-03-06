@@ -5,11 +5,13 @@ import {
 } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import themeReducer from './themeSlice';
+import movieReducer from './movieSlice';
 
 const listenerMiddleware = createListenerMiddleware();
 
 const rootReducer = combineReducers({
   theme: themeReducer,
+  movie: movieReducer,
 });
 
 const store = configureStore({

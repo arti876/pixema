@@ -42,10 +42,12 @@ export enum IconId {
   USER = 'User',
   ARROW_RIGHT = 'arrowRight',
   CHECK = 'Check',
+  SPINNER = 'Spinner',
 }
 
 export interface IPosters {
   rating: number;
   movieTitle: string;
   genre: string[];
+  image: string;
 }

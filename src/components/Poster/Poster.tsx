@@ -10,7 +10,7 @@ export default function Poster({ posters }: PosterProps) {
     <div>
       <div className={style.imgContainer}>
         <div className={style.rating}>{posters.rating}</div>
-        <img src='/starwars.jpg' alt='starwars' />
+        <img src={posters.image} alt='starwars' />
       </div>
       <div className={style.movieTitle}>{posters.movieTitle}</div>
       <div className={style.movieGenreContainer}>

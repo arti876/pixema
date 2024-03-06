@@ -2,9 +2,15 @@ import { IPosters } from '../..';
 import Poster from '../Poster/Poster';
 
 interface PosterListProps {
-  posters: IPosters;
+  posters: IPosters[];
 }
 
 export default function PosterList({ posters }: PosterListProps) {
-  return <Poster posters={posters} />;
+  return (
+    <>
+      {posters.map((data, index) => (
+        <Poster key={index} posters={data} />
+      ))}
+    </>
+  );
 }
