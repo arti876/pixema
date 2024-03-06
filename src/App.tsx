@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAppSelector } from './store/store';
 import { RoutePath, ThemeVariant } from '.';
 import { useEffect } from 'react';
-import AppLayout from './pages/AppLayout';
+import AppLayout from './pages/AppLayout/AppLayout';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);

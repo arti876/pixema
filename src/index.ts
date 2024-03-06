@@ -25,4 +25,17 @@ export enum RoutePath {
 
 export enum IconId {
   FILTER = 'filter',
+  ARROW_DOWN = 'arrowDown',
+  PIXEMA = 'pixema',
+  HOME = 'Home',
+  TRENDS = 'Trends',
+  FAVORITES = 'Favorites',
+  SETTING = 'Setting',
+  SHARE = 'Share',
+  ARROW = 'Arrow',
+  MENU = 'Menu',
+  CLOSE = 'Close',
+  USER = 'User',
+  ARROW_RIGHT = 'arrowRight',
+  CHECK = 'Check',
 }
