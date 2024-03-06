@@ -1,3 +1,7 @@
+export enum RIGHTS {
+  RIGHTS_RESERVED = '© All Rights Reserved',
+}
+
 export enum ThemeVariant {
   DARK = 'dark',
   LIGHT = 'light',
@@ -38,4 +42,10 @@ export enum IconId {
   USER = 'User',
   ARROW_RIGHT = 'arrowRight',
   CHECK = 'Check',
+}
+
+export interface IPosters {
+  rating: number;
+  movieTitle: string;
+  genre: string[];
 }
