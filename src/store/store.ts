@@ -4,14 +4,14 @@ import {
   createListenerMiddleware,
 } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import themeReducer from './themeSlice';
-import movieReducer from './movieSlice';
+import themeReducer from './Slice/themeSlice';
+import filmReducer from './Slice/filmSlice';
 
 const listenerMiddleware = createListenerMiddleware();
 
 const rootReducer = combineReducers({
   theme: themeReducer,
-  movie: movieReducer,
+  film: filmReducer,
 });
 
 const store = configureStore({

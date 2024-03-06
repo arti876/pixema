@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ThemeVariant } from '..';
+import { ThemeVariant } from '../..';
 
 interface IThemeState {
   theme: string;

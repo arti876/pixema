@@ -1,26 +1,32 @@
 import style from './Poster.module.scss';
-import { IPosters } from '../..';
+import { IFilm } from '../..';
 
 interface PosterProps {
-  posters: IPosters;
+  posters: IFilm;
 }
 
 export default function Poster({ posters }: PosterProps) {
   return (
-    <div>
-      <div className={style.imgContainer}>
-        <div className={style.rating}>{posters.rating}</div>
-        <img src={posters.image} alt='starwars' />
-      </div>
-      <div className={style.movieTitle}>{posters.movieTitle}</div>
-      <div className={style.movieGenreContainer}>
-        {posters.genre.map((genre, index) => (
-          <div className={style.movieGenreContainer} key={index}>
-            <div className={style.movieGenre}>{genre}</div>
-            {index < 2 && <div className={style.separator} />}
+    <>
+      {posters && (
+        <div>
+          <div className={style.imgContainer}>
+            {posters.ratingImdb && (
+              <div className={style.rating}>{posters.ratingImdb}</div>
+            )}
+            <img src={posters.posterUrl} alt='starwars' />
           </div>
-        ))}
-      </div>
-    </div>
+          <div className={style.movieTitle}>{posters.nameRu}</div>
+          <div className={style.movieGenreContainer}>
+            {posters.genres.map(({ genre }, index, arr) => (
+              <div className={style.movieGenreContainer} key={index}>
+                <div className={style.movieGenre}>{genre}</div>
+                {index < arr.length - 1 && <div className={style.separator} />}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

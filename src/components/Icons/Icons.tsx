@@ -133,27 +133,27 @@ export default function Icons({ id, className }: IconProps) {
             cy='8.63634'
             r='2.54545'
             stroke='white'
-            stroke-width='2'
+            strokeWidth='2'
           />
           <circle
             cx='12.4546'
             cy='3.54545'
             r='2.54545'
             stroke='white'
-            stroke-width='2'
+            strokeWidth='2'
           />
           <circle
             cx='12.4546'
             cy='13.7273'
             r='2.54545'
             stroke='white'
-            stroke-width='2'
+            strokeWidth='2'
           />
           <path
             d='M9.99976 13L6.09082 10.5455M6.09082 7.5L9.99976 5'
             stroke='white'
-            stroke-width='2'
-            stroke-linecap='round'
+            strokeWidth='2'
+            strokeLinecap='round'
           />
         </svg>
       );
@@ -212,16 +212,16 @@ export default function Icons({ id, className }: IconProps) {
           <path
             d='M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21'
             stroke='white'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
           <path
             d='M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z'
             stroke='white'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
         </svg>
       );
@@ -250,9 +250,9 @@ export default function Icons({ id, className }: IconProps) {
           <path
             d='M1 5L4.5 8.5L12 1'
             stroke='white'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
         </svg>
       );
@@ -267,8 +267,8 @@ export default function Icons({ id, className }: IconProps) {
           <path
             d='M6.95334 2C3.77424 3.14066 1.5 6.1842 1.5 9.75958C1.5 14.3106 5.18483 18 9.7303 18V18C13.322 18 16.3764 15.6965 17.5 12.4844'
             stroke='#7B61FF'
-            stroke-width='2.5'
-            stroke-linecap='round'
+            strokeWidth='2.5'
+            strokeLinecap='round'
           />
         </svg>
       );

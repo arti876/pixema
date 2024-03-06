@@ -4,12 +4,12 @@ import { useAppSelector } from '../../store/store';
 import style from './PageMain.module.scss';
 
 export default function PageMain() {
-  const { movie } = useAppSelector((state) => state.movie);
+  const { film } = useAppSelector((state) => state.film);
 
   return (
     <>
       <div className={style.wrapper}>
-        <PosterList posters={movie} />
+        <PosterList posters={film} />
       </div>
       <ShowMore />
     </>
