@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { apiKey } from '../../apiKey';
+// import { apiKey } from '../../apiKey';
 
-export const fetchFilmThunk = createAsyncThunk(
-  'film/fetchFilmThunk',
+export const fetchFilmMainThunk = createAsyncThunk(
+  'filmMain/fetchFilmMainThunk',
   async function fetchFilmData(pageNum: number, { rejectWithValue }) {
     try {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=${pageNum}`;

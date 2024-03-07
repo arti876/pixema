@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import style from './User.module.scss';
 import Icons from '../Icons/Icons';
-import { IconId } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
 
 interface UserProps {
   firstName: string;

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useAppSelector } from './store/store';
-import { RoutePath, ThemeVariant } from '.';
+import { RoutePath } from './Constants/RoutePath.constants';
+import { ThemeVariant } from './Constants/ThemeVariant.constants';
 import { useEffect } from 'react';
 import AppLayout from './pages/AppLayout/AppLayout';
 import PageMain from './pages/PageMain/PageMain';
@@ -15,10 +16,6 @@ export default function App() {
       document.body.className = ThemeVariant.LIGHT;
     }
   }, [theme]);
-
-  // useEffect(() => {
-  //   document.body.style.overflowAnchor = 'none';
-  // }, []);
 
   return (
     <Routes>

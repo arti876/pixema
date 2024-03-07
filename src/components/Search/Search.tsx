@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import style from './Search.module.scss';
 import Icons from '../Icons/Icons';
-import { IconId } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
 
 interface IFormData {
   search: string;

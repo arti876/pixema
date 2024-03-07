@@ -1,4 +1,4 @@
-import { IconId } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
 import Icons from '../Icons/Icons';
 import style from './Logo.module.scss';
 

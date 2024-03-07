@@ -1,4 +1,5 @@
-import { IconId, RoutePath } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
+import { RoutePath } from '../../Constants/RoutePath.constants';
 import Icons from '../Icons/Icons';
 import LinkCustom from '../LinkCustom/LinkCustom';
 import style from './NavMenu.module.scss';

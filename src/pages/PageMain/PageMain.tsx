@@ -3,32 +3,26 @@ import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import style from './PageMain.module.scss';
-import { fetchFilmThunk } from '../../store/Thunk/fetchFilmThunk';
+import { fetchFilmMainThunk } from '../../store/Thunk/fetchFilmMainThunk';
 import Icons from '../../components/Icons/Icons';
-import { IconId } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
 
 export default function PageMain() {
-  const { film, mainPage, status, error } = useAppSelector(
-    (state) => state.film,
+  const { mainFilm, mainPage, mainStatus, mainError } = useAppSelector(
+    (state) => state.filmMain,
   );
-  const { scrollPosition } = useAppSelector((state) => state.scroll);
   const dispatch = useAppDispatch();
 
-  const loader = film.length === 0;
-  const resolved = status === 'resolved';
-  const rejected = status === 'rejected';
+  const loader = mainFilm.length === 0;
+  const resolved = mainStatus === 'resolved';
+  const rejected = mainStatus === 'rejected';
 
   useEffect(() => {
-    dispatch(fetchFilmThunk(mainPage));
+    dispatch(fetchFilmMainThunk(mainPage));
   }, [dispatch, mainPage]);
 
-  useEffect(() => {
-    console.log(scrollPosition);
-    window.scrollTo(0, scrollPosition);
-  }, [resolved]);
-
   if (rejected) {
-    return <div className={style.rejected}>{`Error: ${error}`}</div>;
+    return <div className={style.rejected}>{`Error: ${mainError}`}</div>;
   } else if (loader) {
     return (
       <div className={style.loaderContainer}>
@@ -43,7 +37,7 @@ export default function PageMain() {
     return (
       <>
         <div className={style.wrapper}>
-          <PosterList posters={film} />
+          <PosterList posters={mainFilm} />
         </div>
         <ShowMore />
       </>

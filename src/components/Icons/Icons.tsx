@@ -1,4 +1,4 @@
-import { IconId } from '../..';
+import { IconId } from '../../Constants/IconId.constants';
 
 interface IconProps {
   id: string;

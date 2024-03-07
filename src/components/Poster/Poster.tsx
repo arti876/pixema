@@ -1,5 +1,5 @@
 import style from './Poster.module.scss';
-import { IFilm } from '../..';
+import { IFilm } from '../../Constants/IFilm.constants';
 
 interface PosterProps {
   posters: IFilm;

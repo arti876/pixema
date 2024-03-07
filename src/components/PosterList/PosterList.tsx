@@ -1,4 +1,4 @@
-import { IFilm } from '../..';
+import { IFilm } from '../../Constants/IFilm.constants';
 import Poster from '../Poster/Poster';
 
 interface PosterListProps {
