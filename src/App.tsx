@@ -5,6 +5,7 @@ import { ThemeVariant } from './Constants/ThemeVariant.constants';
 import { useEffect } from 'react';
 import AppLayout from './pages/AppLayout/AppLayout';
 import PageMain from './pages/PageMain/PageMain';
+import PageTrends from './pages/PageTrends/PageTrends';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -21,6 +22,7 @@ export default function App() {
     <Routes>
       <Route path={RoutePath.ROOT} element={<AppLayout />}>
         <Route index element={<PageMain />} />
+        <Route path={RoutePath.TRENDS} element={<PageTrends />} />
       </Route>
     </Routes>
   );
