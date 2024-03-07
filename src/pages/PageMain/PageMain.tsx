@@ -9,6 +9,7 @@ import { IconId } from '../..';
 
 export default function PageMain() {
   const { film, mainPage, status } = useAppSelector((state) => state.film);
+  const { scrollPosition } = useAppSelector((state) => state.scroll);
   const dispatch = useAppDispatch();
 
   const loader = status === 'loading';
@@ -18,6 +19,10 @@ export default function PageMain() {
   useEffect(() => {
     dispatch(fetchFilmThunk(mainPage));
   }, [dispatch, mainPage]);
+
+  useEffect(() => {
+    window.scrollTo(0, scrollPosition);
+  });
 
   return (
     <>
