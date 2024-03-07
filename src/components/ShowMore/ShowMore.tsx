@@ -1,24 +1,28 @@
 import { IconId } from '../../Constants/IconId.constants';
-import { countMainPage } from '../../store/Slice/filmMainSlice';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { Locales } from '../../Constants/Locales.constants';
+import { useAppDispatch } from '../../store/store';
 import Icons from '../Icons/Icons';
 import style from './ShowMore.module.scss';
 
-export default function ShowMore() {
+interface ShowMoreProps {
+  status: string | null;
+  dispatchFunction: any;
+}
+
+export default function ShowMore({ status, dispatchFunction }: ShowMoreProps) {
   const dispatch = useAppDispatch();
-  const { mainStatus } = useAppSelector((state) => state.filmMain);
 
   function nextPage() {
-    dispatch(countMainPage(1));
+    dispatch(dispatchFunction);
   }
 
   return (
     <button
       type='button'
-      className={`${style.wrapper} ${mainStatus === 'loading' && style.active}`}
+      className={`${style.wrapper} ${status === 'loading' && style.active}`}
       onClick={nextPage}
     >
-      <div className={style.text}>Show more</div>
+      <div className={style.text}>{Locales.SHOW_MORE}</div>
       <Icons id={IconId.SPINNER} className={style.loader} />
     </button>
   );

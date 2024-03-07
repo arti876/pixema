@@ -1,17 +1,22 @@
 import { useAppSelector } from '../../store/store';
-import { fetchFilmMainThunk } from '../../store/Thunk/fetchFilmMainThunk';
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
+import { countPage } from '../../store/Slice/filmTrendsSlice';
+import { fetchFilmTrendsThunk } from '../../store/Thunk/fetchFilmTrendsThunk';
+import { useLocation } from 'react-router-dom';
 
 export default function PageTrends() {
-  const { mainFilm, mainPage, mainStatus, mainError } = useAppSelector((state) => state.filmMain);
+  const { film, page, status, error } = useAppSelector((state) => state.filmTrends);
+  const location = useLocation();
 
   return (
     <RenderContentPage
-      thunk={fetchFilmMainThunk(mainPage)}
-      film={mainFilm}
-      status={mainStatus}
-      page={mainPage}
-      error={mainError}
+      thunk={fetchFilmTrendsThunk(page)}
+      film={film}
+      status={status}
+      page={page}
+      error={error}
+      dispatchFunction={countPage(1)}
+      pageName={location.pathname}
     />
   );
 }

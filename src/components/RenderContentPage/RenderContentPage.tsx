@@ -13,6 +13,8 @@ interface RenderContentPageProps {
   status: string | null;
   error: unknown;
   thunk: any;
+  dispatchFunction: any;
+  pageName: string;
 }
 
 export default function RenderContentPage({
@@ -21,6 +23,8 @@ export default function RenderContentPage({
   status,
   error,
   thunk,
+  dispatchFunction,
+  pageName,
 }: RenderContentPageProps) {
   const dispatch = useAppDispatch();
 
@@ -44,9 +48,9 @@ export default function RenderContentPage({
     return (
       <>
         <div className={style.wrapper}>
-          <PosterList posters={film} />
+          <PosterList posters={film} pageName={pageName} />
         </div>
-        <ShowMore />
+        <ShowMore status={status} dispatchFunction={dispatchFunction} />
       </>
     );
   }

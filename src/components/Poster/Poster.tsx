@@ -1,20 +1,30 @@
 import style from './Poster.module.scss';
 import { IFilm } from '../../Constants/IFilm.constants';
+import { RoutePath } from '../../Constants/RoutePath.constants';
+import Icons from '../Icons/Icons';
+import { IconId } from '../../Constants/IconId.constants';
 
 interface PosterProps {
   poster: IFilm;
+  pageName: string;
 }
 
-export default function Poster({ poster }: PosterProps) {
+export default function Poster({ poster, pageName }: PosterProps) {
   return (
     <>
       {!!poster && (
         <div>
           <div className={style.imgContainer}>
-            {poster.ratingImdb && (
-              <div className={style.rating}>{poster.ratingImdb}</div>
+            {poster.ratingKinopoisk && `/${RoutePath.TRENDS}` === pageName && (
+              <div className={style.ratingTrendsContainer}>
+                <Icons className={style.trendsIco} id={IconId.TRENDS} />
+                <div className={style.ratingTrendsNumber}>{poster.ratingKinopoisk}</div>
+              </div>
             )}
-            <img src={poster.posterUrl} alt='starwars' />
+            {poster.ratingKinopoisk && !pageName && (
+              <div className={style.rating}>{poster.ratingKinopoisk}</div>
+            )}
+            <img src={poster.posterUrl} alt={poster.nameRu} />
           </div>
           <div className={style.movieTitle}>{poster.nameRu}</div>
           <div className={style.movieGenreContainer}>

@@ -28,6 +28,33 @@
   color: var(--contextual-colors-white);
 }
 
+.trendsIco {
+  width: 14px;
+  height: 20px;
+  fill: var(--contextual-colors-white);
+}
+
+.ratingTrendsContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border-radius: 6px;
+  padding: 2px 8px;
+  width: 57px;
+  height: 28px;
+  top: 20px;
+  left: 20px;
+  background: var(--system-colors-primary);
+}
+
+.ratingTrendsNumber {
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+}
+
 .movieTitle {
   font-weight: 700;
   font-size: 16px;

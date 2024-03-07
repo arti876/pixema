@@ -3,13 +3,14 @@ import Poster from '../Poster/Poster';
 
 interface PosterListProps {
   posters: IFilm[];
+  pageName: string;
 }
 
-export default function PosterList({ posters }: PosterListProps) {
+export default function PosterList({ posters, pageName }: PosterListProps) {
   return (
     <>
       {posters.length &&
-        posters.map((data, index) => <Poster key={index} poster={data} />)}
+        posters.map((data, index) => <Poster key={index} poster={data} pageName={pageName} />)}
     </>
   );
 }

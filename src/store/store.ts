@@ -1,17 +1,15 @@
-import {
-  combineReducers,
-  configureStore,
-  createListenerMiddleware,
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import themeReducer from './Slice/themeSlice';
 import filmMainReducer from './Slice/filmMainSlice';
+import filmTrendsReducer from './Slice/filmTrendsSlice';
 
 const listenerMiddleware = createListenerMiddleware();
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   filmMain: filmMainReducer,
+  filmTrends: filmTrendsReducer,
 });
 
 const store = configureStore({
