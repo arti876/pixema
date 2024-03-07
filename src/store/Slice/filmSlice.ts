@@ -5,7 +5,7 @@ import { fetchFilmThunk } from '../Thunk/fetchFilmThunk';
 interface IFilmState {
   film: IFilm[];
   status: string | null;
-  error: unknown;
+  error: string | null | unknown;
   mainPage: number;
 }
 

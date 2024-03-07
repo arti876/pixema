@@ -18,7 +18,6 @@ export const fetchFilmThunk = createAsyncThunk(
       return response.data.items;
     } catch (error) {
       const errorFetch = error as AxiosError;
-
       return rejectWithValue(errorFetch.message);
     }
   },

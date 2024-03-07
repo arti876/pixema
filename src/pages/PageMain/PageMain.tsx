@@ -8,46 +8,45 @@ import Icons from '../../components/Icons/Icons';
 import { IconId } from '../..';
 
 export default function PageMain() {
-  const { film, mainPage, status } = useAppSelector((state) => state.film);
+  const { film, mainPage, status, error } = useAppSelector(
+    (state) => state.film,
+  );
   const { scrollPosition } = useAppSelector((state) => state.scroll);
   const dispatch = useAppDispatch();
 
-  const loader = status === 'loading';
+  const loader = film.length === 0;
   const resolved = status === 'resolved';
-  const rejected = status === 'resrejectedolved' || film.length === 0;
+  const rejected = status === 'rejected';
 
   useEffect(() => {
     dispatch(fetchFilmThunk(mainPage));
   }, [dispatch, mainPage]);
 
   useEffect(() => {
+    console.log(scrollPosition);
     window.scrollTo(0, scrollPosition);
-  });
+  }, [resolved]);
 
-  return (
-    <>
-      {loader && (
-        <div className={style.loaderContainer}>
-          <div className={style.loaderText}>Loading...</div>
-          <Icons
-            id={IconId.SPINNER}
-            className={`${style.loaderIco} ${loader && style.active}`}
-          />
+  if (rejected) {
+    return <div className={style.rejected}>{`Error: ${error}`}</div>;
+  } else if (loader) {
+    return (
+      <div className={style.loaderContainer}>
+        <div className={style.loaderText}>Loading...</div>
+        <Icons
+          id={IconId.SPINNER}
+          className={`${style.loaderIco} ${loader && style.active}`}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={style.wrapper}>
+          <PosterList posters={film} />
         </div>
-      )}
-      {resolved && (
-        <>
-          <div className={style.wrapper}>
-            <PosterList posters={film} />
-          </div>
-          <ShowMore />
-        </>
-      )}
-      {rejected && (
-        <div className={style.rejected}>
-          <Icons id={IconId.FILM_NONE} />
-        </div>
-      )}
-    </>
-  );
+        <ShowMore />
+      </>
+    );
+  }
 }
