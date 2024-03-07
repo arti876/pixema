@@ -31,6 +31,7 @@ export enum IconId {
   ARROW_RIGHT = 'arrowRight',
   CHECK = 'check',
   SPINNER = 'spinner',
+  FILM_NONE = 'filmNone',
 }
 
 export interface IFilm {
