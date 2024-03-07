@@ -19,48 +19,30 @@ export default function PageMain() {
     dispatch(fetchFilmThunk(mainPage));
   }, [dispatch, mainPage]);
 
-  if (loader) {
-    return (
-      <div className={style.loaderContainer}>
-        <div className={style.loaderText}>Loading...</div>
-        <Icons
-          id={IconId.SPINNER}
-          className={`${style.loaderIco} ${loader && style.active}`}
-        />
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className={style.wrapper}>
-        <PosterList posters={film} />
-      </div>
-      <ShowMore />
+      {loader && (
+        <div className={style.loaderContainer}>
+          <div className={style.loaderText}>Loading...</div>
+          <Icons
+            id={IconId.SPINNER}
+            className={`${style.loaderIco} ${loader && style.active}`}
+          />
+        </div>
+      )}
+      {resolved && (
+        <>
+          <div className={style.wrapper}>
+            <PosterList posters={film} />
+          </div>
+          <ShowMore />
+        </>
+      )}
+      {rejected && (
+        <div className={style.rejected}>
+          <Icons id={IconId.FILM_NONE} />
+        </div>
+      )}
     </>
-    // <>
-    //   {loader && (
-    //     <div className={style.loaderContainer}>
-    //       <div className={style.loaderText}>Loading...</div>
-    //       <Icons
-    //         id={IconId.SPINNER}
-    //         className={`${style.loaderIco} ${loader && style.active}`}
-    //       />
-    //     </div>
-    //   )}
-    //   {resolved && (
-    //     <>
-    //       <div className={style.wrapper}>
-    //         <PosterList posters={film} />
-    //       </div>
-    //       <ShowMore />
-    //     </>
-    //   )}
-    //   {rejected && (
-    //     <div className={style.rejected}>
-    //       <Icons id={IconId.FILM_NONE} />
-    //     </div>
-    //   )}
-    // </>
   );
 }

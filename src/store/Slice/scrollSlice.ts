@@ -1,24 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ThemeVariant } from '../..';
 
 interface IThemeState {
-  theme: string;
+  scrollPosition: number;
 }
 
 const initialState: IThemeState = {
-  theme: ThemeVariant.DARK,
+  scrollPosition: 0,
 };
 
 const scrollSlice = createSlice({
-  name: 'theme',
+  name: 'scroll',
   initialState,
   reducers: {
-    switchingTheme: (state, action) => {
-      state.theme = action.payload;
+    scrollPositionSave: (state, action) => {
+      state.scrollPosition = action.payload;
     },
   },
 });
 
-export const { switchingTheme } = scrollSlice.actions;
+export const { scrollPositionSave } = scrollSlice.actions;
 
 export default scrollSlice.reducer;

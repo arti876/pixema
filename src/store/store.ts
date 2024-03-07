@@ -6,12 +6,14 @@ import {
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import themeReducer from './Slice/themeSlice';
 import filmReducer from './Slice/filmSlice';
+import scrollReducer from './Slice/scrollSlice';
 
 const listenerMiddleware = createListenerMiddleware();
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   film: filmReducer,
+  scroll: scrollReducer,
 });
 
 const store = configureStore({
