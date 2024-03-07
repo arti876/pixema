@@ -5,40 +5,26 @@ import LinkCustom from '../LinkCustom/LinkCustom';
 import style from './NavMenu.module.scss';
 
 export default function NavMenu() {
+  const dataLink = [
+    { path: RoutePath.ROOT, icon: IconId.HOME, styles: style.home },
+    { path: RoutePath.TRENDS, icon: IconId.TRENDS, styles: style.trends },
+    { path: RoutePath.FAVORITES, icon: IconId.FAVORITES, styles: style.favorites },
+    { path: RoutePath.SETTING, icon: IconId.SETTING, styles: style.settings },
+  ];
+
   return (
     <div className={style.wrapper}>
-      <LinkCustom to={RoutePath.ROOT} className={style.link}>
-        <>
-          <div className={style.icoContainer}>
-            <Icons className={style.home} id={IconId.HOME} />
-          </div>
-          <div className={style.linkText}>{IconId.HOME}</div>
-        </>
-      </LinkCustom>
-      <LinkCustom to={RoutePath.TRENDS} className={style.link}>
-        <>
-          <div className={style.icoContainer}>
-            <Icons className={style.trends} id={IconId.TRENDS} />
-          </div>
-          <div className={style.linkText}>{IconId.TRENDS}</div>
-        </>
-      </LinkCustom>
-      <LinkCustom to={RoutePath.FAVORITES} className={style.link}>
-        <>
-          <div className={style.icoContainer}>
-            <Icons className={style.favorites} id={IconId.FAVORITES} />
-          </div>
-          <div className={style.linkText}>{IconId.FAVORITES}</div>
-        </>
-      </LinkCustom>
-      <LinkCustom to={RoutePath.SETTING} className={style.link}>
-        <>
-          <div className={style.icoContainer}>
-            <Icons className={style.settings} id={IconId.SETTING} />
-          </div>
-          <div className={style.linkText}>{IconId.SETTING}</div>
-        </>
-      </LinkCustom>
+      {!!dataLink &&
+        dataLink.map(({ path, icon, styles }, index) => (
+          <LinkCustom key={index} to={path} className={style.link}>
+            <>
+              <div className={style.icoContainer}>
+                <Icons className={styles} id={icon} />
+              </div>
+              <div className={style.linkText}>{icon}</div>
+            </>
+          </LinkCustom>
+        ))}
     </div>
   );
 }

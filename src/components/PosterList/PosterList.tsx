@@ -9,7 +9,7 @@ export default function PosterList({ posters }: PosterListProps) {
   return (
     <>
       {posters.length &&
-        posters.map((data, index) => <Poster key={index} posters={data} />)}
+        posters.map((data, index) => <Poster key={index} poster={data} />)}
     </>
   );
 }

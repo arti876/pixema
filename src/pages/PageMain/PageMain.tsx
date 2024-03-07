@@ -14,7 +14,6 @@ export default function PageMain() {
   const dispatch = useAppDispatch();
 
   const loader = mainFilm.length === 0;
-  const resolved = mainStatus === 'resolved';
   const rejected = mainStatus === 'rejected';
 
   useEffect(() => {
