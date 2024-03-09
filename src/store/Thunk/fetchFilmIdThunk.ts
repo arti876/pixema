@@ -27,6 +27,15 @@ export const fetchFilmIdThunk = createAsyncThunk(
           }),
         ),
       );
+
+      // const data = response.map(() => ({
+      //   description: '',
+      //   distributions: '',
+      //   boxOffice: '',
+      //   similars: '',
+      //   Recommendations: '',
+      // }));
+
       return response;
     } catch (error) {
       const errorFetch = error as AxiosError;
@@ -37,8 +46,44 @@ export const fetchFilmIdThunk = createAsyncThunk(
 
 // 409424
 
-// { data: description },
-// { data: distributions },
-// { data: boxOffice },
-// { data: similars },
-// { data: Recommendations },
+// const dataDescription = response[0].data
+// const dataDistributions = response[1].data.items[0]
+// const dataBoxOffice = response[2].data.items[3]
+// const dataSimilars = response[3].data.items
+// const dataPeople = response[4].data
+
+// const description = {
+//   kinopoiskId: dataDescription.kinopoiskId,
+//   countries: dataDescription.countries.map((el: string) => el.country),
+//   genres: dataDescription.genres.map((el: string) => el.genre),
+//   poster: dataDescription.posterUrl,
+//   description: dataDescription.description,
+//   filmLength: dataDescription.filmLength,
+//   nameRu: dataDescription.nameRu,
+//   ratingKinopoisk: dataDescription.ratingKinopoisk,
+//   ratingImdb: dataDescription.ratingImdb,
+//   year: dataDescription.year,
+// };
+
+// const distributions = {
+//   Released: dataDistributions.date
+// }
+
+// const boxOffice = {
+//   BoxOffice: dataBoxOffice.amount
+// }
+
+// const recommendations = dataSimilars.map(({filmId, nameRu, posterUrl}: {filmId: number, nameRu: string, posterUrl: string}) => ({
+//         filmId,
+//         nameRu,
+//         posterUrl,
+// }));
+
+// const people = dataPeople.map(({staffId, nameRu, professionText, professionKey}: {staffId: number, nameRu: string, professionText: string, professionKey: string}) => ({
+//   staffId,
+//   nameRu,
+//   professionText,
+//   professionKey,
+// }));
+
+// const filmData = [description, distributions, boxOffice, recommendations, people]
