@@ -7,7 +7,7 @@ import { SvgName } from '../../constants/SvgName.constants';
 import { ButtonName } from '../../constants/ButtonName.constants';
 
 export default function User() {
-  const [menuActive, menuActiveState] = useState<boolean>(false);
+  const [menuActive, setMenuActive] = useState<boolean>(false);
 
   const isAuthorized = true;
   const firstName = 'User';
@@ -18,7 +18,7 @@ export default function User() {
     const refOutsideTrue = menuActive && event?.name !== ButtonName.BTN_ICO_TRIANGLE && event?.id !== SvgName.TRIANGLE;
 
     if (refOutsideTrue) {
-      menuActiveState(false);
+      setMenuActive(false);
     }
   });
 
@@ -27,15 +27,15 @@ export default function User() {
   }
 
   function openMenu() {
-    menuActiveState(true);
+    setMenuActive(true);
   }
 
   function editProfile() {
-    menuActiveState(false);
+    setMenuActive(false);
   }
 
   function logOut() {
-    menuActiveState(false);
+    setMenuActive(false);
   }
 
   if (isAuthorized && firstName) {

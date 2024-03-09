@@ -1,7 +1,7 @@
 export const fakeDataTest = [
   {
     ratingKinopoisk: 7.6,
-    posterUrl: '/public/starwars.jpg',
+    posterUrl: '/starwars.jpg',
     nameRu: 'StarWars',
     genres: [{ genre: 'Adventure' }, { genre: 'Action' }, { genre: 'Fantasy' }],
   },

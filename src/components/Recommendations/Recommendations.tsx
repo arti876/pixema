@@ -18,7 +18,6 @@ export default function Recommendations() {
           // loop={true}
           slidesPerView={4}
           spaceBetween={40}
-          autoHeight={true}
           navigation={true}
           modules={[Navigation]}
           className='my-swiper'

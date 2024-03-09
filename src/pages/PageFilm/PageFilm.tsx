@@ -3,6 +3,9 @@ import BtnShare from '../../components/BtnShare/BtnShare';
 import style from './PageFilm.module.scss';
 import { SvgImdb } from '../../svg/svg';
 import Recommendations from '../../components/Recommendations/Recommendations';
+import { fetchFilmIdThunk } from '../../store/Thunk/fetchFilmIdThunk';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 
 export default function PageFilm() {
   const genres = ['Adventure', 'Action', 'Fantasy'];
@@ -10,12 +13,22 @@ export default function PageFilm() {
   const ratingKinopoiskContent = '7.6';
   const ratingImdbContent = '7.6';
   const movieLengthContent = '130 min';
+  const { film } = useAppSelector((store) => store.filmId);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFilmIdThunk(409424));
+  }, [dispatch]);
 
   return (
     <div className={style.wrapper}>
+      <button type='button' onClick={() => console.log(film)}>
+        Click
+      </button>
       <div className={style.containerLeft}>
         <div className={style.imgContainer}>
-          <img src='/public/starwars.jpg' alt={'starwars'} />
+          <img src='/starwars.jpg' alt={'starwars'} />
         </div>
         <div className={style.btnContainer}>
           <BtnFavorites className={style.btnFavorites} />

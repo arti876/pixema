@@ -7,10 +7,10 @@ interface BtnFavoritesProps {
 }
 
 export default function BtnFavorites({ className }: BtnFavoritesProps) {
-  const [inFavorites, inFavoritesState] = useState<boolean>(false);
+  const [inFavorites, setInFavorites] = useState<boolean>(false);
 
   function handleClick() {
-    inFavoritesState(!inFavorites);
+    setInFavorites(!inFavorites);
   }
 
   return (
