@@ -2,6 +2,7 @@ import style from './Poster.module.scss';
 import { IFilm } from '../../constants/IFilm.constants';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { SvgTrends } from '../../svg/svg';
+import { useNavigate } from 'react-router-dom';
 
 interface PosterProps {
   poster: IFilm;
@@ -9,11 +10,18 @@ interface PosterProps {
 }
 
 export default function Poster({ poster, pageName }: PosterProps) {
+  const navigate = useNavigate();
+
+  function navigateTo() {
+    // navigate(RoutePath.FILM, { state: { idFilm: poster.kinopoiskId } });
+    navigate(RoutePath.FILM);
+  }
+
   return (
     <>
       {!!poster && (
         <div>
-          <div className={style.imgContainer}>
+          <button type='button' className={style.imgContainer} onClick={navigateTo}>
             {poster.ratingKinopoisk && `/${RoutePath.TRENDS}` === pageName && (
               <div className={style.ratingTrendsContainer}>
                 <SvgTrends className={style.trendsIco} />
@@ -22,7 +30,7 @@ export default function Poster({ poster, pageName }: PosterProps) {
             )}
             {poster.ratingKinopoisk && !pageName && <div className={style.rating}>{poster.ratingKinopoisk}</div>}
             <img src={poster.posterUrl} alt={poster.nameRu} />
-          </div>
+          </button>
           <div className={style.movieTitle}>{poster.nameRu}</div>
           <div className={style.movieGenreContainer}>
             {poster.genres.map(({ genre }, index, arr) => (

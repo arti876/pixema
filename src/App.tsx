@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import AppLayout from './pages/AppLayout/AppLayout';
 import PageMain from './pages/PageMain/PageMain';
 import PageTrends from './pages/PageTrends/PageTrends';
+import PageFilm from './pages/PageFilm/PageFilm';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -23,6 +24,8 @@ export default function App() {
       <Route path={RoutePath.ROOT} element={<AppLayout />}>
         <Route index element={<PageMain />} />
         <Route path={RoutePath.TRENDS} element={<PageTrends />} />
+        <Route path={RoutePath.FAVORITES} element={<PageFilm />} />
+        <Route path={RoutePath.FILM} element={<PageFilm />} />
       </Route>
     </Routes>
   );

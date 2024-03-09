@@ -8,4 +8,6 @@ export interface IFilm {
   ratingImdb: number;
   ratingKinopoisk: number;
   year: number;
+  filmLength: number;
+  description: string;
 }

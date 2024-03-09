@@ -4,4 +4,5 @@ export enum Locales {
   EDIT_PROFILE = 'Edit profile',
   LOG_OUT = 'Log Out',
   SHOW_MORE = 'Show more',
+  RECOMMENDADIONS = 'Recommendations',
 }

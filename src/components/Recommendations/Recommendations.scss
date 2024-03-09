@@ -1,0 +1,38 @@
+.wrapper-swiper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title-swiper {
+  position: absolute;
+  font-size: 24px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+}
+
+.my-swiper {
+  display: flex;
+  align-items: flex-end;
+  max-width: 1184px;
+  min-height: 500px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--contextual-colors-white);
+  top: 5%;
+}
+
+.swiper-button-prev:after {
+  content: '←';
+}
+
+.swiper-button-next:after {
+  content: '→';
+}
+
+.swiper-button-prev {
+  left: 90%;
+}

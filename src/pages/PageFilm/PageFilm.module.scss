@@ -1,0 +1,152 @@
+.wrapper {
+  display: flex;
+  gap: 42px;
+  padding: 56px 0px;
+}
+
+.containerRight {
+}
+
+.containerLeft {
+}
+
+.imgContainer {
+  position: relative;
+  border-radius: 20px;
+  max-width: 266px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btnContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  border-radius: 10px;
+  width: 266px;
+  height: 56px;
+  overflow: hidden;
+}
+
+.btnFavorites,
+.btnShare {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-colors-graphite);
+}
+
+.filmGenreContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filmGenreContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filmGenre {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-light);
+}
+
+.separator {
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: var(--contextual-colors-light);
+}
+
+.filmTitle {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+  margin-bottom: 24px;
+}
+
+.containerRating {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.ratingKinopoisk,
+.ratingImdb,
+.movieLength {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+}
+
+.ratingKinopoisk {
+  background: var(--tertiary-colors-green);
+}
+
+.ratingImdb,
+.movieLength {
+  background: var(--background-colors-graphite);
+}
+
+.ratingImdb {
+  gap: 10px;
+}
+
+.icoImdb {
+  width: 32px;
+  height: 12px;
+  fill: var(--contextual-colors-white);
+}
+
+.filmDescription {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+  margin-bottom: 40px;
+}
+
+.filmDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.filmDetailsItem {
+  display: grid;
+  grid-template-columns: 136px auto;
+}
+
+.filmDetailsLeft,
+.filmDetailsRight {
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.filmDetailsLeft {
+  padding-right: 10px;
+  color: var(--contextual-colors-light);
+}
+
+.filmDetailsRight {
+  font-weight: 500;
+  color: var(--contextual-colors-white);
+}

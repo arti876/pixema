@@ -14,3 +14,4 @@ export * from './SvgSpinner';
 export * from './SvgTrends';
 export * from './SvgUser';
 export * from './SvgPixema';
+export * from './SvgImdb';

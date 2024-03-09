@@ -14,4 +14,5 @@ export enum SvgName {
   SPINNER = 'Spinner',
   FILM_NONE = 'FilmNone',
   TRIANGLE = 'Triangle',
+  IMDB = 'imdb',
 }
