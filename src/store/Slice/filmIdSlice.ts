@@ -3,13 +3,13 @@ import { IFilm } from '../../constants/IFilm.constants';
 import { fetchFilmIdThunk } from '../Thunk/fetchFilmIdThunk';
 
 interface IFilmIdState {
-  film: IFilm[];
+  film: object;
   status: string | null;
   error: string | null | unknown;
 }
 
 const initialState: IFilmIdState = {
-  film: [],
+  film: {},
   status: null,
   error: null,
 };
@@ -25,7 +25,7 @@ const filmIdSlice = createSlice({
     });
     builder.addCase(fetchFilmIdThunk.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = state.film.concat(action.payload);
+      state.film = action.payload;
     });
     builder.addCase(fetchFilmIdThunk.rejected, (state, action) => {
       state.status = 'rejected';
