@@ -1,0 +1,17 @@
+export enum SvgName {
+  FILTER = 'Filter',
+  PIXEMA = 'Pixema',
+  HOME = 'Home',
+  TRENDS = 'Trends',
+  FAVORITES = 'Favorites',
+  SETTING = 'Setting',
+  SHARE = 'Share',
+  ARROW = 'Arrow',
+  MENU = 'Menu',
+  CLOSE = 'Close',
+  USER = 'User',
+  CHECK = 'Check',
+  SPINNER = 'Spinner',
+  FILM_NONE = 'FilmNone',
+  TRIANGLE = 'Triangle',
+}

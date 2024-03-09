@@ -1,8 +1,10 @@
 import { SvgProps } from '.';
+import { SvgName } from '../constants/SvgName.constants';
 
 export function SvgFilmNone({ className = '' }: SvgProps) {
   return (
     <svg
+      id={SvgName.FILM_NONE}
       className={className}
       width='404'
       height='362'

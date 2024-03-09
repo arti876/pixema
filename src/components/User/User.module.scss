@@ -1,9 +1,13 @@
 .wrapper {
+  position: relative;
+}
+
+.userContainer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   min-width: 264px;
-  background-color: var(--system-colors-primaty-1);
+  background-color: var(--system-colors-primaty);
 }
 
 .initials {
@@ -24,14 +28,14 @@
 }
 
 .fullname {
+  flex-grow: 1;
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
   color: var(--contextual-colors-white);
-  margin-right: 51px;
 }
 
-.buttonIcoArrow {
+.buttonIcoTriangle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,12 +43,49 @@
   min-height: 24px;
 }
 
-.icoArrow path {
-  width: 12px;
+.icoTriangle {
+  width: 8px;
+  height: 12px;
   fill: var(--system-colors-secondary);
+}
+
+.icoTriangleActive {
+  transform: rotate(90deg);
 }
 
 .icoUser {
   width: 24px;
-  stroke: var(--system-colors-secondary);
+  fill: transparent;
+  stroke: var(--contextual-colors-white);
+}
+
+.menu {
+  position: absolute;
+  z-index: 1;
+  top: 140%;
+  display: none;
+  border-radius: 10px;
+  width: 100%;
+  background: var(--background-colors-dark);
+  overflow: hidden;
+  :nth-of-type(1) {
+    border-bottom: 1px solid var(--background-colors-graphite);
+  }
+  button {
+    width: 100%;
+    text-align: start;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--contextual-colors-white);
+    padding: 17px 20px;
+  }
+  :hover {
+    color: var(--system-colors-primary2);
+  }
+}
+
+.menuActive {
+  display: flex;
+  flex-direction: column;
 }

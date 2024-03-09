@@ -1,8 +1,9 @@
 import { SvgProps } from '.';
+import { SvgName } from '../constants/SvgName.constants';
 
 export function SvgClose({ className = '' }: SvgProps) {
   return (
-    <svg className={className} viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'>
+    <svg id={SvgName.CLOSE} className={className} viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'>
       <path
         fill='current'
         fillRule='evenodd'
