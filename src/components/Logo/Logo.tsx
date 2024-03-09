@@ -1,7 +1,6 @@
-import { IconId } from '../../Constants/IconId.constants';
-import Icons from '../Icons/Icons';
 import style from './Logo.module.scss';
+import { SvgPixema } from '../../svg/svg';
 
 export default function Logo() {
-  return <Icons className={style.logo} id={IconId.PIXEMA} />;
+  return <SvgPixema className={style.logo} />;
 }

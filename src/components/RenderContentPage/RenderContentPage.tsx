@@ -3,9 +3,8 @@ import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch } from '../../store/store';
 import style from './RenderContentPage.module.scss';
-import Icons from '../../components/Icons/Icons';
-import { IconId } from '../../Constants/IconId.constants';
-import { IFilm } from '../../Constants/IFilm.constants';
+import { IFilm } from '../../constants/IFilm.constants';
+import { SvgSpinner } from '../../svg/svg';
 
 interface RenderContentPageProps {
   film: IFilm[];
@@ -41,7 +40,7 @@ export default function RenderContentPage({
     return (
       <div className={style.loaderContainer}>
         <div className={style.loaderText}>Loading...</div>
-        <Icons id={IconId.SPINNER} className={`${style.loaderIco} ${loader && style.active}`} />
+        <SvgSpinner className={`${style.loaderIco} ${loader && style.active}`} />
       </div>
     );
   } else {

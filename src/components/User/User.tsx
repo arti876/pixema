@@ -1,27 +1,25 @@
-import { useMemo } from 'react';
 import style from './User.module.scss';
-import Icons from '../Icons/Icons';
-import { IconId } from '../../Constants/IconId.constants';
+import { SvgUser, SvgArrowDown } from '../../svg/svg';
 
-interface UserProps {
-  firstName: string;
-  lastName: string;
-}
+export default function User() {
+  const isAuthorized = false;
+  const firstName = 'User';
+  const lastName = 'Name';
 
-export default function User({ firstName, lastName }: UserProps) {
-  const getInitials = useMemo(() => {
-    return (
-      firstName.slice(0, 1).toUpperCase() + lastName.slice(0, 1).toUpperCase()
-    );
-  }, [firstName, lastName]);
+  function getInitials() {
+    return firstName.slice(0, 1).toUpperCase() + lastName.slice(0, 1).toUpperCase();
+  }
 
   return (
     <div className={style.wrapper}>
-      <div className={style.initials}>{getInitials}</div>
-      <div className={style.fullname}>{`${firstName} ${lastName}`}</div>
-      <button type='button' className={style.buttonIcoArrow}>
-        <Icons className={style.icoArrow} id={IconId.ARROW_DOWN} />
-      </button>
+      <div className={style.initials}>{getInitials()}</div>
+      <div className={style.fullname}>{`${isAuthorized ? firstName : 'Sign'} ${isAuthorized ? lastName : 'In'}`}</div>
+      {isAuthorized && (
+        <button type='button' className={style.buttonIcoArrow}>
+          <SvgArrowDown className={style.icoArrow} />
+        </button>
+      )}
+      <SvgUser className={style.icoUser} />
     </div>
   );
 }

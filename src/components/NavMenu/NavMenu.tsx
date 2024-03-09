@@ -1,30 +1,44 @@
-import { IconId } from '../../Constants/IconId.constants';
-import { RoutePath } from '../../Constants/RoutePath.constants';
-import Icons from '../Icons/Icons';
+import { RoutePath } from '../../constants/RoutePath.constants';
 import LinkCustom from '../LinkCustom/LinkCustom';
 import style from './NavMenu.module.scss';
+import { SvgHome, SvgTrends, SvgFavorites, SvgSettings } from '../../svg/svg';
+import { Locales } from '../../constants/Locales.constants';
 
 export default function NavMenu() {
-  const dataLink = [
-    { path: RoutePath.ROOT, icon: IconId.HOME, styles: style.home },
-    { path: RoutePath.TRENDS, icon: IconId.TRENDS, styles: style.trends },
-    { path: RoutePath.FAVORITES, icon: IconId.FAVORITES, styles: style.favorites },
-    { path: RoutePath.SETTING, icon: IconId.SETTING, styles: style.settings },
-  ];
-
   return (
     <div className={style.wrapper}>
-      {!!dataLink &&
-        dataLink.map(({ path, icon, styles }, index) => (
-          <LinkCustom key={index} to={path} className={style.link}>
-            <>
-              <div className={style.icoContainer}>
-                <Icons className={styles} id={icon} />
-              </div>
-              <div className={style.linkText}>{icon}</div>
-            </>
-          </LinkCustom>
-        ))}
+      <LinkCustom to={RoutePath.ROOT} className={style.link}>
+        <>
+          <div className={style.icoContainer}>
+            <SvgHome className={style.home} />
+          </div>
+          <div className={style.linkText}>{Locales.HOME}</div>
+        </>
+      </LinkCustom>
+      <LinkCustom to={RoutePath.TRENDS} className={style.link}>
+        <>
+          <div className={style.icoContainer}>
+            <SvgTrends className={style.trends} />
+          </div>
+          <div className={style.linkText}>{Locales.TRENDS}</div>
+        </>
+      </LinkCustom>
+      <LinkCustom to={RoutePath.FAVORITES} className={style.link}>
+        <>
+          <div className={style.icoContainer}>
+            <SvgFavorites className={style.favorites} />
+          </div>
+          <div className={style.linkText}>{Locales.FAVORITES}</div>
+        </>
+      </LinkCustom>
+      <LinkCustom to={RoutePath.SETTING} className={style.link}>
+        <>
+          <div className={style.icoContainer}>
+            <SvgSettings className={style.settings} />
+          </div>
+          <div className={style.linkText}>{Locales.SETTING}</div>
+        </>
+      </LinkCustom>
     </div>
   );
 }

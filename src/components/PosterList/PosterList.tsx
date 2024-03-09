@@ -1,4 +1,4 @@
-import { IFilm } from '../../Constants/IFilm.constants';
+import { IFilm } from '../../constants/IFilm.constants';
 import Poster from '../Poster/Poster';
 
 interface PosterListProps {
@@ -8,9 +8,6 @@ interface PosterListProps {
 
 export default function PosterList({ posters, pageName }: PosterListProps) {
   return (
-    <>
-      {posters.length &&
-        posters.map((data, index) => <Poster key={index} poster={data} pageName={pageName} />)}
-    </>
+    <>{posters.length && posters.map((data, index) => <Poster key={index} poster={data} pageName={pageName} />)}</>
   );
 }

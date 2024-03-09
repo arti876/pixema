@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFilm } from '../../Constants/IFilm.constants';
+import { IFilm } from '../../constants/IFilm.constants';
 import { fetchFilmTrendsThunk } from '../Thunk/fetchFilmTrendsThunk';
 
 interface IFilmTrendsState {

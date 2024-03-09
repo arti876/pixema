@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useAppSelector } from './store/store';
-import { RoutePath } from './Constants/RoutePath.constants';
-import { ThemeVariant } from './Constants/ThemeVariant.constants';
+import { RoutePath } from './constants/RoutePath.constants';
+import { ThemeVariant } from './constants/ThemeVariant.constants';
 import { useEffect } from 'react';
 import AppLayout from './pages/AppLayout/AppLayout';
 import PageMain from './pages/PageMain/PageMain';

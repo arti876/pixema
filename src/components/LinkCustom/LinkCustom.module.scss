@@ -2,3 +2,12 @@ a.active * {
   fill: var(--system-colors-primary);
   color: var(--system-colors-primary);
 }
+
+.hover {
+  transition: 0.3s;
+}
+
+.hover:hover * {
+  fill: var(--system-colors-primary2);
+  color: var(--system-colors-primary2);
+}

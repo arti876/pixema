@@ -1,8 +1,7 @@
-import { IconId } from '../../Constants/IconId.constants';
-import { Locales } from '../../Constants/Locales.constants';
+import { Locales } from '../../constants/Locales.constants';
 import { useAppDispatch } from '../../store/store';
-import Icons from '../Icons/Icons';
 import style from './ShowMore.module.scss';
+import { SvgSpinner } from '../../svg/svg';
 
 interface ShowMoreProps {
   status: string | null;
@@ -17,13 +16,9 @@ export default function ShowMore({ status, dispatchFunction }: ShowMoreProps) {
   }
 
   return (
-    <button
-      type='button'
-      className={`${style.wrapper} ${status === 'loading' && style.active}`}
-      onClick={nextPage}
-    >
+    <button type='button' className={`${style.wrapper} ${status === 'loading' && style.active}`} onClick={nextPage}>
       <div className={style.text}>{Locales.SHOW_MORE}</div>
-      <Icons id={IconId.SPINNER} className={style.loader} />
+      <SvgSpinner className={style.loader} />
     </button>
   );
 }

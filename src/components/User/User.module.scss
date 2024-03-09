@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-width: 264px;
   background-color: var(--system-colors-primaty-1);
@@ -42,4 +42,9 @@
 .icoArrow path {
   width: 12px;
   fill: var(--system-colors-secondary);
+}
+
+.icoUser {
+  width: 24px;
+  stroke: var(--system-colors-secondary);
 }

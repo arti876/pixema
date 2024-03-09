@@ -1,4 +1,4 @@
-import { Locales } from '../../Constants/Locales.constants';
+import { Locales } from '../../constants/Locales.constants';
 import style from './RightsReserved.module.scss';
 
 export default function RightsReserved() {
