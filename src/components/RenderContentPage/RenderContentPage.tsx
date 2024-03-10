@@ -4,7 +4,8 @@ import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch } from '../../store/store';
 import style from './RenderContentPage.module.scss';
 import { IFilm } from '../../constants/IFilm.constants';
-import { SvgSpinner } from '../../svg/svg';
+import Loader from '../Loader/Loader';
+import Error from '../Error/Error';
 
 interface RenderContentPageProps {
   film: IFilm[];
@@ -27,7 +28,7 @@ export default function RenderContentPage({
 }: RenderContentPageProps) {
   const dispatch = useAppDispatch();
 
-  const loader = film.length === 0;
+  const loading = film.length === 0;
   const rejected = status === 'rejected';
 
   useEffect(() => {
@@ -35,14 +36,9 @@ export default function RenderContentPage({
   }, [dispatch, page]);
 
   if (rejected) {
-    return <div className={style.rejected}>{`Error: ${error}`}</div>;
-  } else if (loader) {
-    return (
-      <div className={style.loaderContainer}>
-        <div className={style.loaderText}>Loading...</div>
-        <SvgSpinner className={`${style.loaderIco} ${loader && style.active}`} />
-      </div>
-    );
+    return <Error errorMessage={error} />;
+  } else if (loading) {
+    return <Loader loading={loading} />;
   } else {
     return (
       <>

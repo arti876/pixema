@@ -30,26 +30,30 @@ export const fetchFilmIdThunk = createAsyncThunk(
 
       const dataDescription = response[0].data;
       const dataDistributions = response[1].data.items[0];
-      const dataBoxOffice = response[2].data.items[3];
+      const dataBoxOffice = response[2].data.items;
       const dataSimilars = response[3].data.items;
       const dataPeople = response[4].data;
 
       const description = {
-        kinopoiskId: dataDescription.kinopoiskId,
-        countries: dataDescription.countries.map(({ country }: { country: string }) => country),
-        genres: dataDescription.genres.map(({ genre }: { genre: string }) => genre),
-        poster: dataDescription.posterUrl,
-        description: dataDescription.description,
-        filmLength: dataDescription.filmLength,
-        nameRu: dataDescription.nameRu,
-        ratingKinopoisk: dataDescription.ratingKinopoisk,
-        ratingImdb: dataDescription.ratingImdb,
-        year: dataDescription.year,
+        kinopoiskId: dataDescription?.kinopoiskId,
+        countries: dataDescription?.countries.map(({ country }: { country: string }) => country),
+        genres: dataDescription?.genres.map(({ genre }: { genre: string }) => genre),
+        poster: dataDescription?.posterUrl,
+        description: dataDescription?.description,
+        filmLength: dataDescription?.filmLength,
+        nameRu: dataDescription?.nameRu,
+        ratingKinopoisk: dataDescription?.ratingKinopoisk,
+        ratingImdb: dataDescription?.ratingImdb,
+        year: dataDescription?.year,
       };
 
-      const released = dataDistributions.date;
+      const released = {
+        date: dataDistributions?.date,
+        production: dataDistributions?.companies,
+      };
 
-      const boxOffice = dataBoxOffice.amount;
+      const boxOffice = dataBoxOffice;
+
       const recommendations = dataSimilars.map(
         ({ filmId, nameRu, posterUrl }: { filmId: number; nameRu: string; posterUrl: string }) => ({
           filmId,
@@ -92,5 +96,3 @@ export const fetchFilmIdThunk = createAsyncThunk(
     }
   },
 );
-
-// 409424

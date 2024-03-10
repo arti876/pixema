@@ -3,99 +3,161 @@ import BtnShare from '../../components/BtnShare/BtnShare';
 import style from './PageFilm.module.scss';
 import { SvgImdb } from '../../svg/svg';
 import Recommendations from '../../components/Recommendations/Recommendations';
-import { fetchFilmIdThunk } from '../../store/Thunk/fetchFilmIdThunk';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../store/store';
+import { Locales } from '../../constants/Locales.constants';
+import Loader from '../../components/Loader/Loader';
+import Error from '../../components/Error/Error';
 
 export default function PageFilm() {
-  const genres = ['Adventure', 'Action', 'Fantasy'];
-  const filmTitleContent = 'Wonder Woman: 1984';
-  const ratingKinopoiskContent = '7.6';
-  const ratingImdbContent = '7.6';
-  const movieLengthContent = '130 min';
-  const { film } = useAppSelector((store) => store.filmId);
+  const {
+    film: {
+      description: {
+        poster,
+        genres,
+        nameRu: filmTitle,
+        ratingKinopoisk,
+        ratingImdb,
+        filmLength,
+        description,
+        year,
+        countries,
+      },
+      released: { date: released, production },
+      boxOffice,
+      people,
+      recommendations,
+    },
+    status,
+    error,
+  } = useAppSelector((store) => store.filmId);
 
-  const dispatch = useAppDispatch();
+  const loading = status === 'loading';
+  const rejected = status === 'rejected';
 
-  useEffect(() => {
-    dispatch(fetchFilmIdThunk(409424));
-  }, [dispatch]);
-
-  return (
-    <div className={style.wrapper}>
-      <button type='button' onClick={() => console.log(film)}>
-        Click
-      </button>
-      <div className={style.containerLeft}>
-        <div className={style.imgContainer}>
-          <img src='/starwars.jpg' alt={'starwars'} />
+  if (rejected) {
+    return <Error errorMessage={error} />;
+  } else if (loading) {
+    return <Loader loading={loading} />;
+  } else {
+    return (
+      <div className={style.wrapper}>
+        <div className={style.containerLeft}>
+          <div className={style.imgContainer}>
+            <img src={poster} alt={Locales.POSTER} />
+          </div>
+          <div className={style.btnContainer}>
+            <BtnFavorites className={style.btnFavorites} />
+            <BtnShare className={style.btnShare} />
+          </div>
         </div>
-        <div className={style.btnContainer}>
-          <BtnFavorites className={style.btnFavorites} />
-          <BtnShare className={style.btnShare} />
-        </div>
-      </div>
-      <div className={style.containerRight}>
-        <div className={style.filmGenreContainer}>
-          {genres.map((genre, index, arr) => (
-            <div className={style.filmGenreContainer} key={index}>
-              <div className={style.filmGenre}>{genre}</div>
-              {index < arr.length - 1 && <div className={style.separator} />}
+        <div className={style.containerRight}>
+          <div className={style.filmGenreContainer}>
+            {genres.map((genre, index, arr) => (
+              <div className={style.filmGenreContainer} key={index}>
+                <div className={style.filmGenre}>{genre}</div>
+                {index < arr.length - 1 && <div className={style.separator} />}
+              </div>
+            ))}
+          </div>
+          <div className={style.filmTitle}>{filmTitle}</div>
+          <div className={style.containerRating}>
+            {!!ratingKinopoisk && <div className={style.ratingKinopoisk}>{ratingKinopoisk}</div>}
+            {!!ratingImdb && (
+              <div className={style.ratingImdb}>
+                <SvgImdb className={style.icoImdb} />
+                {ratingImdb}
+              </div>
+            )}
+            <div className={style.movieLength}>{`${filmLength} min`}</div>
+          </div>
+          <div className={style.filmDescription}>{description}</div>
+          <div className={style.filmDetails}>
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.YEAR}</div>
+              <div className={style.filmDetailsRight}>{year}</div>
             </div>
-          ))}
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.RELEASED}</div>
+              <div className={style.filmDetailsRight}>{released}</div>
+            </div>
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.BOX_OFFICE}</div>
+              <div className={style.filmDetailsRight}>
+                {boxOffice.map(({ type, amount, symbol }, index, arr) => (
+                  <span key={index}>
+                    {`${type} ${symbol}${amount}`}
+                    {index < arr.length - 1 && <span>, </span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.CONTRY}</div>
+              <div className={style.filmDetailsRight}>
+                {countries.map((country, index, arr) => (
+                  <span key={index}>
+                    {country}
+                    {index < arr.length - 1 && <span>, </span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {production.length > 0 && (
+              <div className={style.filmDetailsItem}>
+                <div className={style.filmDetailsLeft}>{Locales.PRODUCTION}</div>
+                <div className={style.filmDetailsRight}>
+                  {production.map(({ name }, index, arr) => (
+                    <span key={index}>
+                      {name}
+                      {index < arr.length - 1 && <span>, </span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.ACTORS}</div>
+              <div className={style.filmDetailsRight}>
+                {people
+                  .filter(({ professionKey }) => professionKey === 'ACTOR')
+                  .map(({ nameRu }, index, arr) => (
+                    <span key={index}>
+                      {nameRu}
+                      {index < arr.length - 1 && <span>, </span>}
+                    </span>
+                  ))}
+              </div>
+            </div>
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.DIRECTOR}</div>
+              <div className={style.filmDetailsRight}>
+                {people
+                  .filter(({ professionKey }) => professionKey === 'DIRECTOR')
+                  .map(({ nameRu }, index, arr) => (
+                    <span key={index}>
+                      {nameRu}
+                      {index < arr.length - 1 && <span>, </span>}
+                    </span>
+                  ))}
+              </div>
+            </div>
+            <div className={style.filmDetailsItem}>
+              <div className={style.filmDetailsLeft}>{Locales.WRITERS}</div>
+              <div className={style.filmDetailsRight}>
+                {people
+                  .filter(({ professionKey }) => professionKey === 'WRITER')
+                  .map(({ nameRu }, index, arr) => (
+                    <span key={index}>
+                      {nameRu}
+                      {index < arr.length - 1 && <span>, </span>}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          </div>
+          <Recommendations recommendations={recommendations} />
         </div>
-        <div className={style.filmTitle}>{filmTitleContent}</div>
-        <div className={style.containerRating}>
-          <div className={style.ratingKinopoisk}>{ratingKinopoiskContent}</div>
-          <div className={style.ratingImdb}>
-            <SvgImdb className={style.icoImdb} />
-            {ratingImdbContent}
-          </div>
-          <div className={style.movieLength}>{movieLengthContent}</div>
-        </div>
-        <div className={style.filmDescription}>
-          In 1984, after saving the world in Wonder Woman (2017), the immortal Amazon warrior, Princess Diana of
-          Themyscira, finds herself trying to stay under the radar, working as an archaeologist at the Smithsonian
-          Museum. With the memory of the brave U.S. pilot, Captain Steve Trevor, etched on her mind, Diana Prince
-          becomes embroiled in a sinister conspiracy of global proportions when a transparent, golden-yellow citrine
-          gemstone catches the eye of the power-hungry entrepreneur, Maxwell Lord.
-        </div>
-        <div className={style.filmDetails}>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Year'}</div>
-            <div className={style.filmDetailsRight}>{'2011'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Released'}</div>
-            <div className={style.filmDetailsRight}>{'15 Jul 2011'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'BoxOffice'}</div>
-            <div className={style.filmDetailsRight}>{'$381,409,310'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Country'}</div>
-            <div className={style.filmDetailsRight}>{'United Kingdom, United States'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Production'}</div>
-            <div className={style.filmDetailsRight}>{'Heyday Films, Moving Picture Company, Warner Bros.'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Actors'}</div>
-            <div className={style.filmDetailsRight}>{'Daniel Radcliffe, Emma Watson, Rupert Grint'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Director'}</div>
-            <div className={style.filmDetailsRight}>{'David Yates'}</div>
-          </div>
-          <div className={style.filmDetailsItem}>
-            <div className={style.filmDetailsLeft}>{'Writers'}</div>
-            <div className={style.filmDetailsRight}>{'J.K. Rowling, Steve Kloves'}</div>
-          </div>
-        </div>
-        <Recommendations />
       </div>
-    </div>
-  );
+    );
+  }
 }

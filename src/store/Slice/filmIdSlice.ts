@@ -1,15 +1,106 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFilm } from '../../constants/IFilm.constants';
 import { fetchFilmIdThunk } from '../Thunk/fetchFilmIdThunk';
 
+interface IFilmId {
+  description: {
+    kinopoiskId: number;
+    countries: string[];
+    genres: string[];
+    poster: string;
+    description: string;
+    filmLength: number;
+    nameRu: string;
+    ratingKinopoisk: number;
+    ratingImdb: number;
+    year: number;
+  };
+  released: {
+    date: string;
+    production: [
+      {
+        name: string;
+      },
+    ];
+  };
+  boxOffice: [
+    {
+      type: string;
+      amount: number;
+      currencyCode: string;
+      name: string;
+      symbol: string;
+    },
+  ];
+  recommendations: [
+    {
+      filmId: number;
+      nameRu: string;
+      posterUrl: string;
+    },
+  ];
+  people: [
+    {
+      staffId: number;
+      nameRu: string;
+      professionText: string;
+      professionKey: string;
+    },
+  ];
+}
+
 interface IFilmIdState {
-  film: object;
+  film: IFilmId;
   status: string | null;
   error: string | null | unknown;
 }
 
 const initialState: IFilmIdState = {
-  film: {},
+  film: {
+    description: {
+      kinopoiskId: 0,
+      countries: [''],
+      genres: [''],
+      poster: '',
+      description: '',
+      filmLength: 0,
+      nameRu: '',
+      ratingKinopoisk: 0,
+      ratingImdb: 0,
+      year: 0,
+    },
+    released: {
+      date: '',
+      production: [
+        {
+          name: '',
+        },
+      ],
+    },
+    boxOffice: [
+      {
+        type: '',
+        amount: 0,
+        currencyCode: '',
+        name: '',
+        symbol: '',
+      },
+    ],
+    recommendations: [
+      {
+        filmId: 0,
+        nameRu: '',
+        posterUrl: '',
+      },
+    ],
+    people: [
+      {
+        staffId: 0,
+        nameRu: '',
+        professionText: '',
+        professionKey: '',
+      },
+    ],
+  },
   status: null,
   error: null,
 };
@@ -33,7 +124,5 @@ const filmIdSlice = createSlice({
     });
   },
 });
-
-// export const { countpage } = filmIdSlice.actions;
 
 export default filmIdSlice.reducer;

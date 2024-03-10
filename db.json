@@ -1,0 +1,610 @@
+{
+  "total": 700,
+  "totalPages": 35,
+  "items": [
+    {
+      "kinopoiskId": 4540126,
+      "imdbId": "tt15239678",
+      "nameRu": "Дюна: Часть вторая",
+      "nameEn": null,
+      "nameOriginal": "Dune: Part Two",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Канада"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "фантастика"
+        },
+        {
+          "genre": "приключения"
+        },
+        {
+          "genre": "боевик"
+        }
+      ],
+      "ratingKinopoisk": null,
+      "ratingImdb": null,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4540126.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4540126.jpg"
+    },
+    {
+      "kinopoiskId": 5117258,
+      "imdbId": "tt23747498",
+      "nameRu": "Онегин",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "мелодрама"
+        }
+      ],
+      "ratingKinopoisk": 7,
+      "ratingImdb": null,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5117258.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5117258.jpg"
+    },
+    {
+      "kinopoiskId": 4489198,
+      "imdbId": "tt27526478",
+      "nameRu": "Три богатыря и Пуп Земли",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "приключения"
+        },
+        {
+          "genre": "мультфильм"
+        },
+        {
+          "genre": "семейный"
+        }
+      ],
+      "ratingKinopoisk": 5.7,
+      "ratingImdb": 5.7,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4489198.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4489198.jpg"
+    },
+    {
+      "kinopoiskId": 409424,
+      "imdbId": "tt1160419",
+      "nameRu": "Дюна",
+      "nameEn": null,
+      "nameOriginal": "Dune",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Канада"
+        },
+        {
+          "country": "Венгрия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "фантастика"
+        },
+        {
+          "genre": "приключения"
+        },
+        {
+          "genre": "боевик"
+        }
+      ],
+      "ratingKinopoisk": 7.7,
+      "ratingImdb": 8,
+      "year": 2021,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/409424.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/409424.jpg"
+    },
+    {
+      "kinopoiskId": 1115471,
+      "imdbId": "tt14536120",
+      "nameRu": "Мастер и Маргарита",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "фэнтези"
+        }
+      ],
+      "ratingKinopoisk": 8,
+      "ratingImdb": 7.8,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1115471.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1115471.jpg"
+    },
+    {
+      "kinopoiskId": 4396438,
+      "imdbId": "tt14230458",
+      "nameRu": "Бедные-несчастные",
+      "nameEn": null,
+      "nameOriginal": "Poor Things",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Великобритания"
+        },
+        {
+          "country": "Ирландия"
+        },
+        {
+          "country": "Венгрия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "мелодрама"
+        },
+        {
+          "genre": "фантастика"
+        },
+        {
+          "genre": "комедия"
+        }
+      ],
+      "ratingKinopoisk": 8.1,
+      "ratingImdb": 8.4,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4396438.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4396438.jpg"
+    },
+    {
+      "kinopoiskId": 5047468,
+      "imdbId": null,
+      "nameRu": "Холоп 2",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "комедия"
+        }
+      ],
+      "ratingKinopoisk": 6.8,
+      "ratingImdb": 5.9,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5047468.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5047468.jpg"
+    },
+    {
+      "kinopoiskId": 5275429,
+      "imdbId": "tt27487288",
+      "nameRu": "Лёд 3",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "мелодрама"
+        }
+      ],
+      "ratingKinopoisk": 7.9,
+      "ratingImdb": 7.5,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5275429.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5275429.jpg"
+    },
+    {
+      "kinopoiskId": 5078842,
+      "imdbId": "tt21692408",
+      "nameRu": "Кунг-фу Панда 4",
+      "nameEn": null,
+      "nameOriginal": "Kung Fu Panda 4",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Китай"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "приключения"
+        },
+        {
+          "genre": "боевик"
+        },
+        {
+          "genre": "фэнтези"
+        },
+        {
+          "genre": "комедия"
+        },
+        {
+          "genre": "мультфильм"
+        },
+        {
+          "genre": "семейный"
+        }
+      ],
+      "ratingKinopoisk": null,
+      "ratingImdb": 7,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5078842.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5078842.jpg"
+    },
+    {
+      "kinopoiskId": 5364878,
+      "imdbId": "tt30420755",
+      "nameRu": "Адам и Ева",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "мелодрама"
+        },
+        {
+          "genre": "фантастика"
+        },
+        {
+          "genre": "комедия"
+        }
+      ],
+      "ratingKinopoisk": null,
+      "ratingImdb": null,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5364878.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5364878.jpg"
+    },
+    {
+      "kinopoiskId": 4664634,
+      "imdbId": "tt15398776",
+      "nameRu": "Оппенгеймер",
+      "nameEn": null,
+      "nameOriginal": "Oppenheimer",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Великобритания"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "биография"
+        },
+        {
+          "genre": "история"
+        }
+      ],
+      "ratingKinopoisk": 8.2,
+      "ratingImdb": 8.4,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4664634.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4664634.jpg"
+    },
+    {
+      "kinopoiskId": 5447041,
+      "imdbId": null,
+      "nameRu": "Любовь со второго взгляда",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        },
+        {
+          "country": "Казахстан"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "мелодрама"
+        },
+        {
+          "genre": "комедия"
+        }
+      ],
+      "ratingKinopoisk": null,
+      "ratingImdb": null,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5447041.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5447041.jpg"
+    },
+    {
+      "kinopoiskId": 5047464,
+      "imdbId": null,
+      "nameRu": "Бременские музыканты",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "приключения"
+        },
+        {
+          "genre": "фэнтези"
+        },
+        {
+          "genre": "комедия"
+        },
+        {
+          "genre": "семейный"
+        }
+      ],
+      "ratingKinopoisk": 7,
+      "ratingImdb": 4.8,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5047464.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5047464.jpg"
+    },
+    {
+      "kinopoiskId": 4507204,
+      "imdbId": "tt15009428",
+      "nameRu": "Аргайл: Супершпион",
+      "nameEn": null,
+      "nameOriginal": "Argylle",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Великобритания"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "боевик"
+        },
+        {
+          "genre": "комедия"
+        }
+      ],
+      "ratingKinopoisk": 6.2,
+      "ratingImdb": 6,
+      "year": 2024,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4507204.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4507204.jpg"
+    },
+    {
+      "kinopoiskId": 5235968,
+      "imdbId": "tt27241551",
+      "nameRu": "Кентавр",
+      "nameEn": null,
+      "nameOriginal": null,
+      "countries": [
+        {
+          "country": "Россия"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "триллер"
+        },
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "криминал"
+        }
+      ],
+      "ratingKinopoisk": 7.5,
+      "ratingImdb": 7,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/5235968.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/5235968.jpg"
+    },
+    {
+      "kinopoiskId": 1077781,
+      "imdbId": "tt5537002",
+      "nameRu": "Убийцы цветочной луны",
+      "nameEn": null,
+      "nameOriginal": "Killers of the Flower Moon",
+      "countries": [
+        {
+          "country": "США"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "криминал"
+        },
+        {
+          "genre": "история"
+        }
+      ],
+      "ratingKinopoisk": 7.2,
+      "ratingImdb": 7.7,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1077781.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1077781.jpg"
+    },
+    {
+      "kinopoiskId": 1048873,
+      "imdbId": "tt7160372",
+      "nameRu": "Зона интересов",
+      "nameEn": null,
+      "nameOriginal": "The Zone of Interest",
+      "countries": [
+        {
+          "country": "США"
+        },
+        {
+          "country": "Польша"
+        },
+        {
+          "country": "Великобритания"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "биография"
+        }
+      ],
+      "ratingKinopoisk": 7.3,
+      "ratingImdb": 7.9,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1048873.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1048873.jpg"
+    },
+    {
+      "kinopoiskId": 1346482,
+      "imdbId": "tt13238346",
+      "nameRu": "Прошлые жизни",
+      "nameEn": null,
+      "nameOriginal": "Past Lives",
+      "countries": [
+        {
+          "country": "США"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "мелодрама"
+        }
+      ],
+      "ratingKinopoisk": 7.3,
+      "ratingImdb": 7.9,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1346482.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1346482.jpg"
+    },
+    {
+      "kinopoiskId": 4910679,
+      "imdbId": "tt17009710",
+      "nameRu": "Анатомия падения",
+      "nameEn": null,
+      "nameOriginal": "Anatomie d'une chute",
+      "countries": [
+        {
+          "country": "Франция"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "детектив"
+        }
+      ],
+      "ratingKinopoisk": 6.9,
+      "ratingImdb": 7.8,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/4910679.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/4910679.jpg"
+    },
+    {
+      "kinopoiskId": 1071383,
+      "imdbId": "tt6587046",
+      "nameRu": "Мальчик и птица",
+      "nameEn": null,
+      "nameOriginal": "Kimitachi wa Dou Ikiru ka",
+      "countries": [
+        {
+          "country": "Япония"
+        }
+      ],
+      "genres": [
+        {
+          "genre": "драма"
+        },
+        {
+          "genre": "фэнтези"
+        },
+        {
+          "genre": "мультфильм"
+        },
+        {
+          "genre": "аниме"
+        }
+      ],
+      "ratingKinopoisk": 7.7,
+      "ratingImdb": 7.6,
+      "year": 2023,
+      "type": "FILM",
+      "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1071383.jpg",
+      "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1071383.jpg"
+    }
+  ]
+}

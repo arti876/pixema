@@ -2,7 +2,7 @@
   position: relative;
   border-radius: 20px;
   width: 266px;
-  height: 399px;
+  height: 357px;
   overflow: hidden;
   margin-bottom: 24px;
   img {
@@ -56,11 +56,16 @@
 }
 
 .movieTitle {
+  text-align: start;
   font-weight: 700;
   font-size: 16px;
   line-height: 150%;
   color: var(--contextual-colors-white);
   margin-bottom: 4px;
+  transition: 0.3s;
+  &:hover {
+    color: var(--system-colors-primary);
+  }
 }
 
 .movieGenreContainer {

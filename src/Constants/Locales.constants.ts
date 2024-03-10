@@ -5,4 +5,13 @@ export enum Locales {
   LOG_OUT = 'Log Out',
   SHOW_MORE = 'Show more',
   RECOMMENDADIONS = 'Recommendations',
+  YEAR = 'Year',
+  RELEASED = 'Released',
+  BOX_OFFICE = 'BoxOffice',
+  CONTRY = 'Country',
+  PRODUCTION = 'Production',
+  ACTORS = 'Actors',
+  DIRECTOR = 'Director',
+  WRITERS = 'Writers',
+  POSTER = 'poster',
 }
