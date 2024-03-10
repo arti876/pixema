@@ -1,4 +1,4 @@
-.wrapper {
+.wrapperForm {
   display: none;
   gap: 30px;
   flex-direction: column;
@@ -58,7 +58,8 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
-  padding: 16px 50px 16px 20px;
+  height: 56px;
+  padding: 0px 20px;
   color: var(--contextual-colors-white);
   &::placeholder {
     color: var(--system-colors-secondary);
@@ -99,6 +100,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.sortContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--background-colors-graphite);
+  padding-bottom: 32px;
 }
 
 .btnContainer {
@@ -150,9 +159,11 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  transition: 0.3s;
-  &:hover {
-    background: var(--system-colors-primary2);
+  & * {
+    transition: 0.3s;
+  }
+  &:hover * {
+    color: var(--contextual-colors-white);
   }
 }
 
@@ -164,14 +175,69 @@
   color: var(--system-colors-secondary);
 }
 
-// .labelYear {
-//   background-color: var(--background-colors-graphite);
-// }
-
 .inputRadioActive {
   background-color: var(--background-colors-graphite);
 }
 
 .inputRadioActive * {
   color: var(--contextual-colors-white);
+}
+
+.inputFromToContainer {
+  display: flex;
+  gap: 40px;
+  height: 56px;
+}
+
+.inputFromTo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--background-colors-graphite);
+  padding: 0px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+  &::placeholder {
+    color: var(--system-colors-secondary);
+  }
+  &:focus {
+    outline: 2px solid var(--system-colors-primary);
+  }
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.selectContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  border-radius: 10px;
+  background: var(--background-colors-graphite);
+  padding: 0px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+}
+
+.selectOption {
+  color: var(--contextual-colors-white);
+}
+
+.selectOptionDefault {
+  color: var(--system-colors-secondary);
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px 0px 111px;
 }
