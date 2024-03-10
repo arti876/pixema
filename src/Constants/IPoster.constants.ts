@@ -1,4 +1,5 @@
-export interface IFilm {
+export interface IPoster {
+  filmId?: number;
   imdbId?: number;
   kinopoiskId?: number;
   countries?: [{ country: string }];
@@ -12,7 +13,8 @@ export interface IFilm {
   description?: string;
 }
 
-export const FilmData: IFilm = {
+export const PosterData: IPoster = {
+  filmId: 0,
   imdbId: 0,
   kinopoiskId: 0,
   countries: [{ country: '' }],

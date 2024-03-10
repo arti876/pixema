@@ -1,29 +1,17 @@
 import style from './Poster.module.scss';
-import { FilmData, IFilm } from '../../constants/IFilm.constants';
+import { IPoster, PosterData } from '../../constants/IPoster.constants';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { SvgTrends } from '../../svg/svg';
 import { useNavigate } from 'react-router-dom';
 import { fetchFilmIdThunk } from '../../store/Thunk/fetchFilmIdThunk';
 import { useAppDispatch } from '../../store/store';
 
-interface IRecommendations {
-  filmId?: number;
-  nameRu?: string;
-  posterUrl?: string;
-}
-
-const RecommendationsData: IRecommendations = {
-  filmId: 0,
-  nameRu: '',
-  posterUrl: '',
-};
-
 interface PosterProps {
-  poster: IFilm | IRecommendations;
+  poster: IPoster;
   pageName?: string;
 }
 
-export default function Poster({ poster = FilmData || RecommendationsData, pageName = '' }: PosterProps) {
+export default function Poster({ poster = PosterData, pageName = '' }: PosterProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -31,6 +19,9 @@ export default function Poster({ poster = FilmData || RecommendationsData, pageN
     if (poster.kinopoiskId) {
       navigate(RoutePath.FILM);
       dispatch(fetchFilmIdThunk(poster.kinopoiskId));
+    } else if (poster.filmId) {
+      navigate(RoutePath.FILM);
+      dispatch(fetchFilmIdThunk(poster.filmId));
     }
   }
 

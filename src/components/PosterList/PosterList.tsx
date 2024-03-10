@@ -1,8 +1,8 @@
-import { IFilm } from '../../constants/IFilm.constants';
+import { IPoster } from '../../constants/IPoster.constants';
 import Poster from '../Poster/Poster';
 
 interface PosterListProps {
-  posters: IFilm[];
+  posters: IPoster[];
   pageName: string;
 }
 

@@ -6,9 +6,18 @@ import { Navigation } from 'swiper/modules';
 import Poster from '../Poster/Poster';
 import './Recommendations.scss';
 import { Locales } from '../../constants/Locales.constants';
-import { IFilm } from '../../constants/IFilm.constants';
 
-export default function Recommendations({ recommendations }: IFilm) {
+interface IRecommendations {
+  recommendations: [
+    {
+      filmId: number;
+      nameRu: string;
+      posterUrl: string;
+    },
+  ];
+}
+
+export default function Recommendations({ recommendations }: IRecommendations) {
   return (
     <>
       <div className='wrapper-swiper'>

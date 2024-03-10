@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFilm } from '../../constants/IFilm.constants';
+import { IPoster } from '../../constants/IPoster.constants';
 import { fetchFilmMainThunk } from '../Thunk/fetchFilmMainThunk';
 
 interface IFilmMainState {
-  mainFilm: IFilm[];
+  mainFilm: IPoster[];
   mainStatus: string | null;
   mainError: string | null | unknown;
   mainPage: number;

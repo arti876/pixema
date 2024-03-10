@@ -3,12 +3,12 @@ import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch } from '../../store/store';
 import style from './RenderContentPage.module.scss';
-import { IFilm } from '../../constants/IFilm.constants';
+import { IPoster } from '../../constants/IPoster.constants';
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 
 interface RenderContentPageProps {
-  film: IFilm[];
+  film: IPoster[];
   page: number;
   status: string | null;
   error: unknown;
