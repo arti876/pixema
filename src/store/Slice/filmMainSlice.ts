@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPoster } from '../../constants/IPoster.constants';
+import { IPoster } from '../../components/Poster/IPoster.type';
 import { fetchFilmMainThunk } from '../Thunk/fetchFilmMainThunk';
 
 interface IFilmMainState {

@@ -1,4 +1,4 @@
-import { IPoster } from '../../constants/IPoster.constants';
+import { IPoster } from '../Poster/IPoster.type';
 import Poster from '../Poster/Poster';
 
 interface PosterListProps {

@@ -3,7 +3,7 @@ import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch } from '../../store/store';
 import style from './RenderContentPage.module.scss';
-import { IPoster } from '../../constants/IPoster.constants';
+import { IPoster } from '../Poster/IPoster.type';
 import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 

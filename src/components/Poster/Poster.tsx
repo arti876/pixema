@@ -1,15 +1,10 @@
 import style from './Poster.module.scss';
-import { IPoster, PosterData } from '../../constants/IPoster.constants';
+import { PosterData, PosterProps } from './IPoster.type';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { SvgTrends } from '../../svg/svg';
 import { useNavigate } from 'react-router-dom';
 import { fetchFilmIdThunk } from '../../store/Thunk/fetchFilmIdThunk';
 import { useAppDispatch } from '../../store/store';
-
-interface PosterProps {
-  poster: IPoster;
-  pageName?: string;
-}
 
 export default function Poster({ poster = PosterData, pageName = '' }: PosterProps) {
   const navigate = useNavigate();

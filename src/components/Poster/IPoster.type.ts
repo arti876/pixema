@@ -1,4 +1,4 @@
-export interface IPoster {
+interface IPoster {
   filmId?: number;
   imdbId?: number;
   kinopoiskId?: number;
@@ -13,7 +13,7 @@ export interface IPoster {
   description?: string;
 }
 
-export const PosterData: IPoster = {
+const PosterData: IPoster = {
   filmId: 0,
   imdbId: 0,
   kinopoiskId: 0,
@@ -27,3 +27,11 @@ export const PosterData: IPoster = {
   filmLength: 0,
   description: '',
 };
+
+interface PosterProps {
+  poster: IPoster;
+  pageName?: string;
+}
+
+export { PosterData };
+export type { IPoster, PosterProps };
