@@ -1,0 +1,63 @@
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.switch-input {
+  appearance: none;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border: 2px solid var(--background-colors-medium);
+  border-radius: 10px;
+  background-color: var(--contextual-colors-white);
+}
+
+.switch-input:hover:not(.switch-input:disabled):not(.switch-input:checked) {
+  border: 2px solid var(--system-colors-primaty-2);
+}
+
+.switch-input:checked {
+  background-color: var(--system-colors-primaty-2);
+  border-color: var(--system-colors-primaty-2);
+}
+
+.switch-input:disabled {
+  border: 2px solid var(--contextual-colors-light);
+  background-color: var(--background-colors-medium);
+}
+
+.switch-input::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--contextual-colors-light);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+}
+
+.switch-input:checked::after {
+  content: '';
+  display: none;
+}
+
+.switch-input:checked::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--contextual-colors-light);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}

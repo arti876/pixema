@@ -1,29 +1,36 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
 import style from './Search.module.scss';
-import { SvgFilter } from '../../svg/svg';
-
-interface IFormData {
-  search: string;
-}
+import Filter from '../Filter/Filter';
+import { useState } from 'react';
 
 export default function Search() {
-  const { register, handleSubmit } = useForm({
-    defaultValues: { search: '' },
-  });
+  const [searchInput, setSearchInput] = useState<string>('');
 
-  const onSubmit: SubmitHandler<IFormData> = (data) => {
-    console.log(data);
-  };
+  function handleChange(e: { target: { value: string } }) {
+    const value = e.target.value;
+    setSearchInput(value);
+  }
+
+  function handleKeyDown(e: { key: string }) {
+    const keyDown = e.key === 'Enter';
+    if (keyDown) {
+      console.log(searchInput);
+      setSearchInput('');
+    }
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-      <input type='text' placeholder='Search' {...register('search')} className={style.inputSearch} />
-      <div className={`${style.icoContainer} ${style.icoContainerActive}`}>
-        <div className={style.dot} />
-        <button type='button'>
-          <SvgFilter className={style.icoFilter} />
-        </button>
+    <>
+      <div className={style.form}>
+        <input
+          type='text'
+          placeholder='Search'
+          className={style.inputSearch}
+          value={searchInput}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+        <Filter />
       </div>
-    </form>
+    </>
   );
 }
