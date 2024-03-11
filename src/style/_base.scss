@@ -5,7 +5,11 @@
 }
 
 .wrapper {
-  width: 1920px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1920px;
+  height: 100vh;
   margin: 0 auto;
   padding: 40px 62px 64px 62px;
   @media (max-width: 768px) {

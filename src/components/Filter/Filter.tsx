@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { recordFilterData } from '../../store/Slice/filterSlice';
 import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
 import Drawer from '@mui/material/Drawer';
+import SelectAutocomplete from './SelectAutocomplete';
 
 export default function Filter() {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
@@ -51,13 +52,13 @@ export default function Filter() {
       </div>
       <Drawer anchor={'right'} open={filterOpen} onClose={toggleDrawer(false)}>
         <form onSubmit={handleSubmit(onSubmit)} className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}>
+          <SelectAutocomplete />
           <div className={style.formTitleContainer}>
             <div className={style.formTitle}>{FormFilterLocales.FILTERS_TITLE}</div>
             <button type='button' onClick={toggleDrawer(false)}>
               <SvgClose className={style.icoClose} />
             </button>
           </div>
-
           <div className={style.inputWrapper}>
             <div className={style.sortContainer}>
               <div className={style.labelText}>{FormFilterLocales.SORT_BY}</div>

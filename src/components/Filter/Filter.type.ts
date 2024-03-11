@@ -1179,4 +1179,4 @@ const CountriesFilm: ICountriesFilm[] = [
 ];
 
 export { FormFilterData, FormFilterLocales, CountriesFilm, GenresFilm };
-export type { IFormFilter };
+export type { IFormFilter, IGenresFilm };
