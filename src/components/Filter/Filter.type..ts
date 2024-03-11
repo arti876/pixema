@@ -20,6 +20,15 @@ const FormFilterData: IFormFilter = {
   selectGenre: '',
 };
 
+type FilterNameType =
+  | 'movieName'
+  | 'radioRatingYear'
+  | 'yearsFrom'
+  | 'ratingFrom'
+  | 'ratingTo'
+  | 'selectCountry'
+  | 'selectGenre';
+
 enum FormFilterLocales {
   FILTERS_TITLE = 'Filters',
   MOVIE_NAME = 'Full or short movie name',
@@ -1179,4 +1188,4 @@ const CountriesFilm: ICountriesFilm[] = [
 ];
 
 export { FormFilterData, FormFilterLocales, CountriesFilm, GenresFilm };
-export type { IFormFilter, IGenresFilm };
+export type { IFormFilter, IGenresFilm, FilterNameType };

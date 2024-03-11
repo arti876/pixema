@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFormFilter, FormFilterData } from '../../components/Filter/Filter.type';
+import { IFormFilter, FormFilterData } from '../../components/Filter/Filter.type.';
 
 interface IFilterState {
   filterData: IFormFilter;

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { IFormFilter } from '../../components/Filter/Filter.type';
+import { IFormFilter } from '../../components/Filter/Filter.type.';
 // import { apiKey } from '../../apiKey';
 
 interface fetchDataProps {

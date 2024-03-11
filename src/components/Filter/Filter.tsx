@@ -3,20 +3,21 @@ import style from './Filter.module.scss';
 import { SvgFilter } from '../../svg/SvgFilter';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SvgClose } from '../../svg/svg';
-import { CountriesFilm, FormFilterLocales, GenresFilm, IFormFilter, FormFilterData } from './Filter.type';
+import { CountriesFilm, FormFilterLocales, GenresFilm, IFormFilter, FormFilterData } from './Filter.type.';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { recordFilterData } from '../../store/Slice/filterSlice';
 import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
 import Drawer from '@mui/material/Drawer';
-import SelectAutocomplete from './SelectAutocomplete';
+import InputText from './Inputs/InputText';
 
 export default function Filter() {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [icoFilterActive, setIcoFilterActive] = useState<boolean>(false);
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, control } = useForm({
     mode: 'onBlur',
     defaultValues: FormFilterData,
   });
+
   const { filterData } = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
 
@@ -35,6 +36,7 @@ export default function Filter() {
   }
 
   const onSubmit: SubmitHandler<IFormFilter> = (data) => {
+    console.log(data);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
     if (FormFilterData) {
@@ -52,7 +54,6 @@ export default function Filter() {
       </div>
       <Drawer anchor={'right'} open={filterOpen} onClose={toggleDrawer(false)}>
         <form onSubmit={handleSubmit(onSubmit)} className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}>
-          <SelectAutocomplete />
           <div className={style.formTitleContainer}>
             <div className={style.formTitle}>{FormFilterLocales.FILTERS_TITLE}</div>
             <button type='button' onClick={toggleDrawer(false)}>
@@ -92,7 +93,14 @@ export default function Filter() {
               </div>
             </div>
 
-            <label className={style.labelContainer}>
+            <InputText
+              control={control}
+              name='movieName'
+              label={FormFilterLocales.MOVIE_NAME}
+              placeholder={FormFilterLocales.YOUR_TEXT}
+            />
+
+            {/* <label className={style.labelContainer}>
               <div className={style.labelText}>{FormFilterLocales.MOVIE_NAME}</div>
               <input
                 type='text'
@@ -100,7 +108,7 @@ export default function Filter() {
                 {...register('movieName', movieNameValidation)}
                 className={style.inputMovieName}
               />
-            </label>
+            </label> */}
 
             <label className={style.labelContainer}>
               <div className={style.labelText}>{FormFilterLocales.GENRE}</div>
@@ -117,7 +125,7 @@ export default function Filter() {
               </select>
             </label>
 
-            <label className={style.labelContainer}>
+            {/* <label className={style.labelContainer}>
               <div className={style.labelText}>{FormFilterLocales.YEARS}</div>
               <div className={style.inputFromToContainer}>
                 <input
@@ -133,7 +141,18 @@ export default function Filter() {
                   className={style.inputFromTo}
                 />
               </div>
-            </label>
+            </label> */}
+
+            <div className={style.inputFromToContainer}>
+              <InputText
+                type='number'
+                control={control}
+                name='yearsFrom'
+                label={FormFilterLocales.MOVIE_NAME}
+                placeholder={FormFilterLocales.FROM}
+              />
+              <InputText type='number' control={control} name='yearsFrom' placeholder={FormFilterLocales.TO} />
+            </div>
 
             <label className={style.labelContainer}>
               <div className={style.labelText}>{FormFilterLocales.RATING}</div>

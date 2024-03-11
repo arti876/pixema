@@ -1,0 +1,38 @@
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--contextual-colors-white);
+}
+
+.input {
+  width: 100%;
+  background-color: var(--background-colors-graphite);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  height: 56px;
+  padding: 0px 20px;
+  color: var(--contextual-colors-white);
+  &::placeholder {
+    color: var(--system-colors-secondary);
+  }
+  &:focus {
+    outline: 2px solid var(--system-colors-primary);
+  }
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
