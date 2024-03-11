@@ -11,6 +11,7 @@
   border-radius: 10px;
   padding: 48px 40px;
   background: var(--background-colors-dark);
+  overflow-y: auto;
 }
 
 .filterActive {
@@ -114,7 +115,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
-  height: 56px;
+  min-height: 56px;
 }
 
 .btnClearFilter,
@@ -240,4 +241,10 @@
   flex-direction: column;
   gap: 24px;
   padding: 48px 0px 111px;
+}
+
+.Box {
+  background-color: var(--background-colors-graphite);
+  width: 518px;
+  height: 100%;
 }
