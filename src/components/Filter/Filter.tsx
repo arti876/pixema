@@ -11,7 +11,6 @@ import {
   FilterPlaceholder,
   CountriesFilm,
   GenresFilm,
-  IFilter,
   FilterLocales,
   FilterRadio,
 } from './Filter.type.';
@@ -21,9 +20,9 @@ import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
-import { useNavigate } from 'react-router-dom';
-import { RoutePath } from '../../constants/RoutePath.constants';
 import { fetchFilmFilterThunk } from '../../store/Thunk/fetchFilmFilterThunk';
+import { IParamsThunkMainPage, addFilterData } from '../../store/Slice/filmMainSlice';
+import { fetchFilmMainThunk } from '../../store/Thunk/fetchFilmMainThunk';
 
 export default function Filter() {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
@@ -33,7 +32,6 @@ export default function Filter() {
     defaultValues: FilterData,
   });
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const toggleDrawer = (open: boolean) => () => {
@@ -47,26 +45,10 @@ export default function Filter() {
     reset();
   }
 
-  const onSubmit: SubmitHandler<IFilter> = (data) => {
-    // Данные для фильтрации
-    const filters = {
-      // countries: data.selectCountry,
-      // genres: data.selectGenre,
-      // order: data.radioRatingYear,
-      // ratingFrom: data.ratingFrom,
-      // ratingTo: data.ratingTo,
-      // yearFrom: data.yearsFrom,
-      // yearTo: data.yearsTo,
-      keyword: data.movieName,
-      // page: 1,
-    };
-
-    // Преобразование объекта с фильтрами в строку параметров запроса
-    const params = new URLSearchParams(filters).toString();
-
-    console.log(params);
-
-    fetchFilmFilterThunk(params);
+  const onSubmit: SubmitHandler<IParamsThunkMainPage> = (data) => {
+    dispatch(addFilterData(data));
+    fetchFilmMainThunk(data);
+    // fetchFilmFilterThunk(params);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
     if (FilterData) {

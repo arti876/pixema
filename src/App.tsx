@@ -29,7 +29,7 @@ export default function App() {
         <Route path={RoutePath.FAVORITES} element={<PageFilm />} />
         <Route path={RoutePath.SETTING} element={<NotFound />} />
         <Route path={RoutePath.FILM} element={<PageFilm />} />
-        <Route path={RoutePath.FILTER} element={<PageFilterResult />} />
+        {/* <Route path={RoutePath.FILTER} element={<PageFilterResult />} /> */}
       </Route>
     </Routes>
   );

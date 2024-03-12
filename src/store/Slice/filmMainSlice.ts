@@ -2,44 +2,69 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
 import { fetchFilmMainThunk } from '../Thunk/fetchFilmMainThunk';
 
+export interface IParamsThunkMainPage {
+  // [key: string]: string;
+  countries: string;
+  genres: string;
+  order: string;
+  ratingFrom: string;
+  ratingTo: string;
+  yearFrom: string;
+  yearTo: string;
+  keyword: string;
+  page?: number;
+}
+
 interface IFilmMainState {
-  mainFilm: IPoster[];
-  mainStatus: string | null;
-  mainError: string | null | unknown;
-  mainPage: number;
+  film: IPoster[];
+  status: string | null;
+  error: string | null | unknown;
+  paramsThunk: IParamsThunkMainPage;
 }
 
 const initialState: IFilmMainState = {
-  mainFilm: [],
-  mainStatus: null,
-  mainError: null,
-  mainPage: 1,
+  film: [],
+  status: null,
+  error: null,
+  paramsThunk: {
+    countries: '',
+    genres: '',
+    order: 'RATING',
+    ratingFrom: '',
+    ratingTo: '',
+    yearFrom: '',
+    yearTo: '2024',
+    keyword: '',
+    page: 1,
+  },
 };
 
 const filmMainSlice = createSlice({
   name: 'filmMain',
   initialState,
   reducers: {
-    countMainPage: (state, action) => {
-      state.mainPage = state.mainPage + action.payload;
-    },
+    addFilterData: (state, action) => ({
+      ...state,
+      paramsThunk: action.payload,
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(fetchFilmMainThunk.pending, (state) => {
-      state.mainStatus = 'loading';
-      state.mainError = null;
+      state.status = 'loading';
+      state.error = null;
     });
     builder.addCase(fetchFilmMainThunk.fulfilled, (state, action) => {
-      state.mainStatus = 'resolved';
-      state.mainFilm = state.mainFilm.concat(action.payload);
+      state.status = 'resolved';
+      state.film = state.film.concat(action.payload);
+      state.paramsThunk.page = state.paramsThunk.page + 1;
     });
     builder.addCase(fetchFilmMainThunk.rejected, (state, action) => {
-      state.mainStatus = 'rejected';
-      state.mainError = action.payload;
+      state.status = 'rejected';
+      state.error = action.payload;
     });
   },
 });
 
-export const { countMainPage } = filmMainSlice.actions;
+export const { addFilterData } = filmMainSlice.actions;
 
 export default filmMainSlice.reducer;

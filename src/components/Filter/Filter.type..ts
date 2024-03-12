@@ -1,34 +1,28 @@
-interface IFilter {
-  movieName: string;
-  radioRatingYear: string;
-  yearsFrom: number | '';
-  yearsTo: number | '';
-  ratingFrom: number | '';
-  ratingTo: number | '';
-  selectCountry: string;
-  selectGenre: string;
-}
+import { IParamsThunkMainPage } from '../../store/Slice/filmMainSlice';
 
-const FilterData: IFilter = {
-  movieName: '',
-  radioRatingYear: 'YEAR',
-  yearsFrom: '',
-  yearsTo: '',
+// interface IFilter {
+//   keyword: string;
+//   order: string;
+//   yearFrom: number | '';
+//   yearTo: number | '';
+//   ratingFrom: number | '';
+//   ratingTo: number | '';
+//   countries: string;
+//   genres: string;
+// }
+
+const FilterData: IParamsThunkMainPage = {
+  keyword: '',
+  order: 'RATING',
+  yearFrom: '',
+  yearTo: '',
   ratingFrom: '',
   ratingTo: '',
-  selectCountry: '',
-  selectGenre: '',
+  countries: '',
+  genres: '',
 };
 
-type FilterNameType =
-  | 'movieName'
-  | 'radioRatingYear'
-  | 'yearsFrom'
-  | 'yearsTo'
-  | 'ratingFrom'
-  | 'ratingTo'
-  | 'selectCountry'
-  | 'selectGenre';
+type FilterNameType = 'keyword' | 'order' | 'yearFrom' | 'yearTo' | 'ratingFrom' | 'ratingTo' | 'countries' | 'genres';
 
 enum FilterLocales {
   FILTER_TITLE = 'Filters',
@@ -40,12 +34,12 @@ enum FilterRadio {
 }
 
 enum FilterName {
-  MOVIE_NAME = 'movieName',
-  RADIO_RATING_YEAR = 'radioRatingYear',
-  SELECT_CONTRY = 'selectCountry',
-  SELECT_GENRE = 'selectGenre',
-  YEARS_FROM = 'yearsFrom',
-  YEARS_TO = 'yearsTo',
+  MOVIE_NAME = 'keyword',
+  RADIO_RATING_YEAR = 'order',
+  SELECT_CONTRY = 'countries',
+  SELECT_GENRE = 'genres',
+  YEARS_FROM = 'yearFrom',
+  YEARS_TO = 'yearTo',
   RATING_FROM = 'ratingFrom',
   RATING_TO = 'ratingTo',
 }
@@ -1221,4 +1215,4 @@ export {
   CountriesFilm,
   GenresFilm,
 };
-export type { IFilter, IOptionSelectFilm, FilterNameType };
+export type { IOptionSelectFilm, FilterNameType };
