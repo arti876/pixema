@@ -17,6 +17,16 @@ export default function InputTextFilter({
   type = 'text',
   placeholder,
 }: ControllerTextFieldProps) {
+  function validationCheck(e: { keyCode: number; preventDefault: () => void }) {
+    const typeNumber = type === 'number';
+    const numbersTopPanel = e.keyCode >= 48 && e.keyCode <= 57;
+    const numbersDigitalPanel = e.keyCode >= 96 && e.keyCode <= 105;
+    const onlyNumbers = typeNumber && !(numbersTopPanel || numbersDigitalPanel);
+    if (onlyNumbers) {
+      e.preventDefault();
+    }
+  }
+
   return (
     <Controller
       control={control}
@@ -31,6 +41,7 @@ export default function InputTextFilter({
             onBlur={onBlur}
             value={value}
             placeholder={placeholder}
+            onKeyDown={validationCheck}
           />
         </label>
       )}
