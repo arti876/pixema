@@ -16,15 +16,21 @@ interface RenderContentPageProps {
   pageName: string;
 }
 
-export default function RenderContentPage({ film, status, error, thunk, pageName }: RenderContentPageProps) {
+export default function RenderContentPage({
+  film,
+  status,
+  error,
+  thunk,
+  pageName,
+}: RenderContentPageProps) {
   const dispatch = useAppDispatch();
 
   const loading = film.length === 0;
   const rejected = status === 'rejected';
 
-  useEffect(() => {
-    dispatch(thunk);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(thunk);
+  // }, []);
 
   if (rejected) {
     return <Error errorMessage={error} />;

@@ -47,7 +47,7 @@ export default function Filter() {
 
   const onSubmit: SubmitHandler<IParamsThunkMainPage> = (data) => {
     dispatch(addFilterData(data));
-    fetchFilmMainThunk(data);
+    dispatch(fetchFilmMainThunk(data));
     // fetchFilmFilterThunk(params);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
@@ -65,7 +65,10 @@ export default function Filter() {
         </button>
       </div>
       <Drawer anchor={'right'} open={filterOpen} onClose={toggleDrawer(false)}>
-        <form onSubmit={handleSubmit(onSubmit)} className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}
+        >
           <div className={style.formTitleContainer}>
             <div className={style.formTitle}>{FilterLocales.FILTER_TITLE}</div>
             <button type='button' onClick={toggleDrawer(false)}>
@@ -76,8 +79,16 @@ export default function Filter() {
             <div className={style.sortContainer}>
               <div className={style.labelText}>{FilterTitle.SORT_BY}</div>
               <div className={style.inputRadioContainer}>
-                <InputRadioFilter control={control} label={FilterTitle.RATING} valueOption={FilterRadio.RATING} />
-                <InputRadioFilter control={control} label={FilterTitle.YEARS} valueOption={FilterRadio.YEAR} />
+                <InputRadioFilter
+                  control={control}
+                  label={FilterTitle.RATING}
+                  valueOption={FilterRadio.RATING}
+                />
+                <InputRadioFilter
+                  control={control}
+                  label={FilterTitle.YEARS}
+                  valueOption={FilterRadio.YEAR}
+                />
               </div>
             </div>
 
