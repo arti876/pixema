@@ -1,4 +1,4 @@
-interface IFormFilter {
+interface IFilter {
   movieName: string;
   radioRatingYear: string;
   yearsFrom: number | '';
@@ -9,7 +9,7 @@ interface IFormFilter {
   selectGenre: string;
 }
 
-const FormFilterData: IFormFilter = {
+const FilterData: IFilter = {
   movieName: '',
   radioRatingYear: 'YEAR',
   yearsFrom: '',
@@ -24,1168 +24,1201 @@ type FilterNameType =
   | 'movieName'
   | 'radioRatingYear'
   | 'yearsFrom'
+  | 'yearsTo'
   | 'ratingFrom'
   | 'ratingTo'
   | 'selectCountry'
   | 'selectGenre';
 
-enum FormFilterLocales {
-  FILTERS_TITLE = 'Filters',
-  MOVIE_NAME = 'Full or short movie name',
+enum FilterLocales {
+  FILTER_TITLE = 'Filters',
+}
+
+enum FilterRadio {
+  RATING = 'RATING',
+  YEAR = 'YEAR',
+}
+
+enum FilterName {
+  MOVIE_NAME = 'movieName',
+  RADIO_RATING_YEAR = 'radioRatingYear',
+  SELECT_CONTRY = 'selectCountry',
+  SELECT_GENRE = 'selectGenre',
+  YEARS_FROM = 'yearsFrom',
+  YEARS_TO = 'yearsTo',
+  RATING_FROM = 'ratingFrom',
+  RATING_TO = 'ratingTo',
+}
+
+enum FilterBtnName {
   CLEAR_FILTER = 'Clear filter',
   SHOW_RESULTS = 'Show results',
-  YOUR_TEXT = 'Your text',
+  YEAR = 'Year',
+  RATING = 'Rating',
+}
+
+enum FilterTitle {
+  FILTERS = 'Filters',
+  MOVIE_NAME = 'Full or short movie name',
   SORT_BY = 'Sort by',
   RATING = 'Rating',
-  YEAR = 'Year',
   GENRE = 'Genre',
   YEARS = 'Years',
+  CONTRY = 'Country',
+}
+
+enum FilterPlaceholder {
+  YOUR_TEXT = 'Your text',
   FROM = 'From',
   TO = 'To',
-  CONTRY = 'Country',
   SELECT_CONTRY = 'Select country',
   SELECT_GENRE = 'Select genre',
 }
 
-interface IGenresFilm {
+interface IOptionSelectFilm {
   id: number;
-  genre: string;
+  name: string;
 }
 
-const GenresFilm: IGenresFilm[] = [
+const GenresFilm: IOptionSelectFilm[] = [
   {
     id: 1,
-    genre: 'триллер',
+    name: 'триллер',
   },
   {
     id: 2,
-    genre: 'драма',
+    name: 'драма',
   },
   {
     id: 3,
-    genre: 'криминал',
+    name: 'криминал',
   },
   {
     id: 4,
-    genre: 'мелодрама',
+    name: 'мелодрама',
   },
   {
     id: 5,
-    genre: 'детектив',
+    name: 'детектив',
   },
   {
     id: 6,
-    genre: 'фантастика',
+    name: 'фантастика',
   },
   {
     id: 7,
-    genre: 'приключения',
+    name: 'приключения',
   },
   {
     id: 8,
-    genre: 'биография',
+    name: 'биография',
   },
   {
     id: 9,
-    genre: 'фильм-нуар',
+    name: 'фильм-нуар',
   },
   {
     id: 10,
-    genre: 'вестерн',
+    name: 'вестерн',
   },
   {
     id: 11,
-    genre: 'боевик',
+    name: 'боевик',
   },
   {
     id: 12,
-    genre: 'фэнтези',
+    name: 'фэнтези',
   },
   {
     id: 13,
-    genre: 'комедия',
+    name: 'комедия',
   },
   {
     id: 14,
-    genre: 'военный',
+    name: 'военный',
   },
   {
     id: 15,
-    genre: 'история',
+    name: 'история',
   },
   {
     id: 16,
-    genre: 'музыка',
+    name: 'музыка',
   },
   {
     id: 17,
-    genre: 'ужасы',
+    name: 'ужасы',
   },
   {
     id: 18,
-    genre: 'мультфильм',
+    name: 'мультфильм',
   },
   {
     id: 19,
-    genre: 'семейный',
+    name: 'семейный',
   },
   {
     id: 20,
-    genre: 'мюзикл',
+    name: 'мюзикл',
   },
   {
     id: 21,
-    genre: 'спорт',
+    name: 'спорт',
   },
   {
     id: 22,
-    genre: 'документальный',
+    name: 'документальный',
   },
   {
     id: 23,
-    genre: 'короткометражка',
+    name: 'короткометражка',
   },
   {
     id: 24,
-    genre: 'аниме',
+    name: 'аниме',
   },
   {
     id: 26,
-    genre: 'новости',
+    name: 'новости',
   },
   {
     id: 27,
-    genre: 'концерт',
+    name: 'концерт',
   },
   {
     id: 28,
-    genre: 'для взрослых',
+    name: 'для взрослых',
   },
   {
     id: 29,
-    genre: 'церемония',
+    name: 'церемония',
   },
   {
     id: 30,
-    genre: 'реальное ТВ',
+    name: 'реальное ТВ',
   },
   {
     id: 31,
-    genre: 'игра',
+    name: 'игра',
   },
   {
     id: 32,
-    genre: 'ток-шоу',
+    name: 'ток-шоу',
   },
   {
     id: 33,
-    genre: 'детский',
+    name: 'детский',
   },
 ];
 
-interface ICountriesFilm {
-  id: number;
-  country: string;
-}
-
-const CountriesFilm: ICountriesFilm[] = [
+const CountriesFilm: IOptionSelectFilm[] = [
   {
     id: 1,
-    country: 'США',
+    name: 'США',
   },
   {
     id: 2,
-    country: 'Швейцария',
+    name: 'Швейцария',
   },
   {
     id: 3,
-    country: 'Франция',
+    name: 'Франция',
   },
   {
     id: 4,
-    country: 'Польша',
+    name: 'Польша',
   },
   {
     id: 5,
-    country: 'Великобритания',
+    name: 'Великобритания',
   },
   {
     id: 6,
-    country: 'Швеция',
+    name: 'Швеция',
   },
   {
     id: 7,
-    country: 'Индия',
+    name: 'Индия',
   },
   {
     id: 8,
-    country: 'Испания',
+    name: 'Испания',
   },
   {
     id: 9,
-    country: 'Германия',
+    name: 'Германия',
   },
   {
     id: 10,
-    country: 'Италия',
+    name: 'Италия',
   },
   {
     id: 11,
-    country: 'Гонконг',
+    name: 'Гонконг',
   },
   {
     id: 12,
-    country: 'Германия (ФРГ)',
+    name: 'Германия (ФРГ)',
   },
   {
     id: 13,
-    country: 'Австралия',
+    name: 'Австралия',
   },
   {
     id: 14,
-    country: 'Канада',
+    name: 'Канада',
   },
   {
     id: 15,
-    country: 'Мексика',
+    name: 'Мексика',
   },
   {
     id: 16,
-    country: 'Япония',
+    name: 'Япония',
   },
   {
     id: 17,
-    country: 'Дания',
+    name: 'Дания',
   },
   {
     id: 18,
-    country: 'Чехия',
+    name: 'Чехия',
   },
   {
     id: 19,
-    country: 'Ирландия',
+    name: 'Ирландия',
   },
   {
     id: 20,
-    country: 'Люксембург',
+    name: 'Люксембург',
   },
   {
     id: 21,
-    country: 'Китай',
+    name: 'Китай',
   },
   {
     id: 22,
-    country: 'Норвегия',
+    name: 'Норвегия',
   },
   {
     id: 23,
-    country: 'Нидерланды',
+    name: 'Нидерланды',
   },
   {
     id: 24,
-    country: 'Аргентина',
+    name: 'Аргентина',
   },
   {
     id: 25,
-    country: 'Финляндия',
+    name: 'Финляндия',
   },
   {
     id: 26,
-    country: 'Босния и Герцеговина',
+    name: 'Босния и Герцеговина',
   },
   {
     id: 27,
-    country: 'Австрия',
+    name: 'Австрия',
   },
   {
     id: 28,
-    country: 'Тайвань',
+    name: 'Тайвань',
   },
   {
     id: 29,
-    country: 'Новая Зеландия',
+    name: 'Новая Зеландия',
   },
   {
     id: 30,
-    country: 'Бразилия',
+    name: 'Бразилия',
   },
   {
     id: 31,
-    country: 'Чехословакия',
+    name: 'Чехословакия',
   },
   {
     id: 32,
-    country: 'Мальта',
+    name: 'Мальта',
   },
   {
     id: 33,
-    country: 'СССР',
+    name: 'СССР',
   },
   {
     id: 34,
-    country: 'Россия',
+    name: 'Россия',
   },
   {
     id: 35,
-    country: 'Югославия',
+    name: 'Югославия',
   },
   {
     id: 36,
-    country: 'Португалия',
+    name: 'Португалия',
   },
   {
     id: 37,
-    country: 'Румыния',
+    name: 'Румыния',
   },
   {
     id: 38,
-    country: 'Хорватия',
+    name: 'Хорватия',
   },
   {
     id: 39,
-    country: 'ЮАР',
+    name: 'ЮАР',
   },
   {
     id: 40,
-    country: 'Куба',
+    name: 'Куба',
   },
   {
     id: 41,
-    country: 'Колумбия',
+    name: 'Колумбия',
   },
   {
     id: 42,
-    country: 'Израиль',
+    name: 'Израиль',
   },
   {
     id: 43,
-    country: 'Намибия',
+    name: 'Намибия',
   },
   {
     id: 44,
-    country: 'Турция',
+    name: 'Турция',
   },
   {
     id: 45,
-    country: 'Бельгия',
+    name: 'Бельгия',
   },
   {
     id: 46,
-    country: 'Сальвадор',
+    name: 'Сальвадор',
   },
   {
     id: 47,
-    country: 'Исландия',
+    name: 'Исландия',
   },
   {
     id: 48,
-    country: 'Венгрия',
+    name: 'Венгрия',
   },
   {
     id: 49,
-    country: 'Корея Южная',
+    name: 'Корея Южная',
   },
   {
     id: 50,
-    country: 'Лихтенштейн',
+    name: 'Лихтенштейн',
   },
   {
     id: 51,
-    country: 'Болгария',
+    name: 'Болгария',
   },
   {
     id: 52,
-    country: 'Филиппины',
+    name: 'Филиппины',
   },
   {
     id: 53,
-    country: 'Доминикана',
+    name: 'Доминикана',
   },
   {
     id: 54,
-    country: '',
+    name: '',
   },
   {
     id: 55,
-    country: 'Марокко',
+    name: 'Марокко',
   },
   {
     id: 56,
-    country: 'Таиланд',
+    name: 'Таиланд',
   },
   {
     id: 57,
-    country: 'Кения',
+    name: 'Кения',
   },
   {
     id: 58,
-    country: 'Пакистан',
+    name: 'Пакистан',
   },
   {
     id: 59,
-    country: 'Иран',
+    name: 'Иран',
   },
   {
     id: 60,
-    country: 'Панама',
+    name: 'Панама',
   },
   {
     id: 61,
-    country: 'Аруба',
+    name: 'Аруба',
   },
   {
     id: 62,
-    country: 'Ямайка',
+    name: 'Ямайка',
   },
   {
     id: 63,
-    country: 'Греция',
+    name: 'Греция',
   },
   {
     id: 64,
-    country: 'Тунис',
+    name: 'Тунис',
   },
   {
     id: 65,
-    country: 'Кыргызстан',
+    name: 'Кыргызстан',
   },
   {
     id: 66,
-    country: 'Пуэрто Рико',
+    name: 'Пуэрто Рико',
   },
   {
     id: 67,
-    country: 'Казахстан',
+    name: 'Казахстан',
   },
   {
     id: 68,
-    country: 'Югославия (ФР)',
+    name: 'Югославия (ФР)',
   },
   {
     id: 69,
-    country: 'Алжир',
+    name: 'Алжир',
   },
   {
     id: 70,
-    country: 'Германия (ГДР)',
+    name: 'Германия (ГДР)',
   },
   {
     id: 71,
-    country: 'Сингапур',
+    name: 'Сингапур',
   },
   {
     id: 72,
-    country: 'Словакия',
+    name: 'Словакия',
   },
   {
     id: 73,
-    country: 'Афганистан',
+    name: 'Афганистан',
   },
   {
     id: 74,
-    country: 'Индонезия',
+    name: 'Индонезия',
   },
   {
     id: 75,
-    country: 'Перу',
+    name: 'Перу',
   },
   {
     id: 76,
-    country: 'Бермуды',
+    name: 'Бермуды',
   },
   {
     id: 77,
-    country: 'Монако',
+    name: 'Монако',
   },
   {
     id: 78,
-    country: 'Зимбабве',
+    name: 'Зимбабве',
   },
   {
     id: 79,
-    country: 'Вьетнам',
+    name: 'Вьетнам',
   },
   {
     id: 80,
-    country: 'Антильские Острова',
+    name: 'Антильские Острова',
   },
   {
     id: 81,
-    country: 'Саудовская Аравия',
+    name: 'Саудовская Аравия',
   },
   {
     id: 82,
-    country: 'Танзания',
+    name: 'Танзания',
   },
   {
     id: 83,
-    country: 'Ливия',
+    name: 'Ливия',
   },
   {
     id: 84,
-    country: 'Ливан',
+    name: 'Ливан',
   },
   {
     id: 85,
-    country: 'Кувейт',
+    name: 'Кувейт',
   },
   {
     id: 86,
-    country: 'Египет',
+    name: 'Египет',
   },
   {
     id: 87,
-    country: 'Литва',
+    name: 'Литва',
   },
   {
     id: 88,
-    country: 'Венесуэла',
+    name: 'Венесуэла',
   },
   {
     id: 89,
-    country: 'Словения',
+    name: 'Словения',
   },
   {
     id: 90,
-    country: 'Чили',
+    name: 'Чили',
   },
   {
     id: 91,
-    country: 'Багамы',
+    name: 'Багамы',
   },
   {
     id: 92,
-    country: 'Эквадор',
+    name: 'Эквадор',
   },
   {
     id: 93,
-    country: 'Коста-Рика',
+    name: 'Коста-Рика',
   },
   {
     id: 94,
-    country: 'Кипр',
+    name: 'Кипр',
   },
   {
     id: 95,
-    country: 'Уругвай',
+    name: 'Уругвай',
   },
   {
     id: 96,
-    country: 'Ирак',
+    name: 'Ирак',
   },
   {
     id: 97,
-    country: 'Мартиника',
+    name: 'Мартиника',
   },
   {
     id: 98,
-    country: 'Эстония',
+    name: 'Эстония',
   },
   {
     id: 99,
-    country: 'ОАЭ',
+    name: 'ОАЭ',
   },
   {
     id: 100,
-    country: 'Бангладеш',
+    name: 'Бангладеш',
   },
   {
     id: 101,
-    country: 'Македония',
+    name: 'Македония',
   },
   {
     id: 102,
-    country: 'Гвинея',
+    name: 'Гвинея',
   },
   {
     id: 103,
-    country: 'Иордания',
+    name: 'Иордания',
   },
   {
     id: 104,
-    country: 'Латвия',
+    name: 'Латвия',
   },
   {
     id: 105,
-    country: 'Армения',
+    name: 'Армения',
   },
   {
     id: 106,
-    country: 'Украина',
+    name: 'Украина',
   },
   {
     id: 107,
-    country: 'Сирия',
+    name: 'Сирия',
   },
   {
     id: 108,
-    country: 'Шри-Ланка',
+    name: 'Шри-Ланка',
   },
   {
     id: 109,
-    country: 'Нигерия',
+    name: 'Нигерия',
   },
   {
     id: 110,
-    country: 'Берег Слоновой кости',
+    name: 'Берег Слоновой кости',
   },
   {
     id: 111,
-    country: 'Грузия',
+    name: 'Грузия',
   },
   {
     id: 112,
-    country: 'Сенегал',
+    name: 'Сенегал',
   },
   {
     id: 113,
-    country: 'Монголия',
+    name: 'Монголия',
   },
   {
     id: 114,
-    country: 'Габон',
+    name: 'Габон',
   },
   {
     id: 115,
-    country: 'Замбия',
+    name: 'Замбия',
   },
   {
     id: 116,
-    country: 'Албания',
+    name: 'Албания',
   },
   {
     id: 117,
-    country: 'Камерун',
+    name: 'Камерун',
   },
   {
     id: 118,
-    country: 'Буркина-Фасо',
+    name: 'Буркина-Фасо',
   },
   {
     id: 119,
-    country: 'Узбекистан',
+    name: 'Узбекистан',
   },
   {
     id: 120,
-    country: 'Малайзия',
+    name: 'Малайзия',
   },
   {
     id: 121,
-    country: 'Сербия',
+    name: 'Сербия',
   },
   {
     id: 122,
-    country: 'Гана',
+    name: 'Гана',
   },
   {
     id: 123,
-    country: 'Таджикистан',
+    name: 'Таджикистан',
   },
   {
     id: 124,
-    country: 'Гаити',
+    name: 'Гаити',
   },
   {
     id: 125,
-    country: 'Конго (ДРК)',
+    name: 'Конго (ДРК)',
   },
   {
     id: 126,
-    country: 'Гватемала',
+    name: 'Гватемала',
   },
   {
     id: 127,
-    country: 'Российская империя',
+    name: 'Российская империя',
   },
   {
     id: 128,
-    country: 'Беларусь',
+    name: 'Беларусь',
   },
   {
     id: 129,
-    country: 'Молдова',
+    name: 'Молдова',
   },
   {
     id: 130,
-    country: 'Азербайджан',
+    name: 'Азербайджан',
   },
   {
     id: 131,
-    country: 'Палестина',
+    name: 'Палестина',
   },
   {
     id: 132,
-    country: 'Оккупированная Палестинская территория',
+    name: 'Оккупированная Палестинская территория',
   },
   {
     id: 133,
-    country: 'Корея Северная',
+    name: 'Корея Северная',
   },
   {
     id: 134,
-    country: 'Никарагуа',
+    name: 'Никарагуа',
   },
   {
     id: 135,
-    country: 'Камбоджа',
+    name: 'Камбоджа',
   },
   {
     id: 136,
-    country: 'Ангола',
+    name: 'Ангола',
   },
   {
     id: 137,
-    country: 'Сербия и Черногория',
+    name: 'Сербия и Черногория',
   },
   {
     id: 138,
-    country: 'Непал',
+    name: 'Непал',
   },
   {
     id: 139,
-    country: 'Бенин',
+    name: 'Бенин',
   },
   {
     id: 140,
-    country: 'Гваделупа',
+    name: 'Гваделупа',
   },
   {
     id: 141,
-    country: 'Гренландия',
+    name: 'Гренландия',
   },
   {
     id: 142,
-    country: 'Гвинея-Бисау',
+    name: 'Гвинея-Бисау',
   },
   {
     id: 143,
-    country: 'Макао',
+    name: 'Макао',
   },
   {
     id: 144,
-    country: 'Парагвай',
+    name: 'Парагвай',
   },
   {
     id: 145,
-    country: 'Мавритания',
+    name: 'Мавритания',
   },
   {
     id: 146,
-    country: 'Руанда',
+    name: 'Руанда',
   },
   {
     id: 147,
-    country: 'Фарерские острова',
+    name: 'Фарерские острова',
   },
   {
     id: 148,
-    country: 'Кот-д’Ивуар',
+    name: 'Кот-д’Ивуар',
   },
   {
     id: 149,
-    country: 'Гибралтар',
+    name: 'Гибралтар',
   },
   {
     id: 150,
-    country: 'Ботсвана',
+    name: 'Ботсвана',
   },
   {
     id: 151,
-    country: 'Боливия',
+    name: 'Боливия',
   },
   {
     id: 152,
-    country: 'Мадагаскар',
+    name: 'Мадагаскар',
   },
   {
     id: 153,
-    country: 'Кабо-Верде',
+    name: 'Кабо-Верде',
   },
   {
     id: 154,
-    country: 'Чад',
+    name: 'Чад',
   },
   {
     id: 155,
-    country: 'Мали',
+    name: 'Мали',
   },
   {
     id: 156,
-    country: 'Фиджи',
+    name: 'Фиджи',
   },
   {
     id: 157,
-    country: 'Бутан',
+    name: 'Бутан',
   },
   {
     id: 158,
-    country: 'Барбадос',
+    name: 'Барбадос',
   },
   {
     id: 159,
-    country: 'Тринидад и Тобаго',
+    name: 'Тринидад и Тобаго',
   },
   {
     id: 160,
-    country: 'Мозамбик',
+    name: 'Мозамбик',
   },
   {
     id: 161,
-    country: 'Заир',
+    name: 'Заир',
   },
   {
     id: 162,
-    country: 'Андорра',
+    name: 'Андорра',
   },
   {
     id: 163,
-    country: 'Туркменистан',
+    name: 'Туркменистан',
   },
   {
     id: 164,
-    country: 'Гайана',
+    name: 'Гайана',
   },
   {
     id: 165,
-    country: 'Корея',
+    name: 'Корея',
   },
   {
     id: 166,
-    country: 'Нигер',
+    name: 'Нигер',
   },
   {
     id: 167,
-    country: 'Конго',
+    name: 'Конго',
   },
   {
     id: 168,
-    country: 'Того',
+    name: 'Того',
   },
   {
     id: 169,
-    country: 'Ватикан',
+    name: 'Ватикан',
   },
   {
     id: 170,
-    country: 'Черногория',
+    name: 'Черногория',
   },
   {
     id: 171,
-    country: 'Бурунди',
+    name: 'Бурунди',
   },
   {
     id: 172,
-    country: 'Папуа - Новая Гвинея',
+    name: 'Папуа - Новая Гвинея',
   },
   {
     id: 173,
-    country: 'Бахрейн',
+    name: 'Бахрейн',
   },
   {
     id: 174,
-    country: 'Гондурас',
+    name: 'Гондурас',
   },
   {
     id: 175,
-    country: 'Судан',
+    name: 'Судан',
   },
   {
     id: 176,
-    country: 'Эфиопия',
+    name: 'Эфиопия',
   },
   {
     id: 177,
-    country: 'Йемен',
+    name: 'Йемен',
   },
   {
     id: 178,
-    country: 'Вьетнам Северный',
+    name: 'Вьетнам Северный',
   },
   {
     id: 179,
-    country: 'Суринам',
+    name: 'Суринам',
   },
   {
     id: 180,
-    country: 'Маврикий',
+    name: 'Маврикий',
   },
   {
     id: 181,
-    country: 'Белиз',
+    name: 'Белиз',
   },
   {
     id: 182,
-    country: 'Либерия',
+    name: 'Либерия',
   },
   {
     id: 183,
-    country: 'Лесото',
+    name: 'Лесото',
   },
   {
     id: 184,
-    country: 'Уганда',
+    name: 'Уганда',
   },
   {
     id: 185,
-    country: 'Каймановы острова',
+    name: 'Каймановы острова',
   },
   {
     id: 186,
-    country: 'Антигуа и Барбуда',
+    name: 'Антигуа и Барбуда',
   },
   {
     id: 187,
-    country: 'Западная Сахара',
+    name: 'Западная Сахара',
   },
   {
     id: 188,
-    country: 'Сан-Марино',
+    name: 'Сан-Марино',
   },
   {
     id: 189,
-    country: 'Гуам',
+    name: 'Гуам',
   },
   {
     id: 190,
-    country: 'Косово',
+    name: 'Косово',
   },
   {
     id: 191,
-    country: 'Лаос',
+    name: 'Лаос',
   },
   {
     id: 192,
-    country: 'Катар',
+    name: 'Катар',
   },
   {
     id: 193,
-    country: 'Оман',
+    name: 'Оман',
   },
   {
     id: 194,
-    country: 'Американские Виргинские острова',
+    name: 'Американские Виргинские острова',
   },
   {
     id: 195,
-    country: 'Сиам',
+    name: 'Сиам',
   },
   {
     id: 196,
-    country: 'Сьерра-Леоне',
+    name: 'Сьерра-Леоне',
   },
   {
     id: 197,
-    country: 'Эритрея',
+    name: 'Эритрея',
   },
   {
     id: 198,
-    country: 'Сомали',
+    name: 'Сомали',
   },
   {
     id: 199,
-    country: 'Доминика',
+    name: 'Доминика',
   },
   {
     id: 200,
-    country: 'Бирма',
+    name: 'Бирма',
   },
   {
     id: 201,
-    country: 'Реюньон',
+    name: 'Реюньон',
   },
   {
     id: 202,
-    country: 'Федеративные Штаты Микронезии',
+    name: 'Федеративные Штаты Микронезии',
   },
   {
     id: 203,
-    country: 'Самоа',
+    name: 'Самоа',
   },
   {
     id: 204,
-    country: 'Американское Самоа',
+    name: 'Американское Самоа',
   },
   {
     id: 205,
-    country: 'Свазиленд',
+    name: 'Свазиленд',
   },
   {
     id: 206,
-    country: 'Французская Полинезия',
+    name: 'Французская Полинезия',
   },
   {
     id: 207,
-    country: 'Мьянма',
+    name: 'Мьянма',
   },
   {
     id: 208,
-    country: 'Новая Каледония',
+    name: 'Новая Каледония',
   },
   {
     id: 209,
-    country: 'Французская Гвиана',
+    name: 'Французская Гвиана',
   },
   {
     id: 210,
-    country: 'Сент-Винсент и Гренадины',
+    name: 'Сент-Винсент и Гренадины',
   },
   {
     id: 211,
-    country: 'Малави',
+    name: 'Малави',
   },
   {
     id: 212,
-    country: 'Экваториальная Гвинея',
+    name: 'Экваториальная Гвинея',
   },
   {
     id: 213,
-    country: 'Коморы',
+    name: 'Коморы',
   },
   {
     id: 214,
-    country: 'Кирибати',
+    name: 'Кирибати',
   },
   {
     id: 215,
-    country: 'Тувалу',
+    name: 'Тувалу',
   },
   {
     id: 216,
-    country: 'Тимор-Лесте',
+    name: 'Тимор-Лесте',
   },
   {
     id: 217,
-    country: 'ЦАР',
+    name: 'ЦАР',
   },
   {
     id: 218,
-    country: 'Тонга',
+    name: 'Тонга',
   },
   {
     id: 219,
-    country: 'Гренада',
+    name: 'Гренада',
   },
   {
     id: 220,
-    country: 'Гамбия',
+    name: 'Гамбия',
   },
   {
     id: 221,
-    country: 'Антарктида',
+    name: 'Антарктида',
   },
   {
     id: 222,
-    country: 'Острова Кука',
+    name: 'Острова Кука',
   },
   {
     id: 223,
-    country: 'Остров Мэн',
+    name: 'Остров Мэн',
   },
   {
     id: 224,
-    country: 'Внешние малые острова США',
+    name: 'Внешние малые острова США',
   },
   {
     id: 225,
-    country: 'Монтсеррат',
+    name: 'Монтсеррат',
   },
   {
     id: 226,
-    country: 'Маршалловы острова',
+    name: 'Маршалловы острова',
   },
   {
     id: 227,
-    country: 'Бруней-Даруссалам',
+    name: 'Бруней-Даруссалам',
   },
   {
     id: 228,
-    country: 'Сейшельские острова',
+    name: 'Сейшельские острова',
   },
   {
     id: 229,
-    country: 'Палау',
+    name: 'Палау',
   },
   {
     id: 230,
-    country: 'Сент-Люсия',
+    name: 'Сент-Люсия',
   },
   {
     id: 231,
-    country: 'Вануату',
+    name: 'Вануату',
   },
   {
     id: 232,
-    country: 'Мальдивы',
+    name: 'Мальдивы',
   },
   {
     id: 233,
-    country: 'Босния',
+    name: 'Босния',
   },
   {
     id: 234,
-    country: 'Уоллис и Футуна',
+    name: 'Уоллис и Футуна',
   },
   {
     id: 235,
-    country: 'Белоруссия',
+    name: 'Белоруссия',
   },
   {
     id: 236,
-    country: 'Киргизия',
+    name: 'Киргизия',
   },
   {
     id: 239,
-    country: 'Джибути',
+    name: 'Джибути',
   },
   {
     id: 240,
-    country: 'Виргинские Острова (США)',
+    name: 'Виргинские Острова (США)',
   },
   {
     id: 241,
-    country: 'Северная Македония',
+    name: 'Северная Македония',
   },
   {
     id: 242,
-    country: 'Виргинские Острова (Великобритания)',
+    name: 'Виргинские Острова (Великобритания)',
   },
   {
     id: 3545269,
-    country: 'Сент-Люсия ',
+    name: 'Сент-Люсия ',
   },
   {
     id: 3781461,
-    country: 'Сент-Китс и Невис',
+    name: 'Сент-Китс и Невис',
   },
   {
     id: 3985922,
-    country: 'Соломоновы Острова',
+    name: 'Соломоновы Острова',
   },
   {
     id: 4336645,
-    country: 'Виргинские Острова',
+    name: 'Виргинские Острова',
   },
   {
     id: 7801402,
-    country: 'Фолклендские острова',
+    name: 'Фолклендские острова',
   },
   {
     id: 10842163,
-    country: 'Остров Святой Елены',
+    name: 'Остров Святой Елены',
   },
   {
     id: 32518739,
-    country: 'острова Теркс и Кайкос',
+    name: 'острова Теркс и Кайкос',
   },
   {
     id: 47738117,
-    country: 'Мелкие отдаленные острова США',
+    name: 'Мелкие отдаленные острова США',
   },
   {
     id: 65870322,
-    country: 'Сан-Томе и Принсипи',
+    name: 'Сан-Томе и Принсипи',
   },
 ];
 
-export { FormFilterData, FormFilterLocales, CountriesFilm, GenresFilm };
-export type { IFormFilter, IGenresFilm, FilterNameType };
+export {
+  FilterLocales,
+  FilterName,
+  FilterData,
+  FilterBtnName,
+  FilterTitle,
+  FilterPlaceholder,
+  FilterRadio,
+  CountriesFilm,
+  GenresFilm,
+};
+export type { IFilter, IOptionSelectFilm, FilterNameType };

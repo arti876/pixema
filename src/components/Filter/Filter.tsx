@@ -3,22 +3,34 @@ import style from './Filter.module.scss';
 import { SvgFilter } from '../../svg/SvgFilter';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SvgClose } from '../../svg/svg';
-import { CountriesFilm, FormFilterLocales, GenresFilm, IFormFilter, FormFilterData } from './Filter.type.';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import {
+  FilterName,
+  FilterData,
+  FilterBtnName,
+  FilterTitle,
+  FilterPlaceholder,
+  CountriesFilm,
+  GenresFilm,
+  IFilter,
+  FilterLocales,
+  FilterRadio,
+} from './Filter.type.';
+import { useAppDispatch } from '../../store/store';
 import { recordFilterData } from '../../store/Slice/filterSlice';
-import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
+// import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
 import Drawer from '@mui/material/Drawer';
-import InputText from './Inputs/InputText';
+import InputText from './Inputs/InputTextFilter/InputTextFilter';
+import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
+import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
 
 export default function Filter() {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [icoFilterActive, setIcoFilterActive] = useState<boolean>(false);
-  const { register, handleSubmit, reset, control } = useForm({
+  const { handleSubmit, reset, control } = useForm({
     mode: 'onBlur',
-    defaultValues: FormFilterData,
+    defaultValues: FilterData,
   });
 
-  const { filterData } = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
 
   const toggleDrawer = (open: boolean) => () => {
@@ -27,19 +39,15 @@ export default function Filter() {
 
   function clearFilter() {
     setIcoFilterActive(false);
-    dispatch(recordFilterData(FormFilterData));
+    dispatch(recordFilterData(FilterData));
     reset();
   }
 
-  function toggleRadioActive(value: string) {
-    dispatch(recordFilterData({ ...filterData, radioRatingYear: value }));
-  }
-
-  const onSubmit: SubmitHandler<IFormFilter> = (data) => {
+  const onSubmit: SubmitHandler<IFilter> = (data) => {
     console.log(data);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
-    if (FormFilterData) {
+    if (FilterData) {
       setFilterOpen(false);
     }
   };
@@ -55,145 +63,77 @@ export default function Filter() {
       <Drawer anchor={'right'} open={filterOpen} onClose={toggleDrawer(false)}>
         <form onSubmit={handleSubmit(onSubmit)} className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}>
           <div className={style.formTitleContainer}>
-            <div className={style.formTitle}>{FormFilterLocales.FILTERS_TITLE}</div>
+            <div className={style.formTitle}>{FilterLocales.FILTER_TITLE}</div>
             <button type='button' onClick={toggleDrawer(false)}>
               <SvgClose className={style.icoClose} />
             </button>
           </div>
           <div className={style.inputWrapper}>
             <div className={style.sortContainer}>
-              <div className={style.labelText}>{FormFilterLocales.SORT_BY}</div>
+              <div className={style.labelText}>{FilterTitle.SORT_BY}</div>
               <div className={style.inputRadioContainer}>
-                <label
-                  className={`${style.labelRating} ${
-                    filterData.radioRatingYear === 'RATING' && style.inputRadioActive
-                  }`}
-                >
-                  <div className={style.labelTextRating}>{FormFilterLocales.RATING}</div>
-                  <input
-                    {...register('radioRatingYear')}
-                    type='radio'
-                    value='RATING'
-                    className={style.inputRating}
-                    onChange={() => toggleRadioActive('RATING')}
-                  />
-                </label>
-                <label
-                  className={`${style.labelYear} ${filterData.radioRatingYear === 'YEAR' && style.inputRadioActive}`}
-                >
-                  <div className={style.labelTextYear}>{FormFilterLocales.YEAR}</div>
-                  <input
-                    {...register('radioRatingYear')}
-                    type='radio'
-                    value='YEAR'
-                    className={style.inputYear}
-                    onChange={() => toggleRadioActive('YEAR')}
-                  />
-                </label>
+                <InputRadioFilter control={control} label={FilterTitle.RATING} valueOption={FilterRadio.RATING} />
+                <InputRadioFilter control={control} label={FilterTitle.YEARS} valueOption={FilterRadio.YEAR} />
               </div>
             </div>
 
             <InputText
               control={control}
-              name='movieName'
-              label={FormFilterLocales.MOVIE_NAME}
-              placeholder={FormFilterLocales.YOUR_TEXT}
+              name={FilterName.MOVIE_NAME}
+              label={FilterTitle.MOVIE_NAME}
+              placeholder={FilterPlaceholder.YOUR_TEXT}
             />
-
-            {/* <label className={style.labelContainer}>
-              <div className={style.labelText}>{FormFilterLocales.MOVIE_NAME}</div>
-              <input
-                type='text'
-                placeholder={FormFilterLocales.YOUR_TEXT}
-                {...register('movieName', movieNameValidation)}
-                className={style.inputMovieName}
-              />
-            </label> */}
-
-            <label className={style.labelContainer}>
-              <div className={style.labelText}>{FormFilterLocales.GENRE}</div>
-              <select {...register('selectGenre')} defaultValue={''} className={style.selectContainer}>
-                <option value={''} disabled hidden>
-                  {FormFilterLocales.SELECT_CONTRY}
-                </option>
-                {!!GenresFilm &&
-                  GenresFilm.map(({ id, genre }, index) => (
-                    <option key={index} value={id} className={style.selectOption}>
-                      {genre}
-                    </option>
-                  ))}
-              </select>
-            </label>
-
-            {/* <label className={style.labelContainer}>
-              <div className={style.labelText}>{FormFilterLocales.YEARS}</div>
-              <div className={style.inputFromToContainer}>
-                <input
-                  type='text'
-                  placeholder={FormFilterLocales.FROM}
-                  {...register('yearsFrom', onlyNumbersValidation)}
-                  className={style.inputFromTo}
-                />
-                <input
-                  type='text'
-                  placeholder={FormFilterLocales.TO}
-                  {...register('yearsTo', onlyNumbersValidation)}
-                  className={style.inputFromTo}
-                />
-              </div>
-            </label> */}
-
-            <div className={style.inputFromToContainer}>
+            <InputSelect
+              control={control}
+              name={FilterName.SELECT_GENRE}
+              label={FilterTitle.GENRE}
+              placeholder={FilterPlaceholder.SELECT_GENRE}
+              optionData={GenresFilm}
+            />
+            <div className={style.twoСolumnsContainer}>
               <InputText
                 type='number'
                 control={control}
-                name='yearsFrom'
-                label={FormFilterLocales.MOVIE_NAME}
-                placeholder={FormFilterLocales.FROM}
+                name={FilterName.YEARS_FROM}
+                label={FilterTitle.YEARS}
+                placeholder={FilterPlaceholder.FROM}
               />
-              <InputText type='number' control={control} name='yearsFrom' placeholder={FormFilterLocales.TO} />
+              <InputText
+                type='number'
+                control={control}
+                name={FilterName.YEARS_TO}
+                placeholder={FilterPlaceholder.TO}
+              />
             </div>
-
-            <label className={style.labelContainer}>
-              <div className={style.labelText}>{FormFilterLocales.RATING}</div>
-              <div className={style.inputFromToContainer}>
-                <input
-                  type='text'
-                  placeholder={FormFilterLocales.FROM}
-                  {...register('ratingFrom', onlyNumbersValidation)}
-                  className={style.inputFromTo}
-                />
-                <input
-                  type='text'
-                  placeholder={FormFilterLocales.TO}
-                  {...register('ratingTo', onlyNumbersValidation)}
-                  className={style.inputFromTo}
-                />
-              </div>
-            </label>
-
-            <label className={style.labelContainer}>
-              <div className={style.labelText}>{FormFilterLocales.CONTRY}</div>
-              <select {...register('selectCountry')} defaultValue={''} className={style.selectContainer}>
-                <option value={''} disabled hidden>
-                  {FormFilterLocales.SELECT_GENRE}
-                </option>
-                {!!CountriesFilm &&
-                  CountriesFilm.map(({ id, country }, index) => (
-                    <option key={index} value={id} className={style.selectOption}>
-                      {country}
-                    </option>
-                  ))}
-              </select>
-            </label>
+            <div className={style.twoСolumnsContainer}>
+              <InputText
+                type='number'
+                control={control}
+                name={FilterName.RATING_FROM}
+                label={FilterTitle.RATING}
+                placeholder={FilterPlaceholder.FROM}
+              />
+              <InputText
+                type='number'
+                control={control}
+                name={FilterName.RATING_TO}
+                placeholder={FilterPlaceholder.TO}
+              />
+            </div>
+            <InputSelect
+              control={control}
+              name={FilterName.SELECT_CONTRY}
+              label={FilterTitle.CONTRY}
+              placeholder={FilterPlaceholder.SELECT_CONTRY}
+              optionData={CountriesFilm}
+            />
           </div>
-
-          <div className={style.btnContainer}>
+          <div className={style.twoСolumnsContainer}>
             <button type='button' className={style.btnClearFilter} onClick={clearFilter}>
-              {FormFilterLocales.CLEAR_FILTER}
+              {FilterBtnName.CLEAR_FILTER}
             </button>
             <button type='submit' className={style.btnShowResults}>
-              {FormFilterLocales.SHOW_RESULTS}
+              {FilterBtnName.SHOW_RESULTS}
             </button>
           </div>
         </form>

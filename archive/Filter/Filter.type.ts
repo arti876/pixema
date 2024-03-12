@@ -1,4 +1,4 @@
-// interface IFormFilter {
+// interface IFilter {
 //   movieName: string;
 //   radioRatingYear: string;
 //   yearsFrom: number | '';
@@ -9,7 +9,7 @@
 //   selectGenre: string;
 // }
 
-// const FormFilterData: IFormFilter = {
+// const FilterData: IFilter = {
 //   movieName: '',
 //   radioRatingYear: 'YEAR',
 //   yearsFrom: '',
@@ -38,12 +38,12 @@
 //   SELECT_GENRE = 'Select genre',
 // }
 
-// interface IGenresFilm {
+// interface IOptionSelectFilm {
 //   id: number;
 //   genre: string;
 // }
 
-// const GenresFilm: IGenresFilm[] = [
+// const GenresFilm: IOptionSelectFilm[] = [
 //   {
 //     id: 1,
 //     genre: 'триллер',
@@ -174,12 +174,12 @@
 //   },
 // ];
 
-// interface ICountriesFilm {
+// interface IOptionSelectFilm {
 //   id: number;
 //   country: string;
 // }
 
-// const CountriesFilm: ICountriesFilm[] = [
+// const CountriesFilm: IOptionSelectFilm[] = [
 //   {
 //     id: 1,
 //     country: 'США',
@@ -1178,5 +1178,5 @@
 //   },
 // ];
 
-// export { FormFilterData, FormFilterLocales, CountriesFilm, GenresFilm };
-// export type { IFormFilter };
+// export { FilterData, FormFilterLocales, CountriesFilm, GenresFilm };
+// export type { IFilter };

@@ -4,7 +4,7 @@
 // import { useClickAway } from '@uidotdev/usehooks';
 // import { SubmitHandler, useForm } from 'react-hook-form';
 // import { SvgClose } from '../../svg/svg';
-// import { CountriesFilm, FormFilterLocales, GenresFilm, IFormFilter, FormFilterData } from './Filter.type';
+// import { CountriesFilm, FormFilterLocales, GenresFilm, IFilter, FilterData } from './Filter.type';
 // import { useAppDispatch, useAppSelector } from '../../store/store';
 // import { recordFilterData } from '../../store/Slice/filterSlice';
 // import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
@@ -19,13 +19,13 @@
 
 //   const { register, handleSubmit, reset } = useForm({
 //     mode: 'onBlur',
-//     defaultValues: FormFilterData,
+//     defaultValues: FilterData,
 //   });
 
-//   const onSubmit: SubmitHandler<IFormFilter> = (data) => {
+//   const onSubmit: SubmitHandler<IFilter> = (data) => {
 //     dispatch(recordFilterData(data));
 //     setIcoFilterActive(true);
-//     if (FormFilterData) {
+//     if (FilterData) {
 //       setFilterActive(false);
 //     }
 //   };
@@ -50,7 +50,7 @@
 
 //   function clearFilter() {
 //     setIcoFilterActive(false);
-//     dispatch(recordFilterData(FormFilterData));
+//     dispatch(recordFilterData(FilterData));
 //     reset();
 //   }
 

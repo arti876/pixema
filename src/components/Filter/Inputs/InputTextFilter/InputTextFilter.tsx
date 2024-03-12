@@ -1,16 +1,22 @@
 import { Control, Controller } from 'react-hook-form';
-import style from './InputText.module.scss';
-import { FilterNameType, IFormFilter } from '../Filter.type.';
+import style from './InputTextFilter.module.scss';
+import { FilterNameType, IFilter } from '../../Filter.type.';
 
 interface ControllerTextFieldProps {
-  control: Control<IFormFilter>;
+  control: Control<IFilter>;
   name: FilterNameType;
   label?: string;
   type?: string;
   placeholder: string;
 }
 
-export default function InputText({ control, name, label = '', type = 'text', placeholder }: ControllerTextFieldProps) {
+export default function InputTextFilter({
+  control,
+  name,
+  label = '',
+  type = 'text',
+  placeholder,
+}: ControllerTextFieldProps) {
   return (
     <Controller
       control={control}

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFormFilter, FormFilterData } from '../../components/Filter/Filter.type.';
+import { IFilter, FilterData } from '../../components/Filter/Filter.type.';
 
 interface IFilterState {
-  filterData: IFormFilter;
+  filterData: IFilter;
 }
 
 const initialState: IFilterState = {
-  filterData: FormFilterData,
+  filterData: FilterData,
 };
 
 const filterSlice = createSlice({
