@@ -7,6 +7,7 @@ import { fetchFilmIdThunk } from '../../store/Thunk/fetchFilmIdThunk';
 import { useAppDispatch } from '../../store/store';
 
 export default function Poster({ poster = PosterData, pageName = '' }: PosterProps) {
+  const rating = !!poster && (poster.ratingKinopoisk || poster.ratingImdb);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -25,13 +26,13 @@ export default function Poster({ poster = PosterData, pageName = '' }: PosterPro
       {!!poster && (
         <div>
           <button type='button' className={style.imgContainer} onClick={navigateTo}>
-            {poster.ratingKinopoisk && `/${RoutePath.TRENDS}` === pageName && (
+            {`/${RoutePath.TRENDS}` === pageName && (
               <div className={style.ratingTrendsContainer}>
                 <SvgTrends className={style.trendsIco} />
-                <div className={style.ratingTrendsNumber}>{poster.ratingKinopoisk}</div>
+                <div className={style.ratingTrendsNumber}>{rating}</div>
               </div>
             )}
-            {poster.ratingKinopoisk && !pageName && <div className={style.rating}>{poster.ratingKinopoisk}</div>}
+            {rating && !pageName && <div className={style.rating}>{rating}</div>}
             <img src={poster.posterUrl} alt={poster.nameRu} />
           </button>
           <button type='button' className={style.movieTitle} onClick={navigateTo}>

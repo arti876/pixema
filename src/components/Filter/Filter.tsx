@@ -45,13 +45,11 @@ export default function Filter() {
     setFilterOpen(false);
     dispatch(recordFilterData(FilterData));
     reset();
-    navigate(-1, { replace: true });
   }
 
   const onSubmit: SubmitHandler<IFilter> = (data) => {
     // Данные для фильтрации
     const filters = {
-      type: 'FILM',
       // countries: data.selectCountry,
       // genres: data.selectGenre,
       // order: data.radioRatingYear,
@@ -65,14 +63,14 @@ export default function Filter() {
 
     // Преобразование объекта с фильтрами в строку параметров запроса
     const params = new URLSearchParams(filters).toString();
+
     console.log(params);
+
     fetchFilmFilterThunk(params);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
-    navigate(RoutePath.FILTER);
     if (FilterData) {
       setFilterOpen(false);
-      navigate(RoutePath.FILTER);
     }
   };
 

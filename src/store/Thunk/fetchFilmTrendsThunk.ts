@@ -6,7 +6,7 @@ export const fetchFilmTrendsThunk = createAsyncThunk(
   'filmTrends/fetchFilmTrendsThunk',
   async function fetchFilmData(pageNum: number, { rejectWithValue }) {
     try {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?order=RATING&type=FILM&ratingFrom=7&ratingTo=10&yearFrom=2023&yearTo=2024&page=${pageNum}`;
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM&order=NUM_VOTE&yearFrom=2023&yearTo=2024&page=${pageNum}`;
       const accept = 'application/json';
       const response = await axios.get(url, {
         method: 'GET',
