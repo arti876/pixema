@@ -17,11 +17,13 @@ import {
 } from './Filter.type.';
 import { useAppDispatch } from '../../store/store';
 import { recordFilterData } from '../../store/Slice/filterSlice';
-// import { movieNameValidation, onlyNumbersValidation } from './validationFilter';
 import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from '../../constants/RoutePath.constants';
+import { fetchFilmFilterThunk } from '../../store/Thunk/fetchFilmFilterThunk';
 
 export default function Filter() {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
@@ -31,6 +33,7 @@ export default function Filter() {
     defaultValues: FilterData,
   });
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const toggleDrawer = (open: boolean) => () => {
@@ -39,16 +42,37 @@ export default function Filter() {
 
   function clearFilter() {
     setIcoFilterActive(false);
+    setFilterOpen(false);
     dispatch(recordFilterData(FilterData));
     reset();
+    navigate(-1, { replace: true });
   }
 
   const onSubmit: SubmitHandler<IFilter> = (data) => {
-    console.log(data);
+    // Данные для фильтрации
+    const filters = {
+      type: 'FILM',
+      // countries: data.selectCountry,
+      // genres: data.selectGenre,
+      // order: data.radioRatingYear,
+      // ratingFrom: data.ratingFrom,
+      // ratingTo: data.ratingTo,
+      // yearFrom: data.yearsFrom,
+      // yearTo: data.yearsTo,
+      keyword: data.movieName,
+      // page: 1,
+    };
+
+    // Преобразование объекта с фильтрами в строку параметров запроса
+    const params = new URLSearchParams(filters).toString();
+    console.log(params);
+    fetchFilmFilterThunk(params);
     dispatch(recordFilterData(data));
     setIcoFilterActive(true);
+    navigate(RoutePath.FILTER);
     if (FilterData) {
       setFilterOpen(false);
+      navigate(RoutePath.FILTER);
     }
   };
 

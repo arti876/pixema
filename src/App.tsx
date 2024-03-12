@@ -8,6 +8,7 @@ import PageMain from './pages/PageMain/PageMain';
 import PageTrends from './pages/PageTrends/PageTrends';
 import PageFilm from './pages/PageFilm/PageFilm';
 import NotFound from './pages/NotFound/NotFound';
+import PageFilterResult from './pages/PageFilterResult/PageFilterResult';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -28,6 +29,7 @@ export default function App() {
         <Route path={RoutePath.FAVORITES} element={<PageFilm />} />
         <Route path={RoutePath.SETTING} element={<NotFound />} />
         <Route path={RoutePath.FILM} element={<PageFilm />} />
+        <Route path={RoutePath.FILTER} element={<PageFilterResult />} />
       </Route>
     </Routes>
   );

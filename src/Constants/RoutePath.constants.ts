@@ -3,6 +3,7 @@ export enum RoutePath {
   TRENDS = 'trends',
   FAVORITES = 'favorites',
   SETTING = 'setting',
-  FILM = '/film',
+  FILM = 'film',
+  FILTER = '/filterResult',
   NOT_FOUND = '*',
 }
