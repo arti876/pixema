@@ -1,4 +1,4 @@
-import { IParamsThunkMainPage } from '../../store/Slice/filmMainSlice';
+import { IFilmThunkParams } from '../../store/Slice/filmSlice';
 
 // interface IFilter {
 //   keyword: string;
@@ -11,7 +11,7 @@ import { IParamsThunkMainPage } from '../../store/Slice/filmMainSlice';
 //   genres: string;
 // }
 
-const FilterData: IParamsThunkMainPage = {
+const FilterData: IFilmThunkParams = {
   keyword: '',
   order: 'RATING',
   yearFrom: '',
@@ -22,7 +22,15 @@ const FilterData: IParamsThunkMainPage = {
   genres: '',
 };
 
-type FilterNameType = 'keyword' | 'order' | 'yearFrom' | 'yearTo' | 'ratingFrom' | 'ratingTo' | 'countries' | 'genres';
+type FilterNameType =
+  | 'keyword'
+  | 'order'
+  | 'yearFrom'
+  | 'yearTo'
+  | 'ratingFrom'
+  | 'ratingTo'
+  | 'countries'
+  | 'genres';
 
 enum FilterLocales {
   FILTER_TITLE = 'Filters',

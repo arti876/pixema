@@ -2,21 +2,24 @@ import { Locales } from '../../constants/Locales.constants';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import style from './ShowMore.module.scss';
 import { SvgSpinner } from '../../svg/svg';
-import { addNextPage, updateFilmData } from '../../store/Slice/filmMainSlice';
+import { fetchFilmNextPage } from '../../store/Thunk/fetchFilmNextPage';
+import { useLocation } from 'react-router-dom';
 
 interface ShowMoreProps {
   status: string | null;
-  dispatchFunction: any;
 }
 
-export default function ShowMore({ status, dispatchFunction }: ShowMoreProps) {
-  const { paramsThunk } = useAppSelector((state) => state.filmMain);
+export default function ShowMore({ status }: ShowMoreProps) {
+  const { paramsThunk } = useAppSelector((state) => state.film);
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   function nextPage() {
-    dispatch(dispatchFunction);
-    // dispatch(addNextPage(paramsThunk));
-    // dispatch(updateFilmData());
+    const arg = {
+      params: paramsThunk,
+      location: location.pathname,
+    };
+    dispatch(fetchFilmNextPage(arg));
   }
 
   return (

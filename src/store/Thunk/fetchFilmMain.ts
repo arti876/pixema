@@ -1,21 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { IParamsThunkMainPage } from '../Slice/filmMainSlice';
 import { apiKey } from '../../apiKey';
 
 export const fetchFilmMain = createAsyncThunk(
   'filmMain/fetchFilmMain',
-  async function fetchFilmData(params: IParamsThunkMainPage, { rejectWithValue }) {
-    const paramsToString = new URLSearchParams(params).toString();
-    console.log(paramsToString);
+  async function fetchFilmData(_, { rejectWithValue }) {
     try {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM&${paramsToString}`;
-      const accept = 'application/json';
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM`;
       const response = await axios.get(url, {
         method: 'GET',
         headers: {
           'X-API-KEY': apiKey,
-          accept,
+          accept: 'application/json',
         },
       });
       return response.data.items;
@@ -25,17 +21,3 @@ export const fetchFilmMain = createAsyncThunk(
     }
   },
 );
-
-// export const fetchFilmMain = createAsyncThunk(
-//   'filmMain/fetchFilmMain',
-//   async function fetchFilmData(params: IParamsThunkMainPage, { rejectWithValue }) {
-//     try {
-//       const url = `http://localhost:3000/items`;
-//       const response = await axios.get(url);
-//       return response.data;
-//     } catch (error) {
-//       const errorFetch = error as AxiosError;
-//       return rejectWithValue(errorFetch.message);
-//     }
-//   },
-// );

@@ -6,8 +6,6 @@ export const fetchFilmId = createAsyncThunk(
   'filmId/fetchFilmId',
   async function fetchFilmData(filmId: number, { rejectWithValue }) {
     try {
-      const accept = 'application/json';
-
       const urls = [
         `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`,
         `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/distributions`,
@@ -22,7 +20,7 @@ export const fetchFilmId = createAsyncThunk(
             method: 'GET',
             headers: {
               'X-API-KEY': apiKey,
-              accept,
+              accept: 'application/json',
             },
           }),
         ),

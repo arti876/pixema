@@ -19,7 +19,7 @@ import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
-import { IParamsThunkMainPage, addFilterData } from '../../store/Slice/filmMainSlice';
+import { IFilmThunkParams, addFilterData } from '../../store/Slice/filmSlice';
 import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
 import { useLocation } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
@@ -48,7 +48,7 @@ export default function Filter({ disabled = false }: FilterParams) {
     reset();
   }
 
-  const onSubmit: SubmitHandler<IParamsThunkMainPage> = (data) => {
+  const onSubmit: SubmitHandler<IFilmThunkParams> = (data) => {
     dispatch(addFilterData(data));
     dispatch(fetchFilmMain(data));
     setIcoFilterActive(true);

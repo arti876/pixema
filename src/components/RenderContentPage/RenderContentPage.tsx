@@ -9,7 +9,6 @@ import Error from '../Error/Error';
 
 interface RenderContentPageProps {
   film: IPoster[];
-  page: number;
   status: string | null;
   error: unknown;
   thunk: () => void;
