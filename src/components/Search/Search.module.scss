@@ -1,4 +1,4 @@
-.form {
+.searchContainer {
   position: relative;
   width: 100%;
 }
@@ -13,7 +13,7 @@
   padding: 16px 50px 16px 20px;
   color: var(--contextual-colors-white);
   &::placeholder {
-    color: var(--system-colors-secondary);
+    color: var(--contextual-colors-light);
   }
   &:focus {
     outline: 2px solid var(--system-colors-primary);
@@ -21,4 +21,8 @@
   &:focus::placeholder {
     color: transparent;
   }
+}
+
+.disabled {
+  background-color: var(--system-colors-secondary);
 }

@@ -26,8 +26,8 @@ interface fetchDataProps {
 // // Преобразование объекта с фильтрами в строку параметров запроса
 // const params = new URLSearchParams(filters).toString();
 
-export const fetchFilmFilterThunk = createAsyncThunk(
-  'filter/fetchFilmFilterThunk',
+export const fetchFilmFilter = createAsyncThunk(
+  'filter/fetchFilmFilter',
   async function fetchData(params: fetchDataProps, { rejectWithValue }) {
     try {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?${params}`;

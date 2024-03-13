@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
-import { fetchFilmTrendsThunk } from '../Thunk/fetchFilmTrendsThunk';
+import { fetchFilmTrends } from '../Thunk/fetchFilmTrends';
 
 interface IFilmTrendsState {
   film: IPoster[];
@@ -25,15 +25,15 @@ const filmTrendsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFilmTrendsThunk.pending, (state) => {
+    builder.addCase(fetchFilmTrends.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     });
-    builder.addCase(fetchFilmTrendsThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchFilmTrends.fulfilled, (state, action) => {
       state.status = 'resolved';
       state.film = state.film.concat(action.payload);
     });
-    builder.addCase(fetchFilmTrendsThunk.rejected, (state, action) => {
+    builder.addCase(fetchFilmTrends.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     });

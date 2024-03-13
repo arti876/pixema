@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
 import style from './RenderContentPage.module.scss';
 import { IPoster } from '../Poster/IPoster.type';
 import Loader from '../Loader/Loader';
@@ -28,9 +28,9 @@ export default function RenderContentPage({
   const loading = film.length === 0;
   const rejected = status === 'rejected';
 
-  // useEffect(() => {
-  //   dispatch(thunk);
-  // }, []);
+  useEffect(() => {
+    dispatch(thunk);
+  }, []);
 
   if (rejected) {
     return <Error errorMessage={error} />;

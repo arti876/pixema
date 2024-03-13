@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchFilmIdThunk } from '../Thunk/fetchFilmIdThunk';
+import { fetchFilmId } from '../Thunk/fetchFilmId';
 
 interface IFilmId {
   description: {
@@ -110,15 +110,15 @@ const filmIdSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchFilmIdThunk.pending, (state) => {
+    builder.addCase(fetchFilmId.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     });
-    builder.addCase(fetchFilmIdThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchFilmId.fulfilled, (state, action) => {
       state.status = 'resolved';
       state.film = action.payload;
     });
-    builder.addCase(fetchFilmIdThunk.rejected, (state, action) => {
+    builder.addCase(fetchFilmId.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     });

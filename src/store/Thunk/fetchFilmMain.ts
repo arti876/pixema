@@ -3,8 +3,8 @@ import axios, { AxiosError } from 'axios';
 import { IParamsThunkMainPage } from '../Slice/filmMainSlice';
 // import { apiKey } from '../../apiKey';
 
-export const fetchFilmMainThunk = createAsyncThunk(
-  'filmMain/fetchFilmMainThunk',
+export const fetchFilmMain = createAsyncThunk(
+  'filmMain/fetchFilmMain',
   async function fetchFilmData(params: IParamsThunkMainPage, { rejectWithValue }) {
     const paramsToString = new URLSearchParams(params).toString();
     console.log(paramsToString);
@@ -26,11 +26,9 @@ export const fetchFilmMainThunk = createAsyncThunk(
   },
 );
 
-// https://kinopoiskapiunofficial.tech/images/posters/kp/1144194.jpg posterUrl
-
-// export const fetchFilmMainThunk = createAsyncThunk(
-//   'filmMain/fetchFilmMainThunk',
-//   async function fetchFilmData(_, { rejectWithValue }) {
+// export const fetchFilmMain = createAsyncThunk(
+//   'filmMain/fetchFilmMain',
+//   async function fetchFilmData(params: IParamsThunkMainPage, { rejectWithValue }) {
 //     try {
 //       const url = `http://localhost:3000/items`;
 //       const response = await axios.get(url);

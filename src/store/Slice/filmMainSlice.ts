@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
-import { fetchFilmMainThunk } from '../Thunk/fetchFilmMainThunk';
+import { fetchFilmMain } from '../Thunk/fetchFilmMain';
 
 export interface IParamsThunkMainPage {
   // [key: string]: string;
@@ -47,24 +47,36 @@ const filmMainSlice = createSlice({
       ...state,
       paramsThunk: action.payload,
     }),
+    addNextPage: (state, action) => {
+      if (state.paramsThunk.page) {
+        // state.film = state.film.concat(action.payload);
+        state.paramsThunk.page = state.paramsThunk.page + 1;
+      }
+    },
+    updateFilmData: (state) => {
+      state.status = 'resolved';
+      state.film = state.film.concat(state.film);
+      if (state.paramsThunk.page) {
+        state.paramsThunk.page = state.paramsThunk.page + 1;
+      }
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFilmMainThunk.pending, (state) => {
+    builder.addCase(fetchFilmMain.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     });
-    builder.addCase(fetchFilmMainThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchFilmMain.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = state.film.concat(action.payload);
-      state.paramsThunk.page = state.paramsThunk.page + 1;
+      state.film = action.payload;
     });
-    builder.addCase(fetchFilmMainThunk.rejected, (state, action) => {
+    builder.addCase(fetchFilmMain.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     });
   },
 });
 
-export const { addFilterData } = filmMainSlice.actions;
+export const { addFilterData, addNextPage, updateFilmData } = filmMainSlice.actions;
 
 export default filmMainSlice.reducer;

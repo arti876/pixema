@@ -4,7 +4,6 @@ import themeReducer from './Slice/themeSlice';
 import filmMainReducer from './Slice/filmMainSlice';
 import filmTrendsReducer from './Slice/filmTrendsSlice';
 import filmIdReducer from './Slice/filmIdSlice';
-import filterReducer from './Slice/filterSlice';
 
 const listenerMiddleware = createListenerMiddleware();
 
@@ -13,12 +12,12 @@ const rootReducer = combineReducers({
   filmMain: filmMainReducer,
   filmTrends: filmTrendsReducer,
   filmId: filmIdReducer,
-  filter: filterReducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([listenerMiddleware.middleware]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([listenerMiddleware.middleware]),
 });
 
 type RootState = ReturnType<typeof store.getState>;

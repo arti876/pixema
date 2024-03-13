@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../store/store';
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 import { countPage } from '../../store/Slice/filmTrendsSlice';
-import { fetchFilmTrendsThunk } from '../../store/Thunk/fetchFilmTrendsThunk';
+import { fetchFilmTrends } from '../../store/Thunk/fetchFilmTrends';
 import { useLocation } from 'react-router-dom';
 
 export default function PageTrends() {
@@ -10,7 +10,7 @@ export default function PageTrends() {
 
   return (
     <RenderContentPage
-      thunk={fetchFilmTrendsThunk(page)}
+      thunk={fetchFilmTrends(page)}
       film={film}
       status={status}
       page={page}

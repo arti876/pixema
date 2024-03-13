@@ -15,16 +15,20 @@ import {
   FilterRadio,
 } from './Filter.type.';
 import { useAppDispatch } from '../../store/store';
-import { recordFilterData } from '../../store/Slice/filterSlice';
 import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
-import { fetchFilmFilterThunk } from '../../store/Thunk/fetchFilmFilterThunk';
 import { IParamsThunkMainPage, addFilterData } from '../../store/Slice/filmMainSlice';
-import { fetchFilmMainThunk } from '../../store/Thunk/fetchFilmMainThunk';
+import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
+import { useLocation } from 'react-router-dom';
+import { RoutePath } from '../../constants/RoutePath.constants';
 
-export default function Filter() {
+interface FilterParams {
+  disabled?: boolean;
+}
+
+export default function Filter({ disabled = false }: FilterParams) {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [icoFilterActive, setIcoFilterActive] = useState<boolean>(false);
   const { handleSubmit, reset, control } = useForm({
@@ -41,15 +45,12 @@ export default function Filter() {
   function clearFilter() {
     setIcoFilterActive(false);
     setFilterOpen(false);
-    dispatch(recordFilterData(FilterData));
     reset();
   }
 
   const onSubmit: SubmitHandler<IParamsThunkMainPage> = (data) => {
     dispatch(addFilterData(data));
-    dispatch(fetchFilmMainThunk(data));
-    // fetchFilmFilterThunk(params);
-    dispatch(recordFilterData(data));
+    dispatch(fetchFilmMain(data));
     setIcoFilterActive(true);
     if (FilterData) {
       setFilterOpen(false);
@@ -60,7 +61,12 @@ export default function Filter() {
     <>
       <div className={`${style.icoContainer} ${icoFilterActive && style.icoContainerActive}`}>
         <div className={style.dot} />
-        <button type='button' onClick={toggleDrawer(true)}>
+        <button
+          type='button'
+          onClick={toggleDrawer(true)}
+          disabled={disabled}
+          className={disabled ? style.btnDisabled : ''}
+        >
           <SvgFilter className={style.icoFilter} />
         </button>
       </div>

@@ -28,7 +28,7 @@
   .icoFilter {
     width: 16px;
     height: 14px;
-    fill: var(--system-colors-secondary);
+    fill: var(--contextual-colors-light);
     background-color: transparent;
   }
   .dot {
@@ -126,4 +126,8 @@
   flex-direction: column;
   gap: 24px;
   padding: 48px 0px 111px;
+}
+
+.btnDisabled {
+  cursor: default;
 }

@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 // import { apiKey } from '../../apiKey';
 
-export const fetchFilmIdThunk = createAsyncThunk(
-  'filmId/fetchFilmIdThunk',
+export const fetchFilmId = createAsyncThunk(
+  'filmId/fetchFilmId',
   async function fetchFilmData(filmId: number, { rejectWithValue }) {
     try {
       const accept = 'application/json';

@@ -1,5 +1,5 @@
 // import { useAppSelector } from '../../store/store';
-// import { fetchFilmMainThunk } from '../../store/Thunk/fetchFilmMainThunk';
+// import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
 // import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 
 // export default function PageFilterResult() {
@@ -7,7 +7,7 @@
 
 //   return (
 //     <RenderContentPage
-//       thunk={fetchFilmMainThunk(mainPage)}
+//       thunk={fetchFilmMain(mainPage)}
 //       film={mainFilm}
 //       status={mainStatus}
 //       page={mainPage}
