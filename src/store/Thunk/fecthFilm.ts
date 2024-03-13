@@ -7,9 +7,9 @@ import { apiKey } from '../../apiKey';
 export const fetchFilm = (fetchId: string, url: string, params?: IParamsThunkMainPage) => {
   return createAsyncThunk(fetchId, async function fetchData(_, { rejectWithValue }) {
     const paramsToString = new URLSearchParams(params).toString();
-    const ulrPrams = url + paramsToString;
+    const customUrl = url + paramsToString;
     try {
-      const response = await axios.get(url, {
+      const response = await axios.get(customUrl, {
         method: 'GET',
         headers: {
           'X-API-KEY': apiKey,
