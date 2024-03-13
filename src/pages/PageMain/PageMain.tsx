@@ -2,6 +2,7 @@ import { useAppSelector } from '../../store/store';
 import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 import { useEffect } from 'react';
+import { fetchFilmMainNew } from '../../store/Thunk/fecthFilm';
 
 export default function PageMain() {
   const { film, status, error, paramsThunk } = useAppSelector((state) => state.filmMain);
@@ -12,7 +13,8 @@ export default function PageMain() {
 
   return (
     <RenderContentPage
-      thunk={fetchFilmMain(paramsThunk)}
+      thunk={fetchFilmMainNew()}
+      // thunk={fetchFilmMain(paramsThunk)}
       film={film}
       status={status}
       error={error}

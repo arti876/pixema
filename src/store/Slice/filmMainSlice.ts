@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
 import { fetchFilmMain } from '../Thunk/fetchFilmMain';
+import { fetchFilmMainNew } from '../Thunk/fecthFilm';
 
 export interface IParamsThunkMainPage {
   // [key: string]: string;
@@ -62,15 +63,15 @@ const filmMainSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFilmMain.pending, (state) => {
+    builder.addCase(fetchFilmMainNew.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     });
-    builder.addCase(fetchFilmMain.fulfilled, (state, action) => {
+    builder.addCase(fetchFilmMainNew.fulfilled, (state, action) => {
       state.status = 'resolved';
       state.film = action.payload;
     });
-    builder.addCase(fetchFilmMain.rejected, (state, action) => {
+    builder.addCase(fetchFilmMainNew.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     });
