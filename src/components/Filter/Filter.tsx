@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './Filter.module.scss';
 import { SvgFilter } from '../../svg/SvgFilter';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -20,9 +20,6 @@ import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
 import { IFilmThunkParams, addFilterData } from '../../store/Slice/filmSlice';
-import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { RoutePath } from '../../constants/RoutePath.constants';
 import { fetchFilmFilter } from '../../store/Thunk/fetchFilmFilter';
 
 interface FilterParams {
@@ -37,7 +34,6 @@ export default function Filter({ disabled = false }: FilterParams) {
     defaultValues: FilterData,
   });
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const toggleDrawer = (open: boolean) => () => {
     setFilterOpen(open);
@@ -53,11 +49,16 @@ export default function Filter({ disabled = false }: FilterParams) {
     dispatch(addFilterData(data));
     dispatch(fetchFilmFilter(data));
     setIcoFilterActive(true);
-    // navigate(RoutePath.ROOT);
     if (FilterData) {
       setFilterOpen(false);
     }
   };
+
+  useEffect(() => {
+    if (disabled) {
+      clearFilter();
+    }
+  }, [disabled]);
 
   return (
     <>

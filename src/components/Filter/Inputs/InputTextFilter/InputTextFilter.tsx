@@ -1,9 +1,10 @@
 import { Control, Controller } from 'react-hook-form';
 import style from './InputTextFilter.module.scss';
-import { FilterNameType, IFilter } from '../../Filter.type.';
+import { FilterName, FilterNameType } from '../../Filter.type.';
+import { IFilmThunkParams } from '../../../../store/Slice/filmSlice';
 
 interface ControllerTextFieldProps {
-  control: Control<IFilter>;
+  control: Control<IFilmThunkParams>;
   name: FilterNameType;
   label?: string;
   type?: string;
@@ -17,9 +18,20 @@ export default function InputTextFilter({
   type = 'text',
   placeholder,
 }: ControllerTextFieldProps) {
-  const typeNumber = type === 'number';
-  const minNumber = typeNumber ? '1985' : '';
-  const maxNumber = typeNumber ? '2024' : '';
+  const inputValMin =
+    type === 'number' && FilterName.YEARS_FROM === name
+      ? '1985'
+      : type === 'number' && FilterName.RATING_FROM
+      ? '0'
+      : '';
+
+  const inputValMax =
+    type === 'number' && FilterName.YEARS_TO === name
+      ? '2024'
+      : type === 'number' && FilterName.RATING_TO
+      ? '10'
+      : '';
+
   return (
     <Controller
       control={control}
@@ -34,8 +46,8 @@ export default function InputTextFilter({
             onBlur={onBlur}
             value={value}
             placeholder={placeholder}
-            min={minNumber}
-            max={maxNumber}
+            min={inputValMin}
+            max={inputValMax}
           />
         </label>
       )}

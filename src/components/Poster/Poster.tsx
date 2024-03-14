@@ -26,13 +26,15 @@ export default function Poster({ poster = PosterData, pageName = '' }: PosterPro
       {!!poster && (
         <div>
           <button type='button' className={style.imgContainer} onClick={navigateTo}>
-            {`/${RoutePath.TRENDS}` === pageName && (
+            {rating && `/${RoutePath.TRENDS}` === pageName && (
               <div className={style.ratingTrendsContainer}>
                 <SvgTrends className={style.trendsIco} />
                 <div className={style.ratingTrendsNumber}>{rating}</div>
               </div>
             )}
-            {rating && !pageName && <div className={style.rating}>{rating}</div>}
+            {rating && `/${RoutePath.TRENDS}` !== pageName && (
+              <div className={style.rating}>{rating}</div>
+            )}
             <img src={poster.posterUrl} alt={poster.nameRu} />
           </button>
           <button type='button' className={style.movieTitle} onClick={navigateTo}>

@@ -1,14 +1,19 @@
 import { Control, Controller } from 'react-hook-form';
 import style from './InputRadioFilter.module.scss';
-import { FilterName, IFilter } from '../../Filter.type.';
+import { FilterName } from '../../Filter.type.';
+import { IFilmThunkParams } from '../../../../store/Slice/filmSlice';
 
 interface ControllerTextFieldProps {
-  control: Control<IFilter>;
+  control: Control<IFilmThunkParams>;
   label: string;
   valueOption: string;
 }
 
-export default function InputRadioFilter({ control, label, valueOption }: ControllerTextFieldProps) {
+export default function InputRadioFilter({
+  control,
+  label,
+  valueOption,
+}: ControllerTextFieldProps) {
   return (
     <Controller
       control={control}

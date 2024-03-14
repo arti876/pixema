@@ -48,18 +48,17 @@ const filmSlice = createSlice({
   reducers: {
     addFilterData: (state, action) => ({
       ...state,
-      // paramsThunk: action.payload,
       paramsThunk: {
         ...state.paramsThunk,
         ...action.payload,
       },
     }),
-    currentPage: (state, action) => {
-      state.paramsThunk.page = action.payload;
-    },
-    clearDataFilm: (state) => {
-      state.film = [];
-    },
+    // currentPage: (state, action) => {
+    //   state.paramsThunk.page = action.payload;
+    // },
+    // clearDataFilm: (state) => {
+    //   state.film = [];
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchFilmMain.pending, (state) => {
@@ -73,10 +72,12 @@ const filmSlice = createSlice({
     builder.addCase(fetchFilmMain.fulfilled, (state, action) => {
       state.status = 'resolved';
       state.film = action.payload;
+      state.paramsThunk.page = 2;
     });
     builder.addCase(fetchFilmTrends.fulfilled, (state, action) => {
       state.status = 'resolved';
       state.film = action.payload;
+      state.paramsThunk.page = 2;
     });
     builder.addCase(fetchFilmNextPage.fulfilled, (state, action) => {
       state.status = 'resolved';
@@ -87,14 +88,12 @@ const filmSlice = createSlice({
     });
     builder.addCase(fetchFilmFilter.fulfilled, (state, action) => {
       state.status = 'resolved';
-      if (state.paramsThunk.page) {
-        state.paramsThunk.page = state.paramsThunk.page + 1;
-        state.film = state.film.concat(action.payload);
-      }
+      state.film = [].concat(action.payload);
+      state.paramsThunk.page = 2;
     });
   },
 });
 
-export const { addFilterData, currentPage, clearDataFilm } = filmSlice.actions;
+export const { addFilterData } = filmSlice.actions;
 
 export default filmSlice.reducer;

@@ -1,48 +1,47 @@
-// import { useEffect } from 'react';
-// import PosterList from '../../components/PosterList/PosterList';
-// import ShowMore from '../../components/ShowMore/ShowMore';
-// import { useAppDispatch } from '../../store/store';
-// import style from './RenderContentPage.module.scss';
-// import { IPoster } from '../Poster/IPoster.type';
-// import Loader from '../Loader/Loader';
-// import Error from '../Error/Error';
+import { useEffect } from 'react';
+import PosterList from '../../components/PosterList/PosterList';
+import ShowMore from '../../components/ShowMore/ShowMore';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import style from './RenderContentPage.module.scss';
+import Loader from '../Loader/Loader';
+import Error from '../Error/Error';
+import { useLocation } from 'react-router-dom';
+import NotFound from '../../pages/NotFound/NotFound';
 
-// interface RenderContentPageProps {
-//   film: IPoster[];
-//   status: string | null;
-//   error: unknown;
-//   thunk: () => void;
-//   pageName: string;
-// }
+interface RenderContentPageProps {
+  thunk: () => void;
+}
 
-// export default function RenderContentPage({
-//   film,
-//   status,
-//   error,
-//   thunk,
-//   pageName,
-// }: RenderContentPageProps) {
-//   const dispatch = useAppDispatch();
+export default function RenderContentPage({ thunk }: RenderContentPageProps) {
+  const { film, status, error } = useAppSelector((state) => state.film);
+  const dispatch = useAppDispatch();
+  const location = useLocation();
 
-//   const loading = film.length === 0;
-//   const rejected = status === 'rejected';
+  const loading = status === 'loading';
+  const rejected = status === 'rejected';
 
-//   useEffect(() => {
-//     dispatch(thunk);
-//   }, []);
+  useEffect(() => {
+    dispatch(thunk);
+  }, []);
 
-//   if (rejected) {
-//     return <Error errorMessage={error} />;
-//   } else if (loading) {
-//     return <Loader loading={loading} />;
-//   } else {
-//     return (
-//       <>
-//         <div className={style.wrapper}>
-//           <PosterList posters={film} pageName={pageName} />
-//         </div>
-//         <ShowMore status={status} dispatchFunction={thunk} />
-//       </>
-//     );
-//   }
-// }
+  if (rejected) {
+    return <Error errorMessage={error} />;
+  } else if (loading) {
+    return <Loader loading={loading} />;
+  } else {
+    return (
+      <>
+        {film.length ? (
+          <>
+            <div className={style.wrapper}>
+              <PosterList posters={film} pageName={location.pathname} />
+            </div>
+            <ShowMore status={status} />
+          </>
+        ) : (
+          <NotFound />
+        )}
+      </>
+    );
+  }
+}
