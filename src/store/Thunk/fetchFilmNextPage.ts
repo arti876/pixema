@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { IFilmThunkParams } from '../Slice/filmSlice';
 import { RoutePath } from '../../constants/RoutePath.constants';
-
 import { apiKey } from '../../apiKey';
 
 interface fetchFilmNextPageParams {

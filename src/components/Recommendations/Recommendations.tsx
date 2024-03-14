@@ -18,19 +18,29 @@ interface IRecommendations {
 }
 
 export default function Recommendations({ recommendations }: IRecommendations) {
-  return (
-    <>
-      <div className='wrapper-swiper'>
-        <div className='title-swiper'>{Locales.RECOMMENDADIONS}</div>
-        <Swiper slidesPerView={4} spaceBetween={40} navigation={true} modules={[Navigation]} className='my-swiper'>
-          {!!recommendations &&
-            recommendations.map((data, index) => (
-              <SwiperSlide key={index}>
-                <Poster poster={data} />
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div>
-    </>
-  );
+  if (recommendations.length) {
+    return (
+      <>
+        <div className='wrapper-swiper'>
+          <div className='title-swiper'>{Locales.RECOMMENDADIONS}</div>
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={40}
+            navigation={true}
+            modules={[Navigation]}
+            className='my-swiper'
+          >
+            {!!recommendations &&
+              recommendations.map((data, index) => (
+                <SwiperSlide key={index}>
+                  <Poster poster={data} />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+      </>
+    );
+  } else {
+    return null;
+  }
 }

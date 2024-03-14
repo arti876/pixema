@@ -53,12 +53,6 @@ const filmSlice = createSlice({
         ...action.payload,
       },
     }),
-    // currentPage: (state, action) => {
-    //   state.paramsThunk.page = action.payload;
-    // },
-    // clearDataFilm: (state) => {
-    //   state.film = [];
-    // },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchFilmMain.pending, (state) => {

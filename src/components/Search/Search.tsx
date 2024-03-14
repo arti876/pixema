@@ -4,6 +4,9 @@ import Filter from '../Filter/Filter';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
+import { useAppDispatch } from '../../store/store';
+import { addFilterData } from '../../store/Slice/filmSlice';
+import { fetchFilmFilter } from '../../store/Thunk/fetchFilmFilter';
 
 export default function Search() {
   const location = useLocation();
@@ -13,11 +16,26 @@ export default function Search() {
     const value = e.target.value;
     setSearchInput(value);
   }
+  const dispatch = useAppDispatch();
 
   function handleKeyDown(e: { key: string }) {
     const keyDown = e.key === 'Enter';
     if (keyDown) {
+      const paramsThunk = {
+        countries: '',
+        genres: '',
+        order: 'RATING',
+        ratingFrom: '',
+        ratingTo: '',
+        yearFrom: '',
+        yearTo: '2024',
+        keyword: searchInput,
+        page: 1,
+      };
       console.log(searchInput);
+
+      dispatch(addFilterData(paramsThunk));
+      dispatch(fetchFilmFilter(paramsThunk));
       setSearchInput('');
     }
   }
