@@ -21,8 +21,9 @@ import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
 import { IFilmThunkParams, addFilterData } from '../../store/Slice/filmSlice';
 import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
+import { fetchFilmFilter } from '../../store/Thunk/fetchFilmFilter';
 
 interface FilterParams {
   disabled?: boolean;
@@ -35,8 +36,8 @@ export default function Filter({ disabled = false }: FilterParams) {
     mode: 'onBlur',
     defaultValues: FilterData,
   });
-
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const toggleDrawer = (open: boolean) => () => {
     setFilterOpen(open);
@@ -50,8 +51,9 @@ export default function Filter({ disabled = false }: FilterParams) {
 
   const onSubmit: SubmitHandler<IFilmThunkParams> = (data) => {
     dispatch(addFilterData(data));
-    dispatch(fetchFilmMain(data));
+    dispatch(fetchFilmFilter(data));
     setIcoFilterActive(true);
+    // navigate(RoutePath.ROOT);
     if (FilterData) {
       setFilterOpen(false);
     }

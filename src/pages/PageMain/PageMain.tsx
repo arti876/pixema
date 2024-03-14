@@ -10,7 +10,7 @@ import Error from '../../components/Error/Error';
 import { fetchFilmMain } from '../../store/Thunk/fetchFilmMain';
 
 export default function PageMain() {
-  const { film, status, error } = useAppSelector((state) => state.film);
+  const { film, status, error, paramsThunk } = useAppSelector((state) => state.film);
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -20,6 +20,10 @@ export default function PageMain() {
   useEffect(() => {
     dispatch(fetchFilmMain());
   }, []);
+
+  useEffect(() => {
+    console.log('paramsThunk: ', paramsThunk);
+  }, [paramsThunk]);
 
   if (rejected) {
     return <Error errorMessage={error} />;

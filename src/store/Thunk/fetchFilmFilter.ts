@@ -1,36 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { IFilter } from '../../components/Filter/Filter.type.';
-// import { apiKey } from '../../apiKey';
+import { IFilmThunkParams } from '../Slice/filmSlice';
 
-interface fetchDataProps {
-  pageNum: number;
-  filterData: IFilter;
-}
-
-// // Данные для фильтрации
-// const filters = {
-//   type: 'FILM',
-//   countries: selectCountry,
-//   genres: selectGenre,
-
-//   order: radioRatingYear,
-//   ratingFrom: ratingFrom,
-//   ratingTo: ratingTo,
-//   yearFrom: yearsFrom,
-//   yearTo: yearsTo,
-//   keyword: movieName,
-//   page: pageNum,
-// };
-
-// // Преобразование объекта с фильтрами в строку параметров запроса
-// const params = new URLSearchParams(filters).toString();
+import { apiKey } from '../../apiKey';
 
 export const fetchFilmFilter = createAsyncThunk(
   'filter/fetchFilmFilter',
-  async function fetchData(params: fetchDataProps, { rejectWithValue }) {
+  async function fetchData(params: IFilmThunkParams, { rejectWithValue }) {
+    const paramsToString = new URLSearchParams(params).toString();
     try {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?${params}`;
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM&${paramsToString}`;
       const accept = 'application/json';
       const response = await axios.get(url, {
         method: 'GET',
@@ -39,7 +18,7 @@ export const fetchFilmFilter = createAsyncThunk(
           accept,
         },
       });
-      return response.data;
+      return response.data.items;
     } catch (error) {
       const errorFetch = error as AxiosError;
       return rejectWithValue(errorFetch.message);

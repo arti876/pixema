@@ -5,14 +5,14 @@ import { RoutePath } from '../../constants/RoutePath.constants';
 
 import { apiKey } from '../../apiKey';
 
-interface IfetchFilmNextPage {
+interface fetchFilmNextPageParams {
   params: IFilmThunkParams;
   location: string;
 }
 
 export const fetchFilmNextPage = createAsyncThunk(
   'filmMain/fetchFilmNextPage',
-  async function fetchFilmData({ params, location }: IfetchFilmNextPage, { rejectWithValue }) {
+  async function fetchFilmData({ params, location }: fetchFilmNextPageParams, { rejectWithValue }) {
     const paramsToString = new URLSearchParams(params).toString();
     try {
       const url =

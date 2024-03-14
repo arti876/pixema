@@ -3,6 +3,7 @@ import { IPoster } from '../../components/Poster/IPoster.type';
 import { fetchFilmMain } from '../Thunk/fetchFilmMain';
 import { fetchFilmNextPage } from '../Thunk/fetchFilmNextPage';
 import { fetchFilmTrends } from '../Thunk/fetchFilmTrends';
+import { fetchFilmFilter } from '../Thunk/fetchFilmFilter';
 
 export interface IFilmThunkParams {
   // [key: string]: string;
@@ -47,10 +48,17 @@ const filmSlice = createSlice({
   reducers: {
     addFilterData: (state, action) => ({
       ...state,
-      paramsThunk: action.payload,
+      // paramsThunk: action.payload,
+      paramsThunk: {
+        ...state.paramsThunk,
+        ...action.payload,
+      },
     }),
     currentPage: (state, action) => {
       state.paramsThunk.page = action.payload;
+    },
+    clearDataFilm: (state) => {
+      state.film = [];
     },
   },
   extraReducers: (builder) => {
@@ -77,9 +85,16 @@ const filmSlice = createSlice({
         state.film = state.film.concat(action.payload);
       }
     });
+    builder.addCase(fetchFilmFilter.fulfilled, (state, action) => {
+      state.status = 'resolved';
+      if (state.paramsThunk.page) {
+        state.paramsThunk.page = state.paramsThunk.page + 1;
+        state.film = state.film.concat(action.payload);
+      }
+    });
   },
 });
 
-export const { addFilterData, currentPage } = filmSlice.actions;
+export const { addFilterData, currentPage, clearDataFilm } = filmSlice.actions;
 
 export default filmSlice.reducer;
