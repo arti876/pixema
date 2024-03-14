@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
+
 import { apiKey } from '../../apiKey';
 
 export const fetchFilmMain = createAsyncThunk(

@@ -49,8 +49,8 @@ const filmSlice = createSlice({
       ...state,
       paramsThunk: action.payload,
     }),
-    pageNull: (state) => {
-      state.paramsThunk.page = 1;
+    currentPage: (state, action) => {
+      state.paramsThunk.page = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -68,19 +68,18 @@ const filmSlice = createSlice({
     });
     builder.addCase(fetchFilmTrends.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.paramsThunk.page = 1;
       state.film = action.payload;
     });
     builder.addCase(fetchFilmNextPage.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = state.film.concat(action.payload);
       if (state.paramsThunk.page) {
         state.paramsThunk.page = state.paramsThunk.page + 1;
+        state.film = state.film.concat(action.payload);
       }
     });
   },
 });
 
-export const { addFilterData, pageNull } = filmSlice.actions;
+export const { addFilterData, currentPage } = filmSlice.actions;
 
 export default filmSlice.reducer;

@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { apiKey } from '../../apiKey';
 import { IFilmThunkParams } from '../Slice/filmSlice';
+
+import { apiKey } from '../../apiKey';
 
 export const fetchFilmTrends = createAsyncThunk(
   'filmTrends/fetchFilmTrends',
-  async function fetchFilmData(params: IFilmThunkParams, { rejectWithValue }) {
-    const paramsToString = new URLSearchParams(params).toString();
+  async function fetchFilmData(_, { rejectWithValue }) {
     try {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&${paramsToString}`;
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES`;
       const accept = 'application/json';
       const response = await axios.get(url, {
         method: 'GET',
