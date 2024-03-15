@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { IFilmThunkParams } from '../Slice/filmsSlice';
 import { RoutePath } from '../../constants/RoutePath.constants';
-import { apiKey } from '../../apiKey';
 
 interface fetchFilmNextPageParams {
   params: IFilmThunkParams;
@@ -10,7 +9,7 @@ interface fetchFilmNextPageParams {
 }
 
 export const fetchNextPageFilms = createAsyncThunk(
-  'filmMain/fetchNextPageFilms',
+  'fetchNextPageFilms',
   async function fetchFilmData({ params, location }: fetchFilmNextPageParams, { rejectWithValue }) {
     const paramsToString = new URLSearchParams(params).toString();
     try {
@@ -21,7 +20,7 @@ export const fetchNextPageFilms = createAsyncThunk(
       const response = await axios.get(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': apiKey,
+          'X-API-KEY': process.env.REACT_APP_API_KEY_KINOPOISK,
           accept: 'application/json',
         },
       });

@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { apiKey } from '../../apiKey';
 
 export const fetchFilmId = createAsyncThunk(
-  'filmId/fetchFilmId',
+  'fetchFilmId',
   async function fetchFilmData(filmId: number, { rejectWithValue }) {
     try {
       const urls = [
@@ -19,7 +18,7 @@ export const fetchFilmId = createAsyncThunk(
           axios.get(url, {
             method: 'GET',
             headers: {
-              'X-API-KEY': apiKey,
+              'X-API-KEY': process.env.REACT_APP_API_KEY_KINOPOISK,
               accept: 'application/json',
             },
           }),

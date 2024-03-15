@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
-import { fetchFilmsMain } from '../Thunk/fetchFilmsMain';
-import { fetchNextPageFilms } from '../Thunk/fetchNextPageFilms';
-import { fetchTrendsFilms } from '../Thunk/fetchTrendsFilms';
-import { fetchFilterFilms } from '../Thunk/fetchFilterFilms';
 
 export interface IFilmThunkParams {
   // [key: string]: string;
@@ -53,41 +49,54 @@ const filmsSlice = createSlice({
         ...action.payload,
       },
     }),
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchFilmsMain.pending, (state) => {
-      state.status = 'loading';
+    errorNull: (state) => {
       state.error = null;
-    });
-    builder.addCase(fetchFilmsMain.rejected, (state, action) => {
+    },
+    statusLoading: (state) => {
+      state.status = 'loading';
+    },
+    statusShowMore: (state) => {
+      state.status = 'showMore';
+    },
+    statusRejected: (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
-    });
-    builder.addCase(fetchFilmsMain.fulfilled, (state, action) => {
+    },
+    statusResolved: (state) => {
       state.status = 'resolved';
-      state.films = action.payload;
-      state.paramsThunk.page = 2;
-    });
-    builder.addCase(fetchTrendsFilms.fulfilled, (state, action) => {
-      state.status = 'resolved';
-      state.films = action.payload;
-      state.paramsThunk.page = 2;
-    });
-    builder.addCase(fetchNextPageFilms.fulfilled, (state, action) => {
-      state.status = 'resolved';
+    },
+    currentPage: (state, action) => {
+      state.paramsThunk.page = action.payload;
+    },
+    nextPage: (state) => {
       if (state.paramsThunk.page) {
         state.paramsThunk.page = state.paramsThunk.page + 1;
-        state.films = state.films.concat(action.payload);
       }
-    });
-    builder.addCase(fetchFilterFilms.fulfilled, (state, action) => {
-      state.status = 'resolved';
-      state.films = [].concat(action.payload);
-      state.paramsThunk.page = 2;
-    });
+    },
+    addPage: (state, action) => {
+      state.films = state.films.concat(action.payload);
+    },
+    nullPage: (state) => {
+      state.films = [];
+    },
+    resolvedFirstPage: (state, action) => {
+      state.films = action.payload;
+    },
   },
 });
 
-export const { addFilterData } = filmsSlice.actions;
+export const {
+  statusResolved,
+  currentPage,
+  nextPage,
+  nullPage,
+  errorNull,
+  addFilterData,
+  statusLoading,
+  statusRejected,
+  statusShowMore,
+  resolvedFirstPage,
+  addPage,
+} = filmsSlice.actions;
 
 export default filmsSlice.reducer;

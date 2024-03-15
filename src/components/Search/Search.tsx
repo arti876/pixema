@@ -32,7 +32,6 @@ export default function Search() {
         keyword: searchInput,
         page: 1,
       };
-      console.log(searchInput);
 
       dispatch(addFilterData(paramsThunk));
       dispatch(fetchFilterFilms(paramsThunk));

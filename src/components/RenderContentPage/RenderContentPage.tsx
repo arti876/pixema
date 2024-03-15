@@ -7,14 +7,12 @@ import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
-import { IPoster } from '../Poster/IPoster.type';
 
 interface RenderContentPageProps {
-  favorites?: IPoster[];
-  thunk?: () => void;
+  thunk: () => void;
 }
 
-export default function RenderContentPage({ thunk, favorites = [] }: RenderContentPageProps) {
+export default function RenderContentPage({ thunk }: RenderContentPageProps) {
   const { films, status, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -23,24 +21,18 @@ export default function RenderContentPage({ thunk, favorites = [] }: RenderConte
   const rejected = status === 'rejected';
 
   useEffect(() => {
-    if (favorites.length > 0) {
-      dispatch(thunk);
-    }
+    dispatch(thunk);
   }, []);
 
   if (rejected) {
     return <Error errorMessage={error} />;
   } else if (loading) {
     return <Loader loading={loading} />;
-  } else if (films.length > 0 || favorites.length > 0) {
-    const posters = {
-      films,
-      favorites,
-    };
+  } else if (films.length > 0) {
     return (
       <>
         <div className={style.wrapper}>
-          <PosterList posters={posters} pageName={location.pathname} />
+          <PosterList posters={films} pageName={location.pathname} />
         </div>
         <ShowMore status={status} />
       </>

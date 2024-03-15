@@ -9,6 +9,7 @@ import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 
 export default function PageFilm() {
+  const { status, error } = useAppSelector((store) => store.films);
   const {
     film: {
       description: {
@@ -27,10 +28,7 @@ export default function PageFilm() {
       people,
       recommendations,
     },
-    status,
-    error,
   } = useAppSelector((store) => store.filmId);
-
   const loading = status === 'loading';
   const rejected = status === 'rejected';
 
