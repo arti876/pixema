@@ -23,7 +23,9 @@ export default function RenderContentPage({ thunk, favorites = [] }: RenderConte
   const rejected = status === 'rejected';
 
   useEffect(() => {
-    dispatch(thunk);
+    if (favorites.length > 0) {
+      dispatch(thunk);
+    }
   }, []);
 
   if (rejected) {
