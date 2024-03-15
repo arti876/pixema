@@ -1,3 +1,4 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import { getFilmId } from './Slice/filmIdSlice';
 import {
   currentPage,
@@ -51,9 +52,9 @@ const rejectedAll = [
 ];
 
 const dispatchSequenceMiddleware =
-  ({ dispatch }) =>
-  (next) =>
-  (action) => {
+  ({ dispatch }: { dispatch: Dispatch }) =>
+  (next: (arg: unknown) => void) =>
+  (action: { type: string; payload: unknown }) => {
     if (pendingAll.includes(action.type)) {
       dispatch(statusLoading());
       dispatch(errorNull());
