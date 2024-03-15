@@ -1,6 +1,6 @@
-import { fetchFilmTrends } from '../../store/Thunk/fetchFilmTrends';
+import { fetchTrendsFilms } from '../../store/Thunk/fetchTrendsFilms';
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 
 export default function PageTrends() {
-  return <RenderContentPage thunk={fetchFilmTrends()} />;
+  return <RenderContentPage thunk={fetchTrendsFilms()} />;
 }

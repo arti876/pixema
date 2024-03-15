@@ -1,14 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import themeReducer from './Slice/themeSlice';
-import filmReducer from './Slice/filmSlice';
-import filmIdReducer from './Slice/filmIdSlice';
 import { listenerMiddleware } from './listenerMiddleware';
+import themeReducer from './Slice/themeSlice';
+import filmsReducer from './Slice/filmsSlice';
+import filmIdReducer from './Slice/filmIdSlice';
+import filmFavoritesReducer from './Slice/filmsFavoritesSlice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
-  film: filmReducer,
+  films: filmsReducer,
   filmId: filmIdReducer,
+  favorites: filmFavoritesReducer,
 });
 
 const store = configureStore({

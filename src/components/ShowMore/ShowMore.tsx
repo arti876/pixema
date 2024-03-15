@@ -2,7 +2,7 @@ import { Locales } from '../../constants/Locales.constants';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import style from './ShowMore.module.scss';
 import { SvgSpinner } from '../../svg/svg';
-import { fetchFilmNextPage } from '../../store/Thunk/fetchFilmNextPage';
+import { fetchNextPageFilms } from '../../store/Thunk/fetchNextPageFilms';
 import { useLocation } from 'react-router-dom';
 
 interface ShowMoreProps {
@@ -10,7 +10,7 @@ interface ShowMoreProps {
 }
 
 export default function ShowMore({ status }: ShowMoreProps) {
-  const { paramsThunk } = useAppSelector((state) => state.film);
+  const { paramsThunk } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -19,7 +19,7 @@ export default function ShowMore({ status }: ShowMoreProps) {
       params: paramsThunk,
       location: location.pathname,
     };
-    dispatch(fetchFilmNextPage(arg));
+    dispatch(fetchNextPageFilms(arg));
   }
 
   return (

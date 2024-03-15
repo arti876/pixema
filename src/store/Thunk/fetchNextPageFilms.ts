@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { IFilmThunkParams } from '../Slice/filmSlice';
+import { IFilmThunkParams } from '../Slice/filmsSlice';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { apiKey } from '../../apiKey';
 
@@ -9,8 +9,8 @@ interface fetchFilmNextPageParams {
   location: string;
 }
 
-export const fetchFilmNextPage = createAsyncThunk(
-  'filmMain/fetchFilmNextPage',
+export const fetchNextPageFilms = createAsyncThunk(
+  'filmMain/fetchNextPageFilms',
   async function fetchFilmData({ params, location }: fetchFilmNextPageParams, { rejectWithValue }) {
     const paramsToString = new URLSearchParams(params).toString();
     try {

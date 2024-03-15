@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { useAppDispatch } from '../../store/store';
-import { addFilterData } from '../../store/Slice/filmSlice';
-import { fetchFilmFilter } from '../../store/Thunk/fetchFilmFilter';
+import { addFilterData } from '../../store/Slice/filmsSlice';
+import { fetchFilterFilms } from '../../store/Thunk/fetchFilterFilms';
 
 export default function Search() {
   const location = useLocation();
@@ -35,7 +35,7 @@ export default function Search() {
       console.log(searchInput);
 
       dispatch(addFilterData(paramsThunk));
-      dispatch(fetchFilmFilter(paramsThunk));
+      dispatch(fetchFilterFilms(paramsThunk));
       setSearchInput('');
     }
   }

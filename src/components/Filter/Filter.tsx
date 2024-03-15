@@ -19,8 +19,8 @@ import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
 import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
-import { IFilmThunkParams, addFilterData } from '../../store/Slice/filmSlice';
-import { fetchFilmFilter } from '../../store/Thunk/fetchFilmFilter';
+import { IFilmThunkParams, addFilterData } from '../../store/Slice/filmsSlice';
+import { fetchFilterFilms } from '../../store/Thunk/fetchFilterFilms';
 
 interface FilterParams {
   disabled?: boolean;
@@ -47,7 +47,7 @@ export default function Filter({ disabled = false }: FilterParams) {
 
   const onSubmit: SubmitHandler<IFilmThunkParams> = (data) => {
     dispatch(addFilterData(data));
-    dispatch(fetchFilmFilter(data));
+    dispatch(fetchFilterFilms(data));
     setIcoFilterActive(true);
     if (FilterData) {
       setFilterOpen(false);

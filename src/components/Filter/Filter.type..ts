@@ -1,4 +1,4 @@
-import { IFilmThunkParams } from '../../store/Slice/filmSlice';
+import { IFilmThunkParams } from '../../store/Slice/filmsSlice';
 
 // interface IFilter {
 //   keyword: string;

@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { apiKey } from '../../apiKey';
 
-export const fetchFilmMain = createAsyncThunk(
-  'filmMain/fetchFilmMain',
+export const fetchFilmsMain = createAsyncThunk(
+  'filmMain/fetchFilmsMain',
   async function fetchFilmData(_, { rejectWithValue }) {
     try {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM`;

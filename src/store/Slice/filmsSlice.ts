@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IPoster } from '../../components/Poster/IPoster.type';
-import { fetchFilmMain } from '../Thunk/fetchFilmMain';
-import { fetchFilmNextPage } from '../Thunk/fetchFilmNextPage';
-import { fetchFilmTrends } from '../Thunk/fetchFilmTrends';
-import { fetchFilmFilter } from '../Thunk/fetchFilmFilter';
+import { fetchFilmsMain } from '../Thunk/fetchFilmsMain';
+import { fetchNextPageFilms } from '../Thunk/fetchNextPageFilms';
+import { fetchTrendsFilms } from '../Thunk/fetchTrendsFilms';
+import { fetchFilterFilms } from '../Thunk/fetchFilterFilms';
 
 export interface IFilmThunkParams {
   // [key: string]: string;
@@ -18,15 +18,15 @@ export interface IFilmThunkParams {
   page?: number;
 }
 
-interface IFilmState {
-  film: IPoster[];
+interface IFilmsState {
+  films: IPoster[];
   status: string | null;
   error: string | null | unknown;
   paramsThunk: IFilmThunkParams;
 }
 
-const initialState: IFilmState = {
-  film: [],
+const initialState: IFilmsState = {
+  films: [],
   status: null,
   error: null,
   paramsThunk: {
@@ -42,8 +42,8 @@ const initialState: IFilmState = {
   },
 };
 
-const filmSlice = createSlice({
-  name: 'film',
+const filmsSlice = createSlice({
+  name: 'films',
   initialState,
   reducers: {
     addFilterData: (state, action) => ({
@@ -55,39 +55,39 @@ const filmSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFilmMain.pending, (state) => {
+    builder.addCase(fetchFilmsMain.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     });
-    builder.addCase(fetchFilmMain.rejected, (state, action) => {
+    builder.addCase(fetchFilmsMain.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     });
-    builder.addCase(fetchFilmMain.fulfilled, (state, action) => {
+    builder.addCase(fetchFilmsMain.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = action.payload;
+      state.films = action.payload;
       state.paramsThunk.page = 2;
     });
-    builder.addCase(fetchFilmTrends.fulfilled, (state, action) => {
+    builder.addCase(fetchTrendsFilms.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = action.payload;
+      state.films = action.payload;
       state.paramsThunk.page = 2;
     });
-    builder.addCase(fetchFilmNextPage.fulfilled, (state, action) => {
+    builder.addCase(fetchNextPageFilms.fulfilled, (state, action) => {
       state.status = 'resolved';
       if (state.paramsThunk.page) {
         state.paramsThunk.page = state.paramsThunk.page + 1;
-        state.film = state.film.concat(action.payload);
+        state.films = state.films.concat(action.payload);
       }
     });
-    builder.addCase(fetchFilmFilter.fulfilled, (state, action) => {
+    builder.addCase(fetchFilterFilms.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.film = [].concat(action.payload);
+      state.films = [].concat(action.payload);
       state.paramsThunk.page = 2;
     });
   },
 });
 
-export const { addFilterData } = filmSlice.actions;
+export const { addFilterData } = filmsSlice.actions;
 
-export default filmSlice.reducer;
+export default filmsSlice.reducer;

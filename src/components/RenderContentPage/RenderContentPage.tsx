@@ -7,13 +7,15 @@ import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
+import { IPoster } from '../Poster/IPoster.type';
 
 interface RenderContentPageProps {
-  thunk: () => void;
+  favorites?: IPoster[];
+  thunk?: () => void;
 }
 
-export default function RenderContentPage({ thunk }: RenderContentPageProps) {
-  const { film, status, error } = useAppSelector((state) => state.film);
+export default function RenderContentPage({ thunk, favorites = [] }: RenderContentPageProps) {
+  const { films, status, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -28,20 +30,20 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
     return <Error errorMessage={error} />;
   } else if (loading) {
     return <Loader loading={loading} />;
-  } else {
+  } else if (films.length > 0 || favorites.length > 0) {
+    const posters = {
+      films,
+      favorites,
+    };
     return (
       <>
-        {film.length ? (
-          <>
-            <div className={style.wrapper}>
-              <PosterList posters={film} pageName={location.pathname} />
-            </div>
-            <ShowMore status={status} />
-          </>
-        ) : (
-          <NotFound />
-        )}
+        <div className={style.wrapper}>
+          <PosterList posters={posters} pageName={location.pathname} />
+        </div>
+        <ShowMore status={status} />
       </>
     );
+  } else {
+    return <NotFound />;
   }
 }
