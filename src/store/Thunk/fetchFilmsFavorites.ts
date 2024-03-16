@@ -7,14 +7,6 @@ export const fetchFilmsFavorites = createAsyncThunk(
     try {
       const urls = idFilm.map((id) => `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`);
 
-      // const urls = [
-      //   `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`,
-      //   `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/distributions`,
-      //   `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/box_office`,
-      //   `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/similars`,
-      //   `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${filmId}`,
-      // ];
-
       const response = await axios.all(
         urls.map((url) =>
           axios.get(url, {
@@ -33,10 +25,12 @@ export const fetchFilmsFavorites = createAsyncThunk(
         ratingKinopoisk: data?.ratingKinopoisk,
         ratingImdb: data?.ratingImdb,
         posterUrl: data?.posterUrl,
-        genres: data?.genres.map(({ genre }: { genre: string }) => genre),
+        genres: data?.genres.reduce(
+          (acc: [{ genre: string }], { genre }: { genre: string }) => acc.concat({ genre }),
+          [],
+        ),
       }));
-      console.log(result);
-      // return response;
+      return result;
     } catch (error) {
       const errorFetch = error as AxiosError;
       return rejectWithValue(errorFetch.message);

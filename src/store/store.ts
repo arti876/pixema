@@ -4,13 +4,13 @@ import { listenerMiddleware } from './listenerMiddleware';
 import themeReducer from './Slice/themeSlice';
 import filmsReducer from './Slice/filmsSlice';
 import filmIdReducer from './Slice/filmPageSlice';
-import filmFavoritesReducer from './Slice/filmsFavoritesSlice';
+import usersReducer from './Slice/usersSlice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   films: filmsReducer,
   filmPage: filmIdReducer,
-  favorites: filmFavoritesReducer,
+  users: usersReducer,
 });
 
 const store = configureStore({

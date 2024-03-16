@@ -6,12 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import { fetchFilmPage } from '../../store/Thunk/fetchFilmPage';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import BtnFavorites from '../BtnFavorites/BtnFavorites';
+import { useMemo } from 'react';
 
 export default function Poster({ poster = PosterData, pageName = '' }: PosterProps) {
-  // const {favorites} = useAppSelector((state) => state.favorites);
-  const rating = !!poster && (poster.ratingKinopoisk || poster.ratingImdb);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const {
+    currentUser: { filmFavorites },
+  } = useAppSelector((store) => store.users);
+  const rating = !!poster && (poster.ratingKinopoisk || poster.ratingImdb);
+
+  const favorites = useMemo(() => {
+    if (poster.kinopoiskId) {
+      return filmFavorites.filter((id) => id === poster.kinopoiskId).join('');
+    }
+  }, [poster.kinopoiskId, filmFavorites]);
 
   function navigateTo() {
     if (poster.kinopoiskId) {
@@ -37,7 +46,7 @@ export default function Poster({ poster = PosterData, pageName = '' }: PosterPro
             {rating && `/${RoutePath.TRENDS}` !== pageName && (
               <div className={style.rating}>{rating}</div>
             )}
-            {<BtnFavorites className={style.btnFavorites} />}
+            {favorites && <BtnFavorites className={style.btnFavorites} favorites={favorites} />}
             <img src={poster.posterUrl} alt={poster.nameRu} />
           </div>
           <div className={style.textContainer}>

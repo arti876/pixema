@@ -4,18 +4,19 @@ import style from './BtnFavorites.module.scss';
 
 interface BtnFavoritesProps {
   className: string;
+  favorites: boolean;
 }
 
-export default function BtnFavorites({ className }: BtnFavoritesProps) {
-  const [inFavorites, setInFavorites] = useState<boolean>(false);
+export default function BtnFavorites({ className, favorites }: BtnFavoritesProps) {
+  // const [inFavorites, setInFavorites] = useState<boolean>(false);
 
   function handleClick() {
-    setInFavorites(!inFavorites);
+    // setInFavorites(!inFavorites);
   }
 
   return (
     <button type='button' className={className} onClick={handleClick}>
-      <SvgFavorites className={`${style.ico} ${inFavorites && style.icoActive}`} />
+      <SvgFavorites className={`${style.ico} ${favorites && style.icoActive}`} />
     </button>
   );
 }

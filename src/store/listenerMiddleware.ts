@@ -18,28 +18,28 @@ const pendingFetchTrendsFilms = 'fetchTrendsFilms/pending';
 const pendingFetchFilterFilms = 'fetchFilterFilms/pending';
 const pendingFetchFilmsFavorites = 'fetchFilmsFavorites/pending';
 const pendingFetchNextPageFilms = 'fetchNextPageFilms/pending';
-const pendingFetchFilmId = 'fetchFilmPage/pending';
+const pendingFetchFilmPage = 'fetchFilmPage/pending';
 
 const rejectedFetchFilmsMain = 'fetchFilmsMain/rejected';
 const rejectedFetchTrendsFilms = 'fetchTrendsFilms/rejected';
 const rejectedFetchFilterFilms = 'fetchFilterFilms/rejected';
 const rejectedFetchFilmsFavorites = 'fetchFilmsFavorites/rejected';
 const rejectedFetchNextPageFilms = 'fetchNextPageFilms/rejected';
-const rejectedFetchFilmId = 'fetchFilmPage/rejected';
+const rejectedFetchFilmPage = 'fetchFilmPage/rejected';
 
 const fulfilledFetchFilmsMain = 'fetchFilmsMain/fulfilled';
 const fulfilledFetchTrendsFilms = 'fetchTrendsFilms/fulfilled';
 const fulfilledFetchFilterFilms = 'fetchFilterFilms/fulfilled';
-const fulfilledFetchFilmsFavorites = 'fetchFilmsFavorites/fulfilled';
 const fulfilledFetchNextPageFilms = 'fetchNextPageFilms/fulfilled';
-const fulfilledFetchFilmId = 'fetchFilmPage/fulfilled';
+const fulfilledFetchFilmPage = 'fetchFilmPage/fulfilled';
+const fulfilledFetchFilmsFavorites = 'fetchFilmsFavorites/fulfilled';
 
 const pendingAll = [
   pendingFetchFilmsMain,
   pendingFetchTrendsFilms,
   pendingFetchFilterFilms,
   pendingFetchFilmsFavorites,
-  pendingFetchFilmId,
+  pendingFetchFilmPage,
 ];
 
 const rejectedAll = [
@@ -48,7 +48,7 @@ const rejectedAll = [
   rejectedFetchFilterFilms,
   rejectedFetchFilmsFavorites,
   rejectedFetchNextPageFilms,
-  rejectedFetchFilmId,
+  rejectedFetchFilmPage,
 ];
 
 const dispatchSequenceMiddleware =
@@ -66,20 +66,26 @@ const dispatchSequenceMiddleware =
     } else if (rejectedAll.includes(action.type)) {
       dispatch(statusRejected(action.payload));
       next(action);
-    } else if ([fulfilledFetchFilmsMain, fulfilledFetchTrendsFilms].includes(action.type)) {
+    } else if (
+      [fulfilledFetchFilmsMain, fulfilledFetchTrendsFilms, fulfilledFetchFilmsFavorites].includes(
+        action.type,
+      )
+    ) {
       dispatch(statusResolved());
       dispatch(resolvedFirstPage(action.payload));
       dispatch(currentPage(2));
       next(action);
-    } else if ([fulfilledFetchFilmId].includes(action.type)) {
+    } else if ([fulfilledFetchFilmPage].includes(action.type)) {
       dispatch(statusResolved());
       dispatch(getFilmId(action.payload));
       next(action);
-    } else if ([fulfilledFetchFilmsFavorites].includes(action.type)) {
-      // dispatch(statusResolved());
-      // dispatch(addPage(action.payload));
-      next(action);
-    } else if ([fulfilledFetchFilterFilms].includes(action.type)) {
+    }
+    // else if ([fulfilledFetchFilmsFavorites].includes(action.type)) {
+    // dispatch(statusResolved());
+    // dispatch(addPage(action.payload));
+    // next(action);
+    // }
+    else if ([fulfilledFetchFilterFilms].includes(action.type)) {
       dispatch(statusResolved());
       dispatch(nullPage());
       dispatch(addPage(action.payload));

@@ -1,10 +1,16 @@
+import { useMemo } from 'react';
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 import { fetchFilmsFavorites } from '../../store/Thunk/fetchFilmsFavorites';
-// import { useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../store/store';
 
 export default function PageFavorites() {
-  // const { idFilm } = useAppSelector((store) => store.favorites);
-  const idFilm = [5047468, 4540126, 4396438, 4489198, 4664634, 5117258, 409424];
+  const { users, currentUser } = useAppSelector((store) => store.users);
 
-  return <RenderContentPage thunk={fetchFilmsFavorites(idFilm)} />;
+  const idFilms = useMemo(() => {
+    return users
+      .filter(({ userId }) => userId === currentUser.userId)
+      .reduce((acc, { filmFavorites }) => acc.concat(filmFavorites), [] as number[]);
+  }, [users, currentUser]);
+
+  return <RenderContentPage thunk={fetchFilmsFavorites(idFilms)} />;
 }
