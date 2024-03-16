@@ -8,6 +8,7 @@ import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
 import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
+import { CountriesFilm, GenresFilm } from '../Filter/Filter.type.';
 
 interface RenderContentPageProps {
   thunk: () => void;
@@ -29,7 +30,17 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
   }, []);
 
   const filterData = useMemo(() => {
-    return Object.values(paramsThunk).slice(0, 8);
+    const updatedParamsThunk = {
+      ...paramsThunk,
+      countries: paramsThunk.countries
+        ? CountriesFilm.find((country) => country.id === parseInt(paramsThunk.countries)).name
+        : '',
+      genres: paramsThunk.genres
+        ? GenresFilm.find((genre) => genre.id === parseInt(paramsThunk.genres)).name
+        : '',
+    };
+    const result = Object.values(updatedParamsThunk).slice(0, 8);
+    return result;
   }, [paramsThunk]);
 
   if (rejected) {

@@ -1,16 +1,5 @@
 import { IFilmThunkParams } from '../../store/Slice/filmsSlice';
 
-// interface IFilter {
-//   keyword: string;
-//   order: string;
-//   yearFrom: number | '';
-//   yearTo: number | '';
-//   ratingFrom: number | '';
-//   ratingTo: number | '';
-//   countries: string;
-//   genres: string;
-// }
-
 const FilterData: IFilmThunkParams = {
   keyword: '',
   order: 'RATING',
