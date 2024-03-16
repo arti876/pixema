@@ -14,7 +14,9 @@ interface RenderContentPageProps {
 }
 
 export default function RenderContentPage({ thunk }: RenderContentPageProps) {
-  const { films, status, error } = useAppSelector((state) => state.films);
+  const { films, status, error, paramsThunk, filterActive } = useAppSelector(
+    (state) => state.films,
+  );
   const idFilmsFavorites = useIdFilmsFavorites();
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -26,6 +28,10 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
     dispatch(thunk);
   }, []);
 
+  const filterData = useMemo(() => {
+    return Object.values(paramsThunk).slice(0, 8);
+  }, [paramsThunk]);
+
   if (rejected) {
     return <Error errorMessage={error} />;
   } else if (loading) {
@@ -34,11 +40,26 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
     return (
       <>
         <div className={style.wrapper}>
-          <PosterList
-            posters={films}
-            filmFavorites={idFilmsFavorites}
-            pageName={location.pathname}
-          />
+          {filterActive && (
+            <div className={style.filterItemContainer}>
+              {filterData.map((el, index) => {
+                if (el) {
+                  return (
+                    <div key={index} className={style.filterItem}>
+                      {el}
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          )}
+          <div className={style.posterListContainer}>
+            <PosterList
+              posters={films}
+              filmFavorites={idFilmsFavorites}
+              pageName={location.pathname}
+            />
+          </div>
         </div>
         <ShowMore status={status} />
       </>

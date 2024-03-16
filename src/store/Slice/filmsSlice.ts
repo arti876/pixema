@@ -19,6 +19,7 @@ interface IFilmsState {
   status: string | null;
   error: string | null | unknown;
   paramsThunk: IFilmThunkParams;
+  filterActive: boolean;
 }
 
 const initialState: IFilmsState = {
@@ -36,12 +37,17 @@ const initialState: IFilmsState = {
     keyword: '',
     page: 1,
   },
+  filterActive: false,
 };
 
 const filmsSlice = createSlice({
   name: 'films',
   initialState,
   reducers: {
+    toggleFilter: (state, action) => {
+      console.log(action.payload);
+      state.filterActive = action.payload;
+    },
     addFilterData: (state, action) => ({
       ...state,
       paramsThunk: {
@@ -97,6 +103,7 @@ export const {
   statusShowMore,
   resolvedFirstPage,
   addPage,
+  toggleFilter,
 } = filmsSlice.actions;
 
 export default filmsSlice.reducer;
