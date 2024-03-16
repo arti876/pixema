@@ -5,26 +5,28 @@ import { useState } from 'react';
 import { useClickAway } from '@uidotdev/usehooks';
 import { SvgName } from '../../constants/SvgName.constants';
 import { ButtonName } from '../../constants/ButtonName.constants';
+import useGetInitials from '../../hooks/useGetInitials';
+import { useAppDispatch } from '../../store/store';
+import { clearCurrentUser } from '../../store/Slice/usersSlice';
 
 export default function User() {
   const [menuActive, setMenuActive] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const userName = 'User name';
+  const initials = useGetInitials(userName);
 
   const isAuthorized = true;
-  const firstName = 'User';
-  const lastName = 'Name';
 
   const refOutside = useClickAway((e) => {
     const event = e.target;
-    const refOutsideTrue = menuActive && event?.name !== ButtonName.BTN_ICO_TRIANGLE && event?.id !== SvgName.TRIANGLE;
+    const refOutsideTrue =
+      menuActive && event?.name !== ButtonName.BTN_ICO_TRIANGLE && event?.id !== SvgName.TRIANGLE;
 
     if (refOutsideTrue) {
       setMenuActive(false);
     }
   });
-
-  function getInitials() {
-    return firstName.slice(0, 1).toUpperCase() + lastName.slice(0, 1).toUpperCase();
-  }
 
   function openMenu() {
     setMenuActive(true);
@@ -36,21 +38,24 @@ export default function User() {
 
   function logOut() {
     setMenuActive(false);
+    dispatch(clearCurrentUser());
   }
 
-  if (isAuthorized && firstName) {
+  if (isAuthorized) {
     return (
       <div className={style.wrapper}>
         <div className={style.userContainer}>
-          <div className={style.initials}>{getInitials()}</div>
-          <div className={style.fullname}>{`${firstName} ${lastName}`}</div>
+          <div className={style.initials}>{initials}</div>
+          <div className={style.fullname}>{userName}</div>
           <button
             name={ButtonName.BTN_ICO_TRIANGLE}
             type='button'
             className={style.buttonIcoTriangle}
             onClick={openMenu}
           >
-            <SvgTriangle className={`${style.icoTriangle} ${menuActive && style.icoTriangleActive}`} />
+            <SvgTriangle
+              className={`${style.icoTriangle} ${menuActive && style.icoTriangleActive}`}
+            />
           </button>
         </div>
         <div ref={refOutside} className={`${style.menu} ${menuActive && style.menuActive}`}>

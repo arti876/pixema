@@ -31,10 +31,13 @@
 
 .forgotPassword {
   max-width: 100%;
-  color: var(--system-colors-primaty-2);
   margin-top: 10px;
   margin-right: auto;
   transition: 0.3s;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 171%;
+  color: var(--system-colors-secondary);
 }
 
 .signContainer {

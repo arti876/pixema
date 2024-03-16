@@ -16,14 +16,14 @@ interface IUsersState {
 const initialState: IUsersState = {
   users: [
     {
-      userId: 'u1tds-324lds-ssl342',
+      userId: '',
       name: '',
       email: '',
       password: '',
-      filmFavorites: [5047468, 4540126],
+      filmFavorites: [],
     },
   ],
-  currentUser: 'u1tds-324lds-ssl342',
+  currentUser: '',
 };
 
 const usersSlice = createSlice({
@@ -50,21 +50,26 @@ const usersSlice = createSlice({
         return user;
       });
     },
+    addUser: (state, action) => {
+      state.users = state.users.concat(action.payload);
+    },
+    addCurrentUser: (state, action) => {
+      state.currentUser = action.payload;
+    },
+    clearCurrentUser: (state) => {
+      state.currentUser = '';
+    },
+    // addUser: (state, action) => ({
+    //   ...state,
+    //   users: {
+    //     ...state.users,
+    //     ...action.payload,
+    //   },
+    // }),
   },
 });
 
-export const { modificationFavorites } = usersSlice.actions;
+export const { modificationFavorites, addUser, addCurrentUser, clearCurrentUser } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;
-
-// addFavorites: (state, action) => {
-//   state.users = state.users.map((user) => {
-//     if (user.userId === state.currentUser) {
-//       return {
-//         ...user,
-//         filmFavorites: [...user.filmFavorites, action.payload],
-//       };
-//     }
-//     return user;
-//   });
-// },

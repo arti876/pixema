@@ -3,12 +3,7 @@ const MIN_CHAR_2 = 'Minimum 2 characters';
 const MIN_CHAR_5 = 'Minimum 5 characters';
 const CORRECT_NAME = 'Enter the correct name';
 
-const firstNameValidation = {
-  required: REQUIRED_FIELD,
-  minLength: { value: 2, message: MIN_CHAR_2 },
-};
-
-const lastNameValidation = {
+const NameValidation = {
   required: REQUIRED_FIELD,
   minLength: { value: 2, message: MIN_CHAR_2 },
 };
@@ -26,9 +21,4 @@ const passwordValidation = {
   minLength: { value: 5, message: MIN_CHAR_5 },
 };
 
-export {
-  firstNameValidation,
-  lastNameValidation,
-  emailValidation,
-  passwordValidation,
-};
+export { NameValidation, emailValidation, passwordValidation };

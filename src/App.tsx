@@ -10,7 +10,8 @@ import PageFilm from './pages/PageFilm/PageFilm';
 import NotFound from './pages/NotFound/NotFound';
 import PageFavorites from './pages/PageFavorites/PageFavorites';
 import SignUp from './pages/SignUp/SignUp';
-import Authorization from './pages/Authorization/Authorization';
+import SignIn from './pages/SignIn/SignIn';
+import PrivateRoute from './pages/PrivateRoute';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -26,14 +27,17 @@ export default function App() {
   return (
     <Routes>
       <Route path={RoutePath.ROOT} element={<AppLayout />}>
-        <Route index element={<PageMain />} />
-        <Route path={RoutePath.TRENDS} element={<PageTrends />} />
-        <Route path={RoutePath.FAVORITES} element={<PageFavorites />} />
-        <Route path={RoutePath.SETTING} element={<NotFound />} />
-        <Route path={RoutePath.FILM} element={<PageFilm />} />
+        <Route element={<PrivateRoute />}>
+          <Route index element={<PageMain />} />
+          <Route path={RoutePath.TRENDS} element={<PageTrends />} />
+          <Route path={RoutePath.FAVORITES} element={<PageFavorites />} />
+          <Route path={RoutePath.SETTING} element={<NotFound />} />
+          <Route path={RoutePath.FILM} element={<PageFilm />} />
+        </Route>
       </Route>
       <Route path={RoutePath.SIGN_UP} element={<SignUp />} />
-      {/* <Route path={RoutePath.SIGN_IN} element={<PageFilm />} /> */}
+      <Route path={RoutePath.SIGN_IN} element={<SignIn />} />
+      <Route path={RoutePath.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );
 }

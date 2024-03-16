@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import {
-  firstNameValidation,
-  lastNameValidation,
-  emailValidation,
-  passwordValidation,
-} from './validation';
+import { NameValidation, emailValidation, passwordValidation } from './validation';
 import { IformData } from '.';
-import styleMui from './style';
 import ControllerTextField from './ControllerTextField';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import style from './FormAuth.module.scss';
@@ -18,7 +12,7 @@ import clsx from 'clsx';
 
 interface FormAuthProps {
   location: string;
-  handleClick: (email: string, password: string, firstName: string, lastName: string) => void;
+  handleClick: (email: string, password: string, name: string) => void;
   nameForm: string;
 }
 
@@ -38,11 +32,11 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
     reset,
   } = useForm<IformData>({
     mode: 'onBlur',
-    defaultValues: { firstName: '', lastName: '', email: '', password: '' },
+    defaultValues: { name: '', email: '', password: '' },
   });
 
-  const onSubmit: SubmitHandler<IformData> = ({ firstName, lastName, email, password }) => {
-    handleClick(email, password, firstName, lastName);
+  const onSubmit: SubmitHandler<IformData> = ({ name, email, password }) => {
+    handleClick(name, email, password);
     reset();
   };
 
@@ -50,25 +44,15 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
     <form className={clsx(style.wrapper, 'style-mui')} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.titleForm}>{nameForm}</div>
       {location === RoutePath.SIGN_UP && (
-        <>
-          <ControllerTextField
-            control={control}
-            name='firstName'
-            rules={firstNameValidation}
-            type='text'
-            label='First Name'
-            helperText={errors?.firstName?.message}
-            error={!!errors?.firstName}
-          />
-          <ControllerTextField
-            control={control}
-            name='lastName'
-            rules={lastNameValidation}
-            label='Last Name'
-            helperText={errors?.lastName?.message}
-            error={!!errors?.lastName}
-          />
-        </>
+        <ControllerTextField
+          control={control}
+          name='name'
+          rules={NameValidation}
+          type='text'
+          label='Name'
+          helperText={errors?.name?.message}
+          error={!!errors?.name}
+        />
       )}
       <ControllerTextField
         control={control}
@@ -96,35 +80,35 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
                 edge='end'
               >
                 {showPassword ? (
-                  <VisibilityOff sx={styleMui.Visibility} />
+                  <VisibilityOff sx={{ fontSize: '24px' }} />
                 ) : (
-                  <Visibility sx={styleMui.Visibility} />
+                  <Visibility sx={{ fontSize: '24px' }} />
                 )}
               </IconButton>
             ),
           }}
         />
-        {location === RoutePath.SIGN_IN && (
+        {/* {location === RoutePath.SIGN_IN && (
           <Link to={RoutePath.NOT_FOUND} className={style.forgotPassword}>
-            Forgot password?
+            {'Forgot password?'}
           </Link>
-        )}
+        )} */}
       </div>
       <button className={style.bth} type='submit' disabled={!isValid}>
         {location === RoutePath.SIGN_IN ? 'Sign In' : 'Sign Up'}
       </button>
       {location === RoutePath.SIGN_IN ? (
         <div className={style.signContainer}>
-          <p>Dont have an account?</p>
+          <p>{'Dont have an account?'}</p>
           <Link to={RoutePath.SIGN_UP} className={style.sign}>
-            Sign Up
+            {'Sign Up'}
           </Link>
         </div>
       ) : (
         <div className={style.signContainer}>
-          <p>Dont have an account?</p>
+          <p>{'Already have an account?'}</p>
           <Link to={RoutePath.SIGN_IN} className={style.sign}>
-            Sign Up
+            {'Sign Ip'}
           </Link>
         </div>
       )}

@@ -1,16 +1,10 @@
 import { Control } from 'react-hook-form';
 import { InputProps } from '@mui/material';
 
-type NameType = 'firstName' | 'lastName' | 'email' | 'password';
-
-interface IStyleMui {
-  form: object;
-  Visibility: object;
-}
+type NameType = 'name' | 'email' | 'password';
 
 interface IformData {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
 }
@@ -26,4 +20,4 @@ interface ControllerTextFieldProps {
   InputProps?: InputProps;
 }
 
-export type { IStyleMui, IformData, NameType, ControllerTextFieldProps };
+export type { IformData, NameType, ControllerTextFieldProps };
