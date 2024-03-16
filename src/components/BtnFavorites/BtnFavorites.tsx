@@ -1,17 +1,19 @@
-import { useState } from 'react';
 import { SvgFavorites } from '../../svg/svg';
 import style from './BtnFavorites.module.scss';
+import { useAppDispatch } from '../../store/store';
+import { modificationFavorites } from '../../store/Slice/usersSlice';
 
 interface BtnFavoritesProps {
   className: string;
-  favorites: boolean;
+  favorites: string | undefined;
+  kinopoiskId: number | undefined;
 }
 
-export default function BtnFavorites({ className, favorites }: BtnFavoritesProps) {
-  // const [inFavorites, setInFavorites] = useState<boolean>(false);
+export default function BtnFavorites({ className, favorites, kinopoiskId }: BtnFavoritesProps) {
+  const dispatch = useAppDispatch();
 
   function handleClick() {
-    // setInFavorites(!inFavorites);
+    dispatch(modificationFavorites(kinopoiskId));
   }
 
   return (

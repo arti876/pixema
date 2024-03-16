@@ -30,6 +30,7 @@ export const fetchFilmsFavorites = createAsyncThunk(
           [],
         ),
       }));
+
       return result;
     } catch (error) {
       const errorFetch = error as AxiosError;

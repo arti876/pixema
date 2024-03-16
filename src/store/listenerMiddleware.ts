@@ -79,13 +79,7 @@ const dispatchSequenceMiddleware =
       dispatch(statusResolved());
       dispatch(getFilmId(action.payload));
       next(action);
-    }
-    // else if ([fulfilledFetchFilmsFavorites].includes(action.type)) {
-    // dispatch(statusResolved());
-    // dispatch(addPage(action.payload));
-    // next(action);
-    // }
-    else if ([fulfilledFetchFilterFilms].includes(action.type)) {
+    } else if ([fulfilledFetchFilterFilms].includes(action.type)) {
       dispatch(statusResolved());
       dispatch(nullPage());
       dispatch(addPage(action.payload));

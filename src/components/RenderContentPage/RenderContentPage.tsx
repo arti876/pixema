@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import PosterList from '../../components/PosterList/PosterList';
 import ShowMore from '../../components/ShowMore/ShowMore';
 import { useAppDispatch, useAppSelector } from '../../store/store';
@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
+import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
 
 interface RenderContentPageProps {
   thunk: () => void;
@@ -14,6 +15,7 @@ interface RenderContentPageProps {
 
 export default function RenderContentPage({ thunk }: RenderContentPageProps) {
   const { films, status, error } = useAppSelector((state) => state.films);
+  const idFilmsFavorites = useIdFilmsFavorites();
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -32,7 +34,11 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
     return (
       <>
         <div className={style.wrapper}>
-          <PosterList posters={films} pageName={location.pathname} />
+          <PosterList
+            posters={films}
+            filmFavorites={idFilmsFavorites}
+            pageName={location.pathname}
+          />
         </div>
         <ShowMore status={status} />
       </>

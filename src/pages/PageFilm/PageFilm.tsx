@@ -7,10 +7,12 @@ import { useAppSelector } from '../../store/store';
 import { Locales } from '../../constants/Locales.constants';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
 
 export default function PageFilm() {
   const { status, error } = useAppSelector((store) => store.films);
+
   const {
     film: {
       description: {
@@ -31,17 +33,17 @@ export default function PageFilm() {
       recommendations,
     },
   } = useAppSelector((store) => store.filmPage);
-  const {
-    currentUser: { filmFavorites },
-  } = useAppSelector((store) => store.users);
+
+  const idFilmsFavorites = useIdFilmsFavorites();
+
   const loading = status === 'loading';
   const rejected = status === 'rejected';
 
   const favorites = useMemo(() => {
-    if (kinopoiskId) {
-      return filmFavorites.filter((id) => id === kinopoiskId).join('');
+    if (kinopoiskId && idFilmsFavorites) {
+      return idFilmsFavorites.filter((id: number) => id === kinopoiskId).join('');
     }
-  }, [kinopoiskId, filmFavorites]);
+  }, [kinopoiskId, idFilmsFavorites]);
 
   if (rejected) {
     return <Error errorMessage={error} />;
@@ -55,7 +57,11 @@ export default function PageFilm() {
             <img src={poster} alt={Locales.POSTER} />
           </div>
           <div className={style.btnContainer}>
-            <BtnFavorites className={style.btnFavorites} favorites={favorites} />
+            <BtnFavorites
+              className={style.btnFavorites}
+              favorites={favorites}
+              kinopoiskId={kinopoiskId}
+            />
             <BtnShare className={style.btnShare} />
           </div>
         </div>
