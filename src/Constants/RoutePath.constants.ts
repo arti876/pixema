@@ -4,5 +4,7 @@ export enum RoutePath {
   FAVORITES = 'favorites',
   SETTING = 'setting',
   FILM = '/film',
+  SIGN_IN = '/signIn',
+  SIGN_UP = '/signUp',
   NOT_FOUND = '*',
 }

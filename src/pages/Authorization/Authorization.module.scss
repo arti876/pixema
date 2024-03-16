@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/auth.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.header {
+  position: relative;
+  top: 43px;
+  left: 62px;
+  align-self: flex-start;
+}
+
+.foooter {
+  position: relative;
+  bottom: 63px;
+}

@@ -1,0 +1,44 @@
+.style-mui {
+  & input {
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 5px;
+    background: var(--background-colors-graphite);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--contextual-colors-white);
+    border: none;
+  }
+  & label {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--system-colors-secondary);
+  }
+  & .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+    top: -12px;
+    font-size: 20px;
+  }
+  & .Mui-focused {
+    color: var(--system-colors-secondary) !important;
+  }
+  & .css-1wc848c-MuiFormHelperText-root.Mui-error {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+  }
+  & .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border: 2px solid var(--system-colors-primary) !important;
+  }
+  & .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 5px;
+    background-color: var(--background-colors-graphite);
+  }
+  & .css-p22k3e-MuiSvgIcon-root path {
+    fill: var(--background-colors-dark);
+  }
+}

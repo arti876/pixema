@@ -45,7 +45,6 @@ const filmsSlice = createSlice({
   initialState,
   reducers: {
     toggleFilter: (state, action) => {
-      console.log(action.payload);
       state.filterActive = action.payload;
     },
     addFilterData: (state, action) => ({
