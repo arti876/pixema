@@ -3,7 +3,7 @@ import { PosterData, PosterProps } from './IPoster.type';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { SvgTrends } from '../../svg/svg';
 import { useNavigate } from 'react-router-dom';
-import { fetchFilmId } from '../../store/Thunk/fetchFilmId';
+import { fetchFilmPage } from '../../store/Thunk/fetchFilmPage';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import BtnFavorites from '../BtnFavorites/BtnFavorites';
 
@@ -16,10 +16,10 @@ export default function Poster({ poster = PosterData, pageName = '' }: PosterPro
   function navigateTo() {
     if (poster.kinopoiskId) {
       navigate(RoutePath.FILM);
-      dispatch(fetchFilmId(poster.kinopoiskId));
+      dispatch(fetchFilmPage(poster.kinopoiskId));
     } else if (poster.filmId) {
       navigate(RoutePath.FILM);
-      dispatch(fetchFilmId(poster.filmId));
+      dispatch(fetchFilmPage(poster.filmId));
     }
   }
 

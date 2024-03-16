@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
-export const fetchFilmId = createAsyncThunk(
-  'fetchFilmId',
+export const fetchFilmPage = createAsyncThunk(
+  'fetchFilmPage',
   async function fetchFilmData(filmId: number, { rejectWithValue }) {
     try {
       const urls = [

@@ -1,5 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { getFilmId } from './Slice/filmIdSlice';
+import { getFilmId } from './Slice/filmPageSlice';
 import {
   currentPage,
   errorNull,
@@ -18,21 +18,21 @@ const pendingFetchTrendsFilms = 'fetchTrendsFilms/pending';
 const pendingFetchFilterFilms = 'fetchFilterFilms/pending';
 const pendingFetchFilmsFavorites = 'fetchFilmsFavorites/pending';
 const pendingFetchNextPageFilms = 'fetchNextPageFilms/pending';
-const pendingFetchFilmId = 'fetchFilmId/pending';
+const pendingFetchFilmId = 'fetchFilmPage/pending';
 
 const rejectedFetchFilmsMain = 'fetchFilmsMain/rejected';
 const rejectedFetchTrendsFilms = 'fetchTrendsFilms/rejected';
 const rejectedFetchFilterFilms = 'fetchFilterFilms/rejected';
 const rejectedFetchFilmsFavorites = 'fetchFilmsFavorites/rejected';
 const rejectedFetchNextPageFilms = 'fetchNextPageFilms/rejected';
-const rejectedFetchFilmId = 'fetchFilmId/rejected';
+const rejectedFetchFilmId = 'fetchFilmPage/rejected';
 
 const fulfilledFetchFilmsMain = 'fetchFilmsMain/fulfilled';
 const fulfilledFetchTrendsFilms = 'fetchTrendsFilms/fulfilled';
 const fulfilledFetchFilterFilms = 'fetchFilterFilms/fulfilled';
 const fulfilledFetchFilmsFavorites = 'fetchFilmsFavorites/fulfilled';
 const fulfilledFetchNextPageFilms = 'fetchNextPageFilms/fulfilled';
-const fulfilledFetchFilmId = 'fetchFilmId/fulfilled';
+const fulfilledFetchFilmId = 'fetchFilmPage/fulfilled';
 
 const pendingAll = [
   pendingFetchFilmsMain,

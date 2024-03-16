@@ -101,7 +101,7 @@ const initialState: IFilmIdState = {
 };
 
 const filmIdSlice = createSlice({
-  name: 'filmId',
+  name: 'filmPage',
   initialState,
   reducers: {
     getFilmId: (state, action) => {

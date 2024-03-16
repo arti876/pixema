@@ -3,13 +3,13 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { listenerMiddleware } from './listenerMiddleware';
 import themeReducer from './Slice/themeSlice';
 import filmsReducer from './Slice/filmsSlice';
-import filmIdReducer from './Slice/filmIdSlice';
+import filmIdReducer from './Slice/filmPageSlice';
 import filmFavoritesReducer from './Slice/filmsFavoritesSlice';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
   films: filmsReducer,
-  filmId: filmIdReducer,
+  filmPage: filmIdReducer,
   favorites: filmFavoritesReducer,
 });
 

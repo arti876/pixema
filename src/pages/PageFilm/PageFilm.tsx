@@ -28,7 +28,7 @@ export default function PageFilm() {
       people,
       recommendations,
     },
-  } = useAppSelector((store) => store.filmId);
+  } = useAppSelector((store) => store.filmPage);
   const loading = status === 'loading';
   const rejected = status === 'rejected';
 
