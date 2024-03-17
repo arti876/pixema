@@ -1,0 +1,48 @@
+input {
+  display: none;
+}
+
+.input {
+  appearance: none;
+  position: relative;
+  border-radius: 10px;
+  width: 32px;
+  height: 20px;
+  background-color: var(--system-colors-primary);
+}
+
+.input::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}
+
+.active {
+  background-color: var(--system-colors-primary);
+}
+
+.active::after {
+  content: '';
+  display: none;
+}
+
+.active::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+}

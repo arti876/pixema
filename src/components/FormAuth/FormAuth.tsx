@@ -4,11 +4,11 @@ import { IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { NameValidation, emailValidation, passwordValidation } from './validation';
-import { IformData } from '.';
-import ControllerTextField from './ControllerTextField';
+import ControllerTextField from '../ControllerTextField/ControllerTextField';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import style from './FormAuth.module.scss';
 import clsx from 'clsx';
+import { IformData } from '../ControllerTextField';
 
 interface FormAuthProps {
   location: string;
@@ -88,11 +88,6 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
             ),
           }}
         />
-        {/* {location === RoutePath.SIGN_IN && (
-          <Link to={RoutePath.NOT_FOUND} className={style.forgotPassword}>
-            {'Forgot password?'}
-          </Link>
-        )} */}
       </div>
       <button className={style.bth} type='submit' disabled={!isValid}>
         {location === RoutePath.SIGN_IN ? 'Sign In' : 'Sign Up'}

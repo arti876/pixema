@@ -27,6 +27,7 @@ export default function ControllerTextField({
           helperText={helperText}
           error={error}
           InputProps={InputProps}
+          fullWidth
         />
       )}
     />

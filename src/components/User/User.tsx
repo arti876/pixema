@@ -1,32 +1,38 @@
 import style from './User.module.scss';
 import { SvgUser, SvgTriangle } from '../../svg/svg';
-import { Locales } from '../../constants/Locales.constants';
 import { useState } from 'react';
 import { useClickAway } from '@uidotdev/usehooks';
 import { SvgName } from '../../constants/SvgName.constants';
-import { ButtonName } from '../../constants/ButtonName.constants';
+import { UserLocales } from './User.constants';
 import useGetInitials from '../../hooks/useGetInitials';
 import { useAppDispatch } from '../../store/store';
 import { clearCurrentUser } from '../../store/Slice/usersSlice';
+import clsx from 'clsx';
+import useCurrentUser from '../../hooks/useCurrentUser';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from '../../constants/RoutePath.constants';
 
 export default function User() {
   const [menuActive, setMenuActive] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const user = useCurrentUser();
+  const navigate = useNavigate();
 
-  const userName = 'User name';
-  const initials = useGetInitials(userName);
+  const initials = useGetInitials(user?.name);
 
   const isAuthorized = true;
 
   const refOutside = useClickAway((e) => {
-    const event = e.target;
+    const event = e.target as HTMLElement;
     const refOutsideTrue =
-      menuActive && event?.name !== ButtonName.BTN_ICO_TRIANGLE && event?.id !== SvgName.TRIANGLE;
+      menuActive &&
+      event.getAttribute('name') !== UserLocales.BTN_ICO_TRIANGLE &&
+      event.getAttribute('id') !== SvgName.TRIANGLE;
 
     if (refOutsideTrue) {
       setMenuActive(false);
     }
-  });
+  }) as React.LegacyRef<HTMLDivElement>;
 
   function openMenu() {
     setMenuActive(true);
@@ -34,6 +40,7 @@ export default function User() {
 
   function editProfile() {
     setMenuActive(false);
+    navigate(RoutePath.SETTING);
   }
 
   function logOut() {
@@ -46,24 +53,24 @@ export default function User() {
       <div className={style.wrapper}>
         <div className={style.userContainer}>
           <div className={style.initials}>{initials}</div>
-          <div className={style.fullname}>{userName}</div>
+          <div className={style.fullname}>{user?.name}</div>
           <button
-            name={ButtonName.BTN_ICO_TRIANGLE}
+            name={UserLocales.BTN_ICO_TRIANGLE}
             type='button'
             className={style.buttonIcoTriangle}
             onClick={openMenu}
           >
             <SvgTriangle
-              className={`${style.icoTriangle} ${menuActive && style.icoTriangleActive}`}
+              className={clsx(style.icoTriangle, { [style.icoTriangleActive]: menuActive })}
             />
           </button>
         </div>
-        <div ref={refOutside} className={`${style.menu} ${menuActive && style.menuActive}`}>
+        <div ref={refOutside} className={clsx(style.menu, { [style.menuActive]: menuActive })}>
           <button type='button' onClick={editProfile}>
-            {Locales.EDIT_PROFILE}
+            {UserLocales.EDIT_PROFILE}
           </button>
           <button type='button' onClick={logOut}>
-            {Locales.LOG_OUT}
+            {UserLocales.LOG_OUT}
           </button>
         </div>
       </div>
@@ -74,7 +81,7 @@ export default function User() {
         <div className={style.initials}>
           <SvgUser className={style.icoUser} />
         </div>
-        <div className={style.fullname}>{Locales.SIGN_IN}</div>
+        <div className={style.fullname}>{UserLocales.SIGN_IN}</div>
       </div>
     );
   }

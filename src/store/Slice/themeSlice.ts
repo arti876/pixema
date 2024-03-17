@@ -14,7 +14,11 @@ const themeSlice = createSlice({
   initialState,
   reducers: {
     switchingTheme: (state, action) => {
-      state.theme = action.payload;
+      if (action.payload) {
+        state.theme = ThemeVariant.LIGHT;
+      } else {
+        state.theme = ThemeVariant.DARK;
+      }
     },
   },
 });

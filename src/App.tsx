@@ -12,6 +12,7 @@ import PageFavorites from './pages/PageFavorites/PageFavorites';
 import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
 import PrivateRoute from './pages/PrivateRoute';
+import PageSettings from './pages/PageSettings/PageSettings';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -31,7 +32,7 @@ export default function App() {
           <Route index element={<PageMain />} />
           <Route path={RoutePath.TRENDS} element={<PageTrends />} />
           <Route path={RoutePath.FAVORITES} element={<PageFavorites />} />
-          <Route path={RoutePath.SETTING} element={<NotFound />} />
+          <Route path={RoutePath.SETTING} element={<PageSettings />} />
           <Route path={RoutePath.FILM} element={<PageFilm />} />
         </Route>
       </Route>
