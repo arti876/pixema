@@ -3,34 +3,60 @@ import style from './PageSettings.module.scss';
 import useCurrentUser from '../../hooks/useCurrentUser';
 import { useState } from 'react';
 import ControllerTextField from '../../components/ControllerTextField/ControllerTextField';
-import {
-  NameValidation,
-  emailValidation,
-  passwordValidation,
-} from '../../components/FormAuth/validation';
 import clsx from 'clsx';
 import BtnShowPassword from '../../components/BtnShowPassword/BtnShowPassword';
 import { IformData } from '../../components/ControllerTextField';
 import BtnSwitchTheme from '../../components/BtnSwitchTheme/BtnSwitchTheme';
+import {
+  NameValidSettings,
+  emailValidSettings,
+  passwordNewValidSettings,
+  passwordValidSettings,
+} from './validSettings';
+import { useAppDispatch } from '../../store/store';
+import { updateUserEmail, updateUserName, updateUserPassword } from '../../store/Slice/usersSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function PageSettings() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const user = useCurrentUser();
+  const navigate = useNavigate();
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
   } = useForm<IformData>({
     mode: 'onBlur',
     defaultValues: { name: user?.name, email: user?.email, password: '', newPassword: '' },
   });
 
+  function cancel() {
+    reset({ name: user?.name, email: user?.email, password: '', newPassword: '' });
+    navigate(-1);
+  }
+
   const onSubmit: SubmitHandler<IformData> = ({ name, email, password, newPassword }) => {
-    console.log(name, email, password, newPassword);
-    reset();
+    const checkName = name && name !== user?.name;
+    const checkEmail = email && email !== user?.email;
+    const checkPassword = password && newPassword && password === user?.password;
+
+    if (checkName) {
+      dispatch(updateUserName(name));
+      navigate(-1);
+    }
+    if (checkEmail) {
+      dispatch(updateUserEmail(email));
+      navigate(-1);
+    }
+    if (checkPassword) {
+      dispatch(updateUserPassword(newPassword));
+      reset({ password: '', newPassword: '' });
+      navigate(-1);
+    }
   };
 
   return (
@@ -41,7 +67,7 @@ export default function PageSettings() {
           <ControllerTextField
             control={control}
             name='name'
-            rules={NameValidation}
+            rules={NameValidSettings}
             label='Name'
             helperText={errors?.name?.message}
             error={!!errors?.name}
@@ -49,7 +75,7 @@ export default function PageSettings() {
           <ControllerTextField
             control={control}
             name='email'
-            rules={emailValidation}
+            rules={emailValidSettings}
             label='Email'
             helperText={errors?.email?.message}
             error={!!errors?.email}
@@ -62,7 +88,7 @@ export default function PageSettings() {
           <ControllerTextField
             control={control}
             name='password'
-            rules={passwordValidation}
+            rules={passwordValidSettings}
             type={showPassword ? 'text' : 'password'}
             label='Password'
             helperText={errors?.password?.message}
@@ -76,7 +102,7 @@ export default function PageSettings() {
           <ControllerTextField
             control={control}
             name='newPassword'
-            rules={passwordValidation}
+            rules={passwordNewValidSettings}
             type={showNewPassword ? 'text' : 'password'}
             label='Password'
             helperText={errors?.password?.message}
@@ -93,16 +119,20 @@ export default function PageSettings() {
         </div>
       </div>
       <div className={style.inputWrapper}>
-        <div className={style.inputTitle}>{'Password'}</div>
+        <div className={style.inputTitle}>{'Color mode'}</div>
         <div className={style.inputContainer}>
+          <div className={style.themeText}>
+            <div>{'Dark'}</div>
+            <div>{'Use dark thema'}</div>
+          </div>
           <BtnSwitchTheme />
         </div>
       </div>
       <div className={style.btnContainer}>
-        <button className={style.bthCancel} type='button'>
+        <button className={style.bthCancel} type='button' onClick={cancel}>
           {'Cancel'}
         </button>
-        <button className={style.bthSave} type='submit' disabled={!isValid}>
+        <button className={style.bthSave} type='submit'>
           {'Save'}
         </button>
       </div>

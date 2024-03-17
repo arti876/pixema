@@ -1,14 +1,10 @@
-input {
-  display: none;
-}
-
 .input {
   appearance: none;
   position: relative;
   border-radius: 10px;
   width: 32px;
   height: 20px;
-  background-color: var(--system-colors-primary);
+  background-color: var(--system-colors-secondary);
 }
 
 .input::after {

@@ -3,21 +3,25 @@ import { ThemeVariant } from '../../constants/ThemeVariant.constants';
 
 interface IThemeState {
   theme: string;
+  toggle: boolean;
 }
 
 const initialState: IThemeState = {
   theme: ThemeVariant.DARK,
+  toggle: true,
 };
 
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    switchingTheme: (state, action) => {
-      if (action.payload) {
+    switchingTheme: (state) => {
+      if (state.toggle) {
         state.theme = ThemeVariant.LIGHT;
+        state.toggle = false;
       } else {
         state.theme = ThemeVariant.DARK;
+        state.toggle = true;
       }
     },
   },

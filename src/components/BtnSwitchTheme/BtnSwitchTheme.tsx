@@ -1,16 +1,14 @@
-import { useState } from 'react';
 import { switchingTheme } from '../../store/Slice/themeSlice';
-import { useAppDispatch } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import style from './BtnSwitchTheme.module.scss';
 import clsx from 'clsx';
 
 export default function BtnSwitchTheme() {
-  const [toggle, setToggle] = useState(true);
+  const { toggle } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   function handleSwitch() {
-    setToggle((on) => !on);
-    dispatch(switchingTheme(toggle));
+    dispatch(switchingTheme());
   }
 
   return (

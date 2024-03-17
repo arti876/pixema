@@ -22,6 +22,7 @@
 .inputContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 40px;
   border-radius: 10px;
   padding: 40px;
@@ -49,9 +50,27 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-  color: var(--contextual-colors-white);
+  color: var(--white-only);
 }
 
 .bthCancel {
-  background: var(--background-colors-graphite);
+  background: var(--background-colors-dark);
+}
+
+.themeText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  :nth-child(1) {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--white-only);
+  }
+  :nth-child(2) {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--contextual-colors-light);
+  }
 }

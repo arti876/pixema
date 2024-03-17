@@ -59,17 +59,50 @@ const usersSlice = createSlice({
     clearCurrentUser: (state) => {
       state.currentUser = '';
     },
-    // addUser: (state, action) => ({
-    //   ...state,
-    //   users: {
-    //     ...state.users,
-    //     ...action.payload,
-    //   },
-    // }),
+    updateUserName: (state, action) => {
+      state.users = state.users.map((user) => {
+        if (user.userId === state.currentUser) {
+          return {
+            ...user,
+            name: action.payload,
+          };
+        }
+        return user;
+      });
+    },
+    updateUserEmail: (state, action) => {
+      state.users = state.users.map((user) => {
+        if (user.userId === state.currentUser) {
+          return {
+            ...user,
+            email: action.payload,
+          };
+        }
+        return user;
+      });
+    },
+    updateUserPassword: (state, action) => {
+      state.users = state.users.map((user) => {
+        if (user.userId === state.currentUser) {
+          return {
+            ...user,
+            password: action.payload,
+          };
+        }
+        return user;
+      });
+    },
   },
 });
 
-export const { modificationFavorites, addUser, addCurrentUser, clearCurrentUser } =
-  usersSlice.actions;
+export const {
+  modificationFavorites,
+  addUser,
+  addCurrentUser,
+  clearCurrentUser,
+  updateUserName,
+  updateUserEmail,
+  updateUserPassword,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;
