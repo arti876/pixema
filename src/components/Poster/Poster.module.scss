@@ -31,13 +31,13 @@
   background: var(--tertiary-colors-green);
   font-size: 16px;
   line-height: 150%;
-  color: var(--contextual-colors-white);
+  color: var(--white-only);
 }
 
 .trendsIco {
   width: 14px;
   height: 20px;
-  fill: var(--contextual-colors-white);
+  fill: var(--white-only);
 }
 
 .ratingTrendsContainer {
@@ -58,7 +58,7 @@
 .ratingTrendsNumber {
   font-size: 16px;
   line-height: 150%;
-  color: var(--contextual-colors-white);
+  color: var(--white-only);
 }
 
 .textContainer {

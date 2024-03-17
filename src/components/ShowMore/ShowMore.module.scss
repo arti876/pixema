@@ -6,7 +6,7 @@
   border-radius: 40px;
   width: 161px;
   height: 40px;
-  background: var(--background-colors-graphite);
+  background: var(--graphite-only);
   margin: 0 auto;
 }
 
@@ -14,7 +14,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
-  color: var(--contextual-colors-white);
+  color: var(--white-only);
 }
 
 .loader {

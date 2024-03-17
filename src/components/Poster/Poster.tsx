@@ -34,13 +34,13 @@ export default function Poster({ poster = PosterData, pageName = '', filmFavorit
       {!!poster && (
         <div className={style.posterContainer}>
           <div className={style.imgContainer}>
-            {rating && `/${RoutePath.TRENDS}` === pageName && (
+            {rating && RoutePath.TRENDS === pageName && (
               <div className={style.ratingTrendsContainer}>
                 <SvgTrends className={style.trendsIco} />
                 <div className={style.ratingTrendsNumber}>{rating}</div>
               </div>
             )}
-            {rating && `/${RoutePath.TRENDS}` !== pageName && (
+            {rating && RoutePath.TRENDS !== pageName && (
               <div className={style.rating}>{rating}</div>
             )}
             {favorites && (

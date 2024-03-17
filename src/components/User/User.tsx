@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import useCurrentUser from '../../hooks/useCurrentUser';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
+import { nullTheme } from '../../store/Slice/themeSlice';
 
 export default function User() {
   const [menuActive, setMenuActive] = useState<boolean>(false);
@@ -46,6 +47,7 @@ export default function User() {
   function logOut() {
     setMenuActive(false);
     dispatch(clearCurrentUser());
+    dispatch(nullTheme());
   }
 
   if (isAuthorized) {
