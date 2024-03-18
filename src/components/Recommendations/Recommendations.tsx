@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { FreeMode, Navigation } from 'swiper/modules';
 import Poster from '../Poster/Poster';
 import './Recommendations.scss';
 import { Locales } from '../../constants/Locales.constants';
@@ -27,7 +27,8 @@ export default function Recommendations({ recommendations }: IRecommendations) {
             slidesPerView={4}
             spaceBetween={40}
             navigation={true}
-            modules={[Navigation]}
+            freeMode={true}
+            modules={[FreeMode, Navigation]}
             className='my-swiper'
           >
             {!!recommendations &&
@@ -44,3 +45,12 @@ export default function Recommendations({ recommendations }: IRecommendations) {
     return null;
   }
 }
+
+// slidesPerView={3}
+// spaceBetween={30}
+// freeMode={true}
+// pagination={{
+//   clickable: true,
+// }}
+// modules={[FreeMode, Pagination]}
+// className='mySwiper'

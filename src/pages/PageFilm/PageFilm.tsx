@@ -9,6 +9,7 @@ import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 import { useEffect, useMemo } from 'react';
 import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
+import Swiper from '../../components/SwiperCustom/mySwiper';
 
 export default function PageFilm() {
   const { status, error } = useAppSelector((store) => store.films);
