@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { NameValidation, emailValidation, passwordValidation } from './validation';
+import { NameValidation, emailValidation, passwordValidation } from './rulesInput';
 import ControllerTextField from '../ControllerTextField/ControllerTextField';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import style from './FormAuth.module.scss';

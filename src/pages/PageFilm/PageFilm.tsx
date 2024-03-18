@@ -170,7 +170,9 @@ export default function PageFilm() {
               </div>
             </div>
           </div>
-          <Recommendations recommendations={recommendations} />
+          <div>
+            <Recommendations recommendations={recommendations} />
+          </div>
         </div>
       </div>
     );

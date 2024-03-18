@@ -24,7 +24,7 @@
 
 .posterListContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(266px, 266px));
+  grid-template-columns: repeat(auto-fit, minmax(266px, auto));
   gap: 40px;
 }
 

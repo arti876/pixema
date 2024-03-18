@@ -72,7 +72,7 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
             />
           </div>
         </div>
-        <ShowMore status={status} />
+        {films.length >= 20 && <ShowMore status={status} />}
       </>
     );
   } else {
