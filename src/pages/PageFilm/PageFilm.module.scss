@@ -1,3 +1,10 @@
+@use '../../style/template';
+
+%text-page-film {
+  font-size: 16px;
+  line-height: 150%;
+}
+
 .wrapper {
   display: flex;
   gap: 42px;
@@ -60,8 +67,7 @@
 
 .filmGenre {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
+  @extend %text-page-film;
   color: var(--contextual-colors-light);
 }
 
@@ -73,9 +79,7 @@
 }
 
 .filmTitle {
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 150%;
+  @extend %text-h1;
   color: var(--contextual-colors-white);
   margin-bottom: 24px;
 }
@@ -94,9 +98,7 @@
   align-items: center;
   border-radius: 6px;
   padding: 2px 8px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 150%;
+  @extend %text-page-film;
   color: var(--contextual-colors-white);
 }
 
@@ -121,8 +123,7 @@
 
 .filmDescription {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
+  @extend %text-page-film;
   color: var(--contextual-colors-white);
   margin-bottom: 40px;
 }
@@ -141,8 +142,7 @@
 
 .filmDetailsLeft,
 .filmDetailsRight {
-  font-size: 16px;
-  line-height: 150%;
+  @extend %text-page-film;
 }
 
 .filmDetailsLeft {

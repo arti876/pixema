@@ -1,3 +1,5 @@
+@use '../../style/template';
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -13,9 +15,7 @@
 }
 
 .inputTitle {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 150%;
+  @extend %text-h2;
   color: var(--contextual-colors-white);
 }
 
@@ -47,7 +47,6 @@
   width: 100%;
   height: 56px;
   background: var(--system-colors-primary);
-  font-weight: 600;
   font-size: 16px;
   line-height: 150%;
   color: var(--white-only);

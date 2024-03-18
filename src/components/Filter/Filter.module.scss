@@ -1,3 +1,5 @@
+@use '../../style/template';
+
 .wrapperForm {
   display: none;
   gap: 30px;
@@ -59,8 +61,7 @@
 }
 
 .formTitle {
-  font-size: 24px;
-  line-height: 150%;
+  @extend %text-h2;
   color: var(--contextual-colors-white);
 }
 

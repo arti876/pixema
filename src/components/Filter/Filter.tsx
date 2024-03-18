@@ -73,7 +73,12 @@ export default function Filter({ disabled = false }: FilterParams) {
           <SvgFilter className={style.icoFilter} />
         </button>
       </div>
-      <Drawer anchor={'right'} open={filterOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        style={{ zIndex: 102 }}
+        anchor={'right'}
+        open={filterOpen}
+        onClose={toggleDrawer(false)}
+      >
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}
