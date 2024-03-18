@@ -8,13 +8,22 @@
 .imgContainer {
   position: relative;
   border-radius: 20px;
-  max-width: 266px;
+  width: 266px;
   height: 357px;
   overflow: hidden;
   margin-bottom: 24px;
+  @media (max-width: 768px) {
+    width: 208px;
+    height: 278px;
+  }
+  @media (max-width: 320px) {
+    width: 272px;
+    height: 364px;
+  }
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -23,7 +32,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   border-radius: 10px;
-  width: 266px;
   height: 56px;
   overflow: hidden;
 }
