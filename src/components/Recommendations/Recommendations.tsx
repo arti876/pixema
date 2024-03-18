@@ -24,7 +24,7 @@ export default function Recommendations({ recommendations }: IRecommendations) {
         <div className='wrapper-swiper'>
           <div className='title-swiper'>{Locales.RECOMMENDADIONS}</div>
           <Swiper
-            slidesPerView={4}
+            slidesPerView={'auto'}
             spaceBetween={40}
             navigation={true}
             freeMode={true}
@@ -45,12 +45,3 @@ export default function Recommendations({ recommendations }: IRecommendations) {
     return null;
   }
 }
-
-// slidesPerView={3}
-// spaceBetween={30}
-// freeMode={true}
-// pagination={{
-//   clickable: true,
-// }}
-// modules={[FreeMode, Pagination]}
-// className='mySwiper'
