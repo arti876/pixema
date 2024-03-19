@@ -7,6 +7,11 @@ import { useState } from 'react';
 import { addCurrentUser } from '../../store/Slice/usersSlice';
 import ModalAuth from '../../components/ModalAuth/ModalAuth';
 
+const text = {
+  title: 'Login error',
+  description: 'This user does not exist or incorrect data has been entered.',
+};
+
 export default function SignIn() {
   const [open, setOpen] = useState(false);
   const { users } = useAppSelector((state) => state.users);
@@ -26,9 +31,9 @@ export default function SignIn() {
 
   return (
     <>
-      <ModalAuth open={open} setOpen={setOpen} />
+      <ModalAuth open={open} setOpen={setOpen} text={text} />
       <Authorization>
-        <FormAuth nameForm='Sign In' location={location.pathname} handleClick={handleLogin} />
+        <FormAuth nameForm={'Sign In'} location={location.pathname} handleClick={handleLogin} />
       </Authorization>
     </>
   );

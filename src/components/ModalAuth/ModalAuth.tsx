@@ -19,9 +19,13 @@ const style = {
 interface ModalAuthProps {
   open: boolean;
   setOpen: (value: boolean) => void;
+  text: {
+    title: string;
+    description: string;
+  };
 }
 
-export default function ModalAuth({ open, setOpen }: ModalAuthProps) {
+export default function ModalAuth({ open, setOpen, text }: ModalAuthProps) {
   const handleClose = () => setOpen(false);
 
   return (
@@ -34,10 +38,10 @@ export default function ModalAuth({ open, setOpen }: ModalAuthProps) {
       >
         <Box sx={style}>
           <Typography id='modal-modal-title' sx={{ fontSize: 24 }}>
-            {'Login error'}
+            {text.title}
           </Typography>
           <Typography id='modal-modal-description' sx={{ mt: 2, fontSize: 16 }}>
-            {'This user does not exist or incorrect data has been entered.'}
+            {text.description}
           </Typography>
         </Box>
       </Modal>
