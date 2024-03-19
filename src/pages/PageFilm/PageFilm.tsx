@@ -1,5 +1,3 @@
-import BtnFavorites from '../../components/BtnFavorites/BtnFavorites';
-import BtnShare from '../../components/BtnShare/BtnShare';
 import style from './PageFilm.module.scss';
 import { SvgImdb } from '../../svg/svg';
 import Recommendations from '../../components/Recommendations/Recommendations';
@@ -7,9 +5,9 @@ import { useAppSelector } from '../../store/store';
 import { Locales } from '../../constants/Locales.constants';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
-import Swiper from '../../components/SwiperCustom/mySwiper';
+import PosterFilmPage from '../../components/PosterFilmPage/PosterFilmPage';
 
 export default function PageFilm() {
   const { status, error } = useAppSelector((store) => store.films);
@@ -37,8 +35,8 @@ export default function PageFilm() {
 
   const idFilmsFavorites = useIdFilmsFavorites();
 
-  const loading = status === 'loading';
-  const rejected = status === 'rejected';
+  const loading = status === Locales.STATUS_LOADING;
+  const rejected = status === Locales.STATUS_REJECTED;
 
   const favorites = useMemo(() => {
     if (kinopoiskId && idFilmsFavorites) {
@@ -53,18 +51,8 @@ export default function PageFilm() {
   } else {
     return (
       <div className={style.wrapper}>
-        <div className={style.containerLeft}>
-          <div className={style.imgContainer}>
-            <img src={poster} alt={Locales.POSTER} />
-          </div>
-          <div className={style.btnContainer}>
-            <BtnFavorites
-              className={style.btnFavorites}
-              favorites={favorites}
-              kinopoiskId={kinopoiskId}
-            />
-            <BtnShare className={style.btnShare} />
-          </div>
+        <div className={style.posterFuulSize}>
+          <PosterFilmPage poster={poster} favorites={favorites} kinopoiskId={kinopoiskId} />
         </div>
         <div className={style.containerRight}>
           <div className={style.filmGenreContainer}>
@@ -85,6 +73,9 @@ export default function PageFilm() {
               </div>
             )}
             <div className={style.movieLength}>{`${filmLength} min`}</div>
+          </div>
+          <div className={style.posterTablet}>
+            <PosterFilmPage poster={poster} favorites={favorites} kinopoiskId={kinopoiskId} />
           </div>
           <div className={style.filmDescription}>{description}</div>
           <div className={style.filmDetails}>
@@ -135,7 +126,7 @@ export default function PageFilm() {
               <div className={style.filmDetailsLeft}>{Locales.ACTORS}</div>
               <div className={style.filmDetailsRight}>
                 {people
-                  .filter(({ professionKey }) => professionKey === 'ACTOR')
+                  .filter(({ professionKey }) => professionKey === Locales.ACTOR)
                   .map(({ nameRu }, index, arr) => (
                     <span key={index}>
                       {nameRu}
@@ -145,10 +136,10 @@ export default function PageFilm() {
               </div>
             </div>
             <div className={style.filmDetailsItem}>
-              <div className={style.filmDetailsLeft}>{Locales.DIRECTOR}</div>
+              <div className={style.filmDetailsLeft}>{Locales.DIRECTOR_LOWER}</div>
               <div className={style.filmDetailsRight}>
                 {people
-                  .filter(({ professionKey }) => professionKey === 'DIRECTOR')
+                  .filter(({ professionKey }) => professionKey === Locales.DIRECTOR_UPPER)
                   .map(({ nameRu }, index, arr) => (
                     <span key={index}>
                       {nameRu}
@@ -158,10 +149,10 @@ export default function PageFilm() {
               </div>
             </div>
             <div className={style.filmDetailsItem}>
-              <div className={style.filmDetailsLeft}>{Locales.WRITERS}</div>
+              <div className={style.filmDetailsLeft}>{Locales.WRITERS_LOWER}</div>
               <div className={style.filmDetailsRight}>
                 {people
-                  .filter(({ professionKey }) => professionKey === 'WRITER')
+                  .filter(({ professionKey }) => professionKey === Locales.WRITERS_UPPER)
                   .map(({ nameRu }, index, arr) => (
                     <span key={index}>
                       {nameRu}

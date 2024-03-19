@@ -1,4 +1,3 @@
-// const REQUIRED_FIELD = 'Required field';
 const MIN_CHAR_2 = 'Minimum 2 characters';
 const MIN_CHAR_5 = 'Minimum 5 characters';
 const CORRECT_NAME = 'Enter the correct name';

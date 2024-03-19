@@ -31,7 +31,7 @@ const PosterData: IPoster = {
 interface PosterProps {
   poster: IPoster;
   pageName?: string;
-  filmFavorites: number[];
+  filmFavorites?: number[];
 }
 
 export { PosterData };

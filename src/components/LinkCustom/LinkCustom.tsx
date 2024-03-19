@@ -1,5 +1,6 @@
 import { Link, useMatch } from 'react-router-dom';
 import style from './LinkCustom.module.scss';
+import clsx from 'clsx';
 
 interface LinkCustomProps {
   children: JSX.Element;
@@ -14,7 +15,7 @@ export default function LinkCustom({ children, to, className }: LinkCustomProps)
   });
 
   return (
-    <Link to={to} className={`${className} ${style.hover} ${match ? style.active : ''}`}>
+    <Link to={to} className={clsx(className, style.hover, { [style.active]: match })}>
       {children}
     </Link>
   );

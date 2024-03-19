@@ -14,6 +14,9 @@
   padding: 48px 40px;
   background: var(--background-colors-dark);
   overflow-y: auto;
+  @media (max-width: 520px) {
+    width: 100%;
+  }
 }
 
 .filterActive {

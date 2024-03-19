@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPoster } from '../../components/Poster/IPoster.type';
+import { IPoster } from '../../components/Poster';
+import { Locales } from '../../constants/Locales.constants';
 
 export interface IFilmThunkParams {
-  // [key: string]: string;
   countries: string;
   genres: string;
   order: string;
@@ -58,17 +58,17 @@ const filmsSlice = createSlice({
       state.error = null;
     },
     statusLoading: (state) => {
-      state.status = 'loading';
+      state.status = Locales.STATUS_LOADING;
     },
     statusShowMore: (state) => {
-      state.status = 'showMore';
+      state.status = Locales.STATUS_SHOW_MORE;
     },
     statusRejected: (state, action) => {
-      state.status = 'rejected';
+      state.status = Locales.STATUS_REJECTED;
       state.error = action.payload;
     },
     statusResolved: (state) => {
-      state.status = 'resolved';
+      state.status = Locales.STATUS_RESOLVED;
     },
     currentPage: (state, action) => {
       state.paramsThunk.page = action.payload;

@@ -13,7 +13,7 @@ import {
   GenresFilm,
   FilterLocales,
   FilterRadio,
-} from './Filter.type.';
+} from '.';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import Drawer from '@mui/material/Drawer';
 import InputText from './Inputs/InputTextFilter/InputTextFilter';
@@ -21,6 +21,7 @@ import InputSelect from './Inputs/InputSelectFilter/InputSelectFilter';
 import InputRadioFilter from './Inputs/InputRadioFilter/InputRadioFilter';
 import { IFilmThunkParams, addFilterData, toggleFilter } from '../../store/Slice/filmsSlice';
 import { fetchFilterFilms } from '../../store/Thunk/fetchFilterFilms';
+import clsx from 'clsx';
 
 interface FilterParams {
   disabled?: boolean;
@@ -62,7 +63,7 @@ export default function Filter({ disabled = false }: FilterParams) {
 
   return (
     <>
-      <div className={`${style.icoContainer} ${filterActive && style.icoContainerActive}`}>
+      <div className={clsx(style.icoContainer, { [style.icoContainerActive]: filterActive })}>
         <div className={style.dot} />
         <button
           type='button'
@@ -81,7 +82,7 @@ export default function Filter({ disabled = false }: FilterParams) {
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className={`${style.wrapperForm} ${filterOpen && style.filterActive}`}
+          className={clsx(style.wrapperForm, { [style.filterActive]: filterOpen })}
         >
           <div className={style.formTitleContainer}>
             <div className={style.formTitle}>{FilterLocales.FILTER_TITLE}</div>

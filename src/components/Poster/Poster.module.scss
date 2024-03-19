@@ -8,16 +8,13 @@
 .imgContainer {
   position: relative;
   border-radius: 20px;
-  width: 266px;
   height: 357px;
   overflow: hidden;
-  @media (max-width: 768px) {
-    width: 208px;
+  @media (max-width: 1280px) {
     height: 278px;
   }
-  @media (max-width: 320px) {
-    width: 272px;
-    height: 364px;
+  @media (max-width: 550px) {
+    height: 365px;
   }
   img {
     width: 100%;
@@ -74,7 +71,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-width: 266px;
+  // max-width: 266px;
+  // @media (max-width: 879px) {
+  //   max-width: 208px;
+  // }
+  // @media (max-width: 320px) {
+  //   max-width: 272px;
+  // }
 }
 
 .movieTitle {

@@ -1,6 +1,45 @@
 .wrapper {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 41px;
   width: 100%;
+  grid-template-areas: 'b c';
+  @media (max-width: 1280px) {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'a b d';
+  }
+  @media (max-width: 767px) {
+    grid-template-areas: 'a d d' 'b b b';
+    row-gap: 32px;
+  }
+}
+
+.logo {
+  grid-area: a;
+  display: none;
+  align-items: center;
+  width: 156px;
+  @media (max-width: 1280px) {
+    display: flex;
+  }
+}
+
+.search {
+  grid-area: b;
+}
+
+.user {
+  grid-area: c;
+  @media (max-width: 1280px) {
+    display: none;
+  }
+}
+
+.hamburger {
+  grid-area: d;
+  display: none;
+  margin-left: auto;
+  @media (max-width: 1280px) {
+    display: flex;
+  }
 }

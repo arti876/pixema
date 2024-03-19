@@ -7,16 +7,18 @@ import RightsReserved from '../../components/RightsReserved/RightsReserved';
 function AppLayout() {
   return (
     <div className='wrapper'>
-      <div className={style.container}>
+      <div className={style.wrapper}>
         <SidePanel />
-        <div className={style.mainContent}>
+        <div className={style.contentContainer}>
           <Header />
           <main>
             <Outlet />
           </main>
         </div>
       </div>
-      <RightsReserved />
+      <div className={style.rightsReserved}>
+        <RightsReserved />
+      </div>
     </div>
   );
 }

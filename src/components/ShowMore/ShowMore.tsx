@@ -25,7 +25,7 @@ export default function ShowMore({ status }: ShowMoreProps) {
   return (
     <button
       type='button'
-      className={`${style.wrapper} ${status === 'showMore' && style.active}`}
+      className={`${style.wrapper} ${status === Locales.STATUS_SHOW_MORE && style.active}`}
       onClick={nextPage}
     >
       <div className={style.text}>{Locales.SHOW_MORE}</div>

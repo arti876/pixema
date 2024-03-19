@@ -61,6 +61,9 @@
   padding: 130px 40px 48px 40px;
   background: var(--background-colors-dark);
   overflow-y: auto;
+  @media (max-width: 320px) {
+    width: 100%;
+  }
 }
 
 .menuActive {

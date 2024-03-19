@@ -16,6 +16,7 @@ import {
 import { useAppDispatch } from '../../store/store';
 import { updateUserEmail, updateUserName, updateUserPassword } from '../../store/Slice/usersSlice';
 import { useNavigate } from 'react-router-dom';
+import { Locales } from '../../constants/Locales.constants';
 
 export default function PageSettings() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -62,35 +63,35 @@ export default function PageSettings() {
   return (
     <form className={clsx(style.wrapper, 'style-mui')} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.inputWrapper}>
-        <div className={style.inputTitle}>{'Profile'}</div>
+        <div className={style.inputTitle}>{Locales.PROFILE}</div>
         <div className={style.inputContainer}>
           <ControllerTextField
             control={control}
-            name='name'
+            name={Locales.NAME_LOWER}
             rules={NameValidSettings}
-            label='Name'
+            label={Locales.NAME_UPPER}
             helperText={errors?.name?.message}
             error={!!errors?.name}
           />
           <ControllerTextField
             control={control}
-            name='email'
+            name={Locales.EMAIL_LOWER}
             rules={emailValidSettings}
-            label='Email'
+            label={Locales.EMAIL_UPPER}
             helperText={errors?.email?.message}
             error={!!errors?.email}
           />
         </div>
       </div>
       <div className={style.inputWrapper}>
-        <div className={style.inputTitle}>{'Password'}</div>
+        <div className={style.inputTitle}>{Locales.PASSWORD_UPPER}</div>
         <div className={style.inputContainer}>
           <ControllerTextField
             control={control}
-            name='password'
+            name={Locales.PASSWORD_LOWER}
             rules={passwordValidSettings}
-            type={showPassword ? 'text' : 'password'}
-            label='Password'
+            type={showPassword ? Locales.TEXT : Locales.PASSWORD_LOWER}
+            label={Locales.PASSWORD_UPPER}
             helperText={errors?.password?.message}
             error={!!errors?.password}
             InputProps={{
@@ -101,10 +102,10 @@ export default function PageSettings() {
           />
           <ControllerTextField
             control={control}
-            name='newPassword'
+            name={Locales.NEW_PASSWORD}
             rules={passwordNewValidSettings}
-            type={showNewPassword ? 'text' : 'password'}
-            label='Password'
+            type={showNewPassword ? Locales.TEXT : Locales.PASSWORD_LOWER}
+            label={Locales.PASSWORD_UPPER}
             helperText={errors?.password?.message}
             error={!!errors?.password}
             InputProps={{
@@ -119,21 +120,21 @@ export default function PageSettings() {
         </div>
       </div>
       <div className={style.inputWrapper}>
-        <div className={style.inputTitle}>{'Color mode'}</div>
-        <div className={style.inputContainer}>
+        <div className={style.inputTitle}>{Locales.COLOR_MODE}</div>
+        <div className={clsx(style.inputContainer, style.themeContainer)}>
           <div className={style.themeText}>
-            <div>{'Dark'}</div>
-            <div>{'Use dark thema'}</div>
+            <div>{Locales.DARK}</div>
+            <div>{Locales.USE_THEME}</div>
           </div>
           <BtnSwitchTheme />
         </div>
       </div>
       <div className={style.btnContainer}>
         <button className={style.bthCancel} type='button' onClick={cancel}>
-          {'Cancel'}
+          {Locales.CANCEL}
         </button>
         <button className={style.bthSave} type='submit'>
-          {'Save'}
+          {Locales.SAVE}
         </button>
       </div>
     </form>

@@ -2,6 +2,7 @@ import { SvgFavorites } from '../../svg/svg';
 import style from './BtnFavorites.module.scss';
 import { useAppDispatch } from '../../store/store';
 import { modificationFavorites } from '../../store/Slice/usersSlice';
+import clsx from 'clsx';
 
 interface BtnFavoritesProps {
   className: string;
@@ -18,7 +19,7 @@ export default function BtnFavorites({ className, favorites, kinopoiskId }: BtnF
 
   return (
     <button type='button' className={className} onClick={handleClick}>
-      <SvgFavorites className={`${style.ico} ${favorites && style.icoActive}`} />
+      <SvgFavorites className={clsx(style.ico, { [style.icoActive]: favorites })} />
     </button>
   );
 }

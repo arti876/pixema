@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { addUser } from '../../store/Slice/usersSlice';
 import ModalAuth from '../../components/ModalAuth/ModalAuth';
 import { useState } from 'react';
+import { Locales } from '../../constants/Locales.constants';
 
 const text = {
   title: 'Email error',
@@ -42,7 +43,11 @@ export default function SignUp() {
     <>
       <ModalAuth open={open} setOpen={setOpen} text={text} />
       <Authorization>
-        <FormAuth nameForm={'Sign Up'} location={location.pathname} handleClick={handleRegister} />
+        <FormAuth
+          nameForm={Locales.SIGN_UP}
+          location={location.pathname}
+          handleClick={handleRegister}
+        />
       </Authorization>
     </>
   );

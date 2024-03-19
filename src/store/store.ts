@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import { listenerMiddleware } from './listenerMiddleware';
 import themeReducer from './Slice/themeSlice';
 import filmsReducer from './Slice/filmsSlice';
 import filmIdReducer from './Slice/filmPageSlice';
 import usersReducer from './Slice/usersSlice';
+import { listenerPending } from './listenerMiddleware/listenerPending';
+import { listenerRejected } from './listenerMiddleware/listenerRejected';
+import { listenerFulfilled } from './listenerMiddleware/listenerFulfilled';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -15,7 +17,8 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(listenerMiddleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([listenerPending, listenerRejected, listenerFulfilled]),
 });
 
 type RootState = ReturnType<typeof store.getState>;

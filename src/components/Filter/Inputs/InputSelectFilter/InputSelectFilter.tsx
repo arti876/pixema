@@ -1,6 +1,6 @@
 import { Control, Controller } from 'react-hook-form';
 import style from './InputSelectFilter.module.scss';
-import { FilterNameType, IOptionSelectFilm } from '../../Filter.type.';
+import { FilterNameType, IOptionSelectFilm } from '../..';
 import { SvgTriangle } from '../../../../svg/SvgTriangle';
 import { IFilmThunkParams } from '../../../../store/Slice/filmsSlice';
 

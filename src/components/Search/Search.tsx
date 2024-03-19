@@ -7,6 +7,7 @@ import { RoutePath } from '../../constants/RoutePath.constants';
 import { useAppDispatch } from '../../store/store';
 import { addFilterData } from '../../store/Slice/filmsSlice';
 import { fetchFilterFilms } from '../../store/Thunk/fetchFilterFilms';
+import { Locales } from '../../constants/Locales.constants';
 
 export default function Search() {
   const location = useLocation();
@@ -46,7 +47,7 @@ export default function Search() {
       <div className={style.searchContainer}>
         <input
           type='text'
-          placeholder='Search'
+          placeholder={Locales.SEARCH}
           className={clsx(style.inputSearch, { [style.disabled]: filterSearchOff })}
           value={searchInput}
           onChange={handleChange}

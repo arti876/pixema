@@ -3,7 +3,12 @@ import { SvgName } from '../constants/SvgName.constants';
 
 export function SvgMenu({ className = '' }: SvgProps) {
   return (
-    <svg id={SvgName.MENU} className={className} viewBox='0 0 16 14' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      id={SvgName.MENU}
+      className={className}
+      viewBox='0 0 16 14'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <path
         fill='current'
         fillRule='evenodd'

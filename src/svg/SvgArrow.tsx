@@ -3,7 +3,12 @@ import { SvgName } from '../constants/SvgName.constants';
 
 export function SvgArrow({ className = '' }: SvgProps) {
   return (
-    <svg id={SvgName.ARROW} className={className} viewBox='0 0 19 12' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      id={SvgName.ARROW}
+      className={className}
+      viewBox='0 0 19 12'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <path
         fill='current'
         fillRule='evenodd'

@@ -9,6 +9,7 @@ import { RoutePath } from '../../constants/RoutePath.constants';
 import style from './FormAuth.module.scss';
 import clsx from 'clsx';
 import { IformData } from '../ControllerTextField';
+import { Locales } from '../../constants/Locales.constants';
 
 interface FormAuthProps {
   location: string;
@@ -46,29 +47,29 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
       {location === RoutePath.SIGN_UP && (
         <ControllerTextField
           control={control}
-          name='name'
+          name={Locales.NAME_LOWER}
           rules={NameValidation}
-          type='text'
-          label='Name'
+          type={Locales.TEXT}
+          label={Locales.NAME_UPPER}
           helperText={errors?.name?.message}
           error={!!errors?.name}
         />
       )}
       <ControllerTextField
         control={control}
-        name='email'
+        name={Locales.EMAIL_LOWER}
         rules={emailValidation}
-        label='Email'
+        label={Locales.EMAIL_UPPER}
         helperText={errors?.email?.message}
         error={!!errors?.email}
       />
       <div className={style.passwordContainer}>
         <ControllerTextField
           control={control}
-          name='password'
+          name={Locales.PASSWORD_LOWER}
           rules={passwordValidation}
-          type={showPassword ? 'text' : 'password'}
-          label='Password'
+          type={showPassword ? Locales.TEXT : Locales.PASSWORD_LOWER}
+          label={Locales.PASSWORD_UPPER}
           helperText={errors?.password?.message}
           error={!!errors?.password}
           InputProps={{
@@ -90,20 +91,20 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
         />
       </div>
       <button className={style.bth} type='submit' disabled={!isValid}>
-        {location === RoutePath.SIGN_IN ? 'Sign In' : 'Sign Up'}
+        {location === RoutePath.SIGN_IN ? Locales.SIGN_IN : Locales.SIGN_UP}
       </button>
       {location === RoutePath.SIGN_IN ? (
         <div className={style.signContainer}>
-          <p>{'Dont have an account?'}</p>
+          <p>{Locales.DHA}</p>
           <Link to={RoutePath.SIGN_UP} className={style.sign}>
-            {'Sign Up'}
+            {Locales.SIGN_UP}
           </Link>
         </div>
       ) : (
         <div className={style.signContainer}>
           <p>{'Already have an account?'}</p>
           <Link to={RoutePath.SIGN_IN} className={style.sign}>
-            {'Sign Ip'}
+            {Locales.SIGN_IN}
           </Link>
         </div>
       )}

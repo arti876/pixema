@@ -8,7 +8,8 @@ import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
 import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
-import { CountriesFilm, GenresFilm } from '../Filter/Filter.type.';
+import { CountriesFilm, GenresFilm } from '../Filter';
+import { Locales } from '../../constants/Locales.constants';
 
 interface RenderContentPageProps {
   thunk: () => void;
@@ -22,8 +23,8 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  const loading = status === 'loading';
-  const rejected = status === 'rejected';
+  const loading = status === Locales.STATUS_LOADING;
+  const rejected = status === Locales.STATUS_REJECTED;
 
   useEffect(() => {
     dispatch(thunk);

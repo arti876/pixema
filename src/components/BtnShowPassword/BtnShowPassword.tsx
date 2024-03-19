@@ -10,7 +10,7 @@ export default function BtnShowPassword({
   showPassword = false,
   setShowPassword,
 }: BtnShowPasswordProps) {
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

@@ -11,15 +11,8 @@
   max-width: 1920px;
   height: 100vh;
   margin: 0 auto;
-  padding: 40px 62px 64px 62px;
-  @media (max-width: 768px) {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+  padding: 40px;
   @media (max-width: 320px) {
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 0 24px;
+    padding: 32px 24px;
   }
 }

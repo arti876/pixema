@@ -1,6 +1,6 @@
 import { Control, Controller } from 'react-hook-form';
 import style from './InputRadioFilter.module.scss';
-import { FilterName } from '../../Filter.type.';
+import { FilterName } from '../..';
 import { IFilmThunkParams } from '../../../../store/Slice/filmsSlice';
 
 interface ControllerTextFieldProps {

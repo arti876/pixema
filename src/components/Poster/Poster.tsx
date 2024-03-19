@@ -1,5 +1,5 @@
 import style from './Poster.module.scss';
-import { PosterData, PosterProps } from './IPoster.type';
+import { PosterData, PosterProps } from '.';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import { SvgTrends } from '../../svg/svg';
 import { useNavigate } from 'react-router-dom';

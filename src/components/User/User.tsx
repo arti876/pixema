@@ -3,7 +3,7 @@ import { SvgUser, SvgTriangle } from '../../svg/svg';
 import { useState } from 'react';
 import { useClickAway } from '@uidotdev/usehooks';
 import { SvgName } from '../../constants/SvgName.constants';
-import { UserLocales } from './User.constants';
+import { UserLocales } from '../../constants/User.constants';
 import useGetInitials from '../../hooks/useGetInitials';
 import { useAppDispatch } from '../../store/store';
 import { clearCurrentUser } from '../../store/Slice/usersSlice';

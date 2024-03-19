@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useState } from 'react';
 import { addCurrentUser } from '../../store/Slice/usersSlice';
 import ModalAuth from '../../components/ModalAuth/ModalAuth';
+import { Locales } from '../../constants/Locales.constants';
 
 const text = {
   title: 'Login error',
@@ -33,7 +34,11 @@ export default function SignIn() {
     <>
       <ModalAuth open={open} setOpen={setOpen} text={text} />
       <Authorization>
-        <FormAuth nameForm={'Sign In'} location={location.pathname} handleClick={handleLogin} />
+        <FormAuth
+          nameForm={Locales.SIGN_IN}
+          location={location.pathname}
+          handleClick={handleLogin}
+        />
       </Authorization>
     </>
   );
