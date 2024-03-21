@@ -37,6 +37,7 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
   });
 
   const onSubmit: SubmitHandler<IformData> = ({ name, email, password }) => {
+    console.log(errors);
     handleClick(name, email, password);
     reset();
   };
@@ -90,7 +91,7 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
           }}
         />
       </div>
-      <button className={style.bth} type='submit' disabled={!isValid}>
+      <button className={style.bth} type='submit'>
         {location === RoutePath.SIGN_IN ? Locales.SIGN_IN : Locales.SIGN_UP}
       </button>
       {location === RoutePath.SIGN_IN ? (
