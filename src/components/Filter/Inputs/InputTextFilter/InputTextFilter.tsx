@@ -18,19 +18,19 @@ export default function InputTextFilter({
   type = 'text',
   placeholder,
 }: ControllerTextFieldProps) {
-  const inputValMin =
-    type === 'number' && FilterName.YEARS_FROM === name
-      ? '1985'
-      : type === 'number' && FilterName.RATING_FROM
-      ? '0'
-      : '';
+  // const inputValMin =
+  //   type === 'number' && FilterName.YEARS_FROM === name
+  //     ? '1985'
+  //     : type === 'number' && FilterName.RATING_FROM
+  //     ? '0'
+  //     : '';
 
-  const inputValMax =
-    type === 'number' && FilterName.YEARS_TO === name
-      ? '2024'
-      : type === 'number' && FilterName.RATING_TO
-      ? '10'
-      : '';
+  // const inputValMax =
+  //   type === 'number' && FilterName.YEARS_TO === name
+  //     ? '2024'
+  //     : type === 'number' && FilterName.RATING_TO
+  //     ? '10'
+  //     : '';
 
   return (
     <Controller
@@ -46,8 +46,8 @@ export default function InputTextFilter({
             onBlur={onBlur}
             value={value}
             placeholder={placeholder}
-            min={inputValMin}
-            max={inputValMax}
+            // min={inputValMin}
+            // max={inputValMax}
           />
         </label>
       )}
