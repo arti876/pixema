@@ -2,37 +2,43 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutePath } from '../../constants/RoutePath.constants';
 import FormAuth from '../../components/FormAuth/FormAuth';
 import Authorization from '../Authorization/Authorization';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { useState } from 'react';
-import { addCurrentUser } from '../../store/Slice/usersSlice';
+import { useAppDispatch } from '../../store/store';
+import { useRef, useState } from 'react';
 import ModalAuth from '../../components/ModalAuth/ModalAuth';
 import { Locales } from '../../constants/Locales.constants';
-
-const text = {
-  title: 'Login error',
-  description: 'This user does not exist or incorrect data has been entered.',
-};
+import { fetchSignInUser } from '../../store/Thunk/fetchSignInUser';
 
 export default function SignIn() {
   const [open, setOpen] = useState(false);
-  const { users } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
+  const textError = useRef({ title: '', description: '' });
+
   function handleLogin(_: string, email: string, password: string) {
-    const user = users.find((user) => user.email === email && user.password === password);
-    if (user) {
-      dispatch(addCurrentUser(user.userId));
-      navigate(RoutePath.ROOT);
-    } else {
-      setOpen(true);
-    }
+    dispatch(fetchSignInUser({ email, password })).then((value: any) => {
+      if (value?.error?.message === 'Rejected') {
+        textError.current = {
+          title: 'authorization error',
+          description: value.payload,
+        };
+        setOpen(true);
+      } else if (!value.payload.emailVerified) {
+        textError.current = {
+          title: 'authorization error',
+          description: 'Your mail has not been verified',
+        };
+        setOpen(true);
+      } else {
+        navigate(RoutePath.ROOT);
+      }
+    });
   }
 
   return (
     <>
-      <ModalAuth open={open} setOpen={setOpen} text={text} />
+      <ModalAuth open={open} setOpen={setOpen} text={textError.current} />
       <Authorization>
         <FormAuth
           nameForm={Locales.SIGN_IN}

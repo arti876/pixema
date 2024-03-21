@@ -7,9 +7,9 @@ import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../../pages/NotFound/NotFound';
-import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
 import { CountriesFilm, GenresFilm } from '../Filter';
 import { Locales } from '../../constants/Locales.constants';
+import { getUserLocalStorage } from '../../localStorage/userLocalStorage';
 
 interface RenderContentPageProps {
   thunk: () => void;
@@ -19,7 +19,7 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
   const { films, status, error, paramsThunk, filterActive } = useAppSelector(
     (state) => state.films,
   );
-  const idFilmsFavorites = useIdFilmsFavorites();
+  const { filmFavorites } = getUserLocalStorage();
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -68,7 +68,7 @@ export default function RenderContentPage({ thunk }: RenderContentPageProps) {
           <div className={style.posterListContainer}>
             <PosterList
               posters={films}
-              filmFavorites={idFilmsFavorites}
+              filmFavorites={filmFavorites}
               pageName={location.pathname}
             />
           </div>

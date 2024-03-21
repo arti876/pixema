@@ -1,6 +1,6 @@
 const REQUIRED_FIELD = 'Required field';
 const MIN_CHAR_NAME = 'Minimum of 2 characters';
-const MIN_CHAR_PAS = 'Minimum of 5 characters';
+const MIN_CHAR_PAS = 'Minimum of 6 characters';
 const MAX_CHAR_PAS = 'Maximum 15 characters';
 const MIN_CHAR_EMAIL = 'Minimum of 8 characters';
 const MAX_CHAR_EMAIL = 'Maximum 25 characters';
@@ -23,7 +23,7 @@ const emailValidation = {
 
 const passwordValidation = {
   required: REQUIRED_FIELD,
-  minLength: { value: 5, message: MIN_CHAR_PAS },
+  minLength: { value: 6, message: MIN_CHAR_PAS },
   maxLength: { value: 15, message: MAX_CHAR_PAS },
 };
 

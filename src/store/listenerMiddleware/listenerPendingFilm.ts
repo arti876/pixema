@@ -16,7 +16,7 @@ const pendingAll = [
   pendingFetchFilmPage,
 ];
 
-const listenerPending =
+const listenerPendingFilm =
   ({ dispatch }: { dispatch: Dispatch }) =>
   (next: (arg: unknown) => void) =>
   (action: { type: string; payload: unknown }) => {
@@ -33,4 +33,4 @@ const listenerPending =
     }
   };
 
-export { listenerPending };
+export { listenerPendingFilm };

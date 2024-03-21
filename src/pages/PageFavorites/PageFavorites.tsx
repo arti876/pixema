@@ -1,9 +1,9 @@
 import RenderContentPage from '../../components/RenderContentPage/RenderContentPage';
 import { fetchFilmsFavorites } from '../../store/Thunk/fetchFilmsFavorites';
-import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
+import { getUserLocalStorage } from '../../localStorage/userLocalStorage';
 
 export default function PageFavorites() {
-  const idFilmsFavorites = useIdFilmsFavorites();
+  const { filmFavorites } = getUserLocalStorage();
 
-  return <RenderContentPage thunk={fetchFilmsFavorites(idFilmsFavorites)} />;
+  return <RenderContentPage thunk={fetchFilmsFavorites(filmFavorites)} />;
 }

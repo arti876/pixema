@@ -3,19 +3,17 @@ import LinkCustom from '../LinkCustom/LinkCustom';
 import style from './NavMenu.module.scss';
 import { SvgHome, SvgTrends, SvgFavorites, SvgSettings } from '../../svg/svg';
 import { SvgName } from '../../constants/SvgName.constants';
-import { useAppDispatch } from '../../store/store';
-import { clearCurrentUser } from '../../store/Slice/usersSlice';
-import { nullTheme } from '../../store/Slice/themeSlice';
 import { UserLocales } from '../../constants/User.constants';
-import useCurrentUser from '../../hooks/useCurrentUser';
+import { useNavigate } from 'react-router-dom';
+import { getUserLocalStorage } from '../../localStorage/userLocalStorage';
 
 export default function NavMenu() {
-  const dispatch = useAppDispatch();
-  const user = useCurrentUser();
+  const navigate = useNavigate();
+  const user = getUserLocalStorage();
 
   function logOut() {
-    dispatch(clearCurrentUser());
-    dispatch(nullTheme());
+    navigate(RoutePath.SIGN_IN);
+    localStorage.removeItem('user');
   }
 
   return (

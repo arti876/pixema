@@ -4,9 +4,9 @@ import themeReducer from './Slice/themeSlice';
 import filmsReducer from './Slice/filmsSlice';
 import filmIdReducer from './Slice/filmPageSlice';
 import usersReducer from './Slice/usersSlice';
-import { listenerPending } from './listenerMiddleware/listenerPending';
-import { listenerRejected } from './listenerMiddleware/listenerRejected';
-import { listenerFulfilled } from './listenerMiddleware/listenerFulfilled';
+import { listenerPendingFilm } from './listenerMiddleware/listenerPendingFilm';
+import { listenerRejectedFilm } from './listenerMiddleware/listenerRejectedFilm';
+import { listenerFulfilledFilm } from './listenerMiddleware/listenerFulfilledFilm';
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -18,7 +18,11 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([listenerPending, listenerRejected, listenerFulfilled]),
+    getDefaultMiddleware().concat([
+      listenerPendingFilm,
+      listenerRejectedFilm,
+      listenerFulfilledFilm,
+    ]),
 });
 
 type RootState = ReturnType<typeof store.getState>;

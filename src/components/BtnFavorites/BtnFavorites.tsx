@@ -1,25 +1,28 @@
+import { useState } from 'react';
+import { modificationFavorites } from '../../localStorage/userLocalStorage';
 import { SvgFavorites } from '../../svg/svg';
 import style from './BtnFavorites.module.scss';
-import { useAppDispatch } from '../../store/store';
-import { modificationFavorites } from '../../store/Slice/usersSlice';
 import clsx from 'clsx';
 
 interface BtnFavoritesProps {
   className: string;
-  favorites: string | undefined;
+  favorite: string | undefined;
   kinopoiskId: number | undefined;
 }
 
-export default function BtnFavorites({ className, favorites, kinopoiskId }: BtnFavoritesProps) {
-  const dispatch = useAppDispatch();
+export default function BtnFavorites({ className, favorite, kinopoiskId }: BtnFavoritesProps) {
+  const [active, setActive] = useState(favorite && true);
 
   function handleClick() {
-    dispatch(modificationFavorites(kinopoiskId));
+    if (kinopoiskId) {
+      modificationFavorites(kinopoiskId);
+      setActive(!active);
+    }
   }
 
   return (
     <button type='button' className={className} onClick={handleClick}>
-      <SvgFavorites className={clsx(style.ico, { [style.icoActive]: favorites })} />
+      <SvgFavorites className={clsx(style.ico, { [style.icoActive]: active })} />
     </button>
   );
 }

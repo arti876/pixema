@@ -24,13 +24,9 @@ const themeSlice = createSlice({
         state.toggle = true;
       }
     },
-    nullTheme: (state) => {
-      state.theme = ThemeVariant.DARK;
-      state.toggle = true;
-    },
   },
 });
 
-export const { switchingTheme, nullTheme } = themeSlice.actions;
+export const { switchingTheme } = themeSlice.actions;
 
 export default themeSlice.reducer;

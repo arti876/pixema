@@ -13,7 +13,7 @@ export default function Poster({ poster = PosterData, pageName = '', filmFavorit
   const dispatch = useAppDispatch();
   const rating = !!poster && (poster.ratingKinopoisk || poster.ratingImdb);
 
-  const favorites = useMemo(() => {
+  const favorite = useMemo(() => {
     if (poster.kinopoiskId && filmFavorites) {
       return filmFavorites.filter((id) => id === poster.kinopoiskId).join('');
     }
@@ -21,10 +21,12 @@ export default function Poster({ poster = PosterData, pageName = '', filmFavorit
 
   function navigateTo() {
     if (poster.kinopoiskId) {
-      navigate(RoutePath.FILM);
+      // navigate(RoutePath.FILM);
+      navigate(`/film/${poster.kinopoiskId}`);
       dispatch(fetchFilmPage(poster.kinopoiskId));
     } else if (poster.filmId) {
-      navigate(RoutePath.FILM);
+      // navigate(RoutePath.FILM);
+      navigate(`/film/${poster.filmId}`);
       dispatch(fetchFilmPage(poster.filmId));
     }
   }
@@ -43,10 +45,10 @@ export default function Poster({ poster = PosterData, pageName = '', filmFavorit
             {rating && RoutePath.TRENDS !== pageName && (
               <div className={style.rating}>{rating}</div>
             )}
-            {favorites && (
+            {favorite && (
               <BtnFavorites
                 className={style.btnFavorites}
-                favorites={favorites}
+                favorite={favorite}
                 kinopoiskId={poster.kinopoiskId}
               />
             )}

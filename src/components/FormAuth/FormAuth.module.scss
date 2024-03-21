@@ -30,6 +30,10 @@
   background: var(--system-colors-primary);
   @extend %text-form-auth;
   color: var(--contextual-colors-white);
+  transition: 0.3s;
+  &:hover {
+    background: var(--system-colors-primary2);
+  }
 }
 
 .forgotPassword {

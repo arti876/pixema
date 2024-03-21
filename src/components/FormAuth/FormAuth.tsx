@@ -37,7 +37,6 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
   });
 
   const onSubmit: SubmitHandler<IformData> = ({ name, email, password }) => {
-    console.log(errors);
     handleClick(name, email, password);
     reset();
   };
@@ -65,34 +64,46 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
         error={!!errors?.email}
       />
       <div className={style.passwordContainer}>
-        <ControllerTextField
-          control={control}
-          name={Locales.PASSWORD_LOWER}
-          rules={passwordValidation}
-          type={showPassword ? Locales.TEXT : Locales.PASSWORD_LOWER}
-          label={Locales.PASSWORD_UPPER}
-          helperText={errors?.password?.message}
-          error={!!errors?.password}
-          InputProps={{
-            endAdornment: (
-              <IconButton
-                aria-label='toggle password visibility'
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge='end'
-              >
-                {showPassword ? (
-                  <VisibilityOff sx={{ fontSize: '24px' }} />
-                ) : (
-                  <Visibility sx={{ fontSize: '24px' }} />
-                )}
-              </IconButton>
-            ),
-          }}
-        />
+        {location !== RoutePath.FORGOT_PASSWORD && (
+          <ControllerTextField
+            control={control}
+            name={Locales.PASSWORD_LOWER}
+            rules={passwordValidation}
+            type={showPassword ? Locales.TEXT : Locales.PASSWORD_LOWER}
+            label={Locales.PASSWORD_UPPER}
+            helperText={errors?.password?.message}
+            error={!!errors?.password}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge='end'
+                >
+                  {showPassword ? (
+                    <VisibilityOff sx={{ fontSize: '24px' }} />
+                  ) : (
+                    <Visibility sx={{ fontSize: '24px' }} />
+                  )}
+                </IconButton>
+              ),
+            }}
+          />
+        )}
+        {location === RoutePath.SIGN_IN && (
+          <Link to={RoutePath.FORGOT_PASSWORD} className={style.forgotPassword}>
+            {'Forgot password?'}
+          </Link>
+        )}
       </div>
+
       <button className={style.bth} type='submit'>
-        {location === RoutePath.SIGN_IN ? Locales.SIGN_IN : Locales.SIGN_UP}
+        {location === RoutePath.SIGN_IN
+          ? Locales.SIGN_IN
+          : location === RoutePath.SIGN_UP
+          ? Locales.SIGN_UP
+          : 'Reset'}
       </button>
       {location === RoutePath.SIGN_IN ? (
         <div className={style.signContainer}>
@@ -101,14 +112,14 @@ export default function FormAuth({ location, handleClick, nameForm }: FormAuthPr
             {Locales.SIGN_UP}
           </Link>
         </div>
-      ) : (
+      ) : location === RoutePath.SIGN_UP ? (
         <div className={style.signContainer}>
           <p>{'Already have an account?'}</p>
           <Link to={RoutePath.SIGN_IN} className={style.sign}>
             {Locales.SIGN_IN}
           </Link>
         </div>
-      )}
+      ) : null}
     </form>
   );
 }

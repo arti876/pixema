@@ -5,11 +5,11 @@ import style from './PosterFilmPage.module.scss';
 
 interface PosterFilmPageProps {
   poster: string;
-  favorites: string | undefined;
+  favorite: string | undefined;
   kinopoiskId: number | undefined;
 }
 
-export default function PosterFilmPage({ poster, favorites, kinopoiskId }: PosterFilmPageProps) {
+export default function PosterFilmPage({ poster, favorite, kinopoiskId }: PosterFilmPageProps) {
   return (
     <>
       <div className={style.imgContainer}>
@@ -18,7 +18,7 @@ export default function PosterFilmPage({ poster, favorites, kinopoiskId }: Poste
       <div className={style.btnContainer}>
         <BtnFavorites
           className={style.btnFavorites}
-          favorites={favorites}
+          favorite={favorite}
           kinopoiskId={kinopoiskId}
         />
         <BtnShare className={style.btnShare} />

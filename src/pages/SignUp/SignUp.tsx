@@ -1,47 +1,40 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { RoutePath } from '../../constants/RoutePath.constants';
+import { useLocation } from 'react-router-dom';
 import FormAuth from '../../components/FormAuth/FormAuth';
 import Authorization from '../Authorization/Authorization';
-import { v4 as uuidv4 } from 'uuid';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { addUser } from '../../store/Slice/usersSlice';
+import { useAppDispatch } from '../../store/store';
 import ModalAuth from '../../components/ModalAuth/ModalAuth';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Locales } from '../../constants/Locales.constants';
-
-const text = {
-  title: 'Email error',
-  description: 'The entered EMAIL already exists, try another one.',
-};
+import { fetchSignUpUser } from '../../store/Thunk/fetchSignUpUser';
 
 export default function SignUp() {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
-  const uniqueId = uuidv4();
-  const { users } = useAppSelector((state) => state.users);
+
+  const textError = useRef({ title: '', description: '' });
 
   function handleRegister(name: string, email: string, password: string) {
-    const foundUser = users.find((user) => user.email === email);
-    const user = {
-      userId: uniqueId,
-      name,
-      email,
-      password,
-      filmFavorites: [],
-    };
-    if (foundUser) {
-      setOpen(true);
-    } else {
-      dispatch(addUser(user));
-      navigate(RoutePath.SIGN_IN);
-    }
+    dispatch(fetchSignUpUser({ name, email, password })).then((value: any) => {
+      if (value?.error?.message === 'Rejected') {
+        textError.current = {
+          title: 'e-mail error',
+          description: value.payload,
+        };
+        setOpen(true);
+      } else {
+        textError.current = {
+          title: 'e-mail checking',
+          description: 'To complete the registration, you need to confirm your email',
+        };
+        setOpen(true);
+      }
+    });
   }
 
   return (
     <>
-      <ModalAuth open={open} setOpen={setOpen} text={text} />
+      <ModalAuth open={open} setOpen={setOpen} text={textError.current} />
       <Authorization>
         <FormAuth
           nameForm={Locales.SIGN_UP}

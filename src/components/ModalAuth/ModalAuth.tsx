@@ -1,8 +1,12 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { Button } from '@mui/material';
 
 const style = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '25px',
   position: 'absolute' as const,
   top: '50%',
   left: '50%',
@@ -26,7 +30,9 @@ interface ModalAuthProps {
 }
 
 export default function ModalAuth({ open, setOpen, text }: ModalAuthProps) {
-  const handleClose = () => setOpen(false);
+  function handleClose() {
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -40,9 +46,12 @@ export default function ModalAuth({ open, setOpen, text }: ModalAuthProps) {
           <Typography id='modal-modal-title' sx={{ fontSize: 24 }}>
             {text.title}
           </Typography>
-          <Typography id='modal-modal-description' sx={{ mt: 2, fontSize: 16 }}>
+          <Typography id='modal-modal-description' sx={{ fontSize: 16 }}>
             {text.description}
           </Typography>
+          <Button variant='contained' size='large' onClick={handleClose}>
+            {'OK'}
+          </Button>
         </Box>
       </Modal>
     </div>

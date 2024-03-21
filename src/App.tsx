@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
 import PrivateRoute from './pages/PrivateRoute';
 import PageSettings from './pages/PageSettings/PageSettings';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 
 export default function App() {
   const { theme } = useAppSelector((state) => state.theme);
@@ -38,6 +39,7 @@ export default function App() {
       </Route>
       <Route path={RoutePath.SIGN_UP} element={<SignUp />} />
       <Route path={RoutePath.SIGN_IN} element={<SignIn />} />
+      <Route path={RoutePath.FORGOT_PASSWORD} element={<ForgotPassword />} />
       <Route path={RoutePath.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );

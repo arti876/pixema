@@ -16,7 +16,7 @@ const fulfilledFetchNextPageFilms = 'fetchNextPageFilms/fulfilled';
 const fulfilledFetchFilmPage = 'fetchFilmPage/fulfilled';
 const fulfilledFetchFilmsFavorites = 'fetchFilmsFavorites/fulfilled';
 
-const listenerFulfilled =
+const listenerFulfilledFilm =
   ({ dispatch }: { dispatch: Dispatch }) =>
   (next: (arg: unknown) => void) =>
   (action: { type: string; payload: unknown }) => {
@@ -48,4 +48,4 @@ const listenerFulfilled =
     }
   };
 
-export { listenerFulfilled };
+export { listenerFulfilledFilm };

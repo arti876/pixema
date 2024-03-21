@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { RoutePath } from '../constants/RoutePath.constants';
-import { useAppSelector } from '../store/store';
+import { getUserLocalStorage } from '../localStorage/userLocalStorage';
 
 export default function PrivateRoute() {
-  const { currentUser } = useAppSelector((state) => state.users);
+  const { userId } = getUserLocalStorage();
 
-  return currentUser ? <Outlet /> : <Navigate to={RoutePath.SIGN_IN} />;
+  return userId ? <Outlet /> : <Navigate to={RoutePath.SIGN_IN} />;
 }

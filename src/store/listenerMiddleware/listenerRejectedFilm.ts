@@ -17,7 +17,7 @@ const rejectedAll = [
   rejectedFetchFilmPage,
 ];
 
-const listenerRejected =
+const listenerRejectedFilm =
   ({ dispatch }: { dispatch: Dispatch }) =>
   (next: (arg: unknown) => void) =>
   (action: { type: string; payload: unknown }) => {
@@ -29,4 +29,4 @@ const listenerRejected =
     }
   };
 
-export { listenerRejected };
+export { listenerRejectedFilm };

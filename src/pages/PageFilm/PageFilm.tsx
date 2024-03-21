@@ -6,8 +6,8 @@ import { Locales } from '../../constants/Locales.constants';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 import { useMemo } from 'react';
-import useIdFilmsFavorites from '../../hooks/useIdFilmsFavorites';
 import PosterFilmPage from '../../components/PosterFilmPage/PosterFilmPage';
+import { getUserLocalStorage } from '../../localStorage/userLocalStorage';
 
 export default function PageFilm() {
   const { status, error } = useAppSelector((store) => store.films);
@@ -33,16 +33,16 @@ export default function PageFilm() {
     },
   } = useAppSelector((store) => store.filmPage);
 
-  const idFilmsFavorites = useIdFilmsFavorites();
+  const { filmFavorites } = getUserLocalStorage();
 
   const loading = status === Locales.STATUS_LOADING;
   const rejected = status === Locales.STATUS_REJECTED;
 
-  const favorites = useMemo(() => {
-    if (kinopoiskId && idFilmsFavorites) {
-      return idFilmsFavorites.filter((id: number) => id === kinopoiskId).join('');
+  const favorite = useMemo(() => {
+    if (kinopoiskId && filmFavorites) {
+      return filmFavorites.filter((id: number) => id === kinopoiskId).join('');
     }
-  }, [kinopoiskId, idFilmsFavorites]);
+  }, [kinopoiskId, filmFavorites]);
 
   if (rejected) {
     return <Error errorMessage={error} />;
@@ -52,7 +52,7 @@ export default function PageFilm() {
     return (
       <div className={style.wrapper}>
         <div className={style.posterFuulSize}>
-          <PosterFilmPage poster={poster} favorites={favorites} kinopoiskId={kinopoiskId} />
+          <PosterFilmPage poster={poster} favorite={favorite} kinopoiskId={kinopoiskId} />
         </div>
         <div className={style.containerRight}>
           <div className={style.filmGenreContainer}>
@@ -75,7 +75,7 @@ export default function PageFilm() {
             <div className={style.movieLength}>{`${filmLength} min`}</div>
           </div>
           <div className={style.posterTablet}>
-            <PosterFilmPage poster={poster} favorites={favorites} kinopoiskId={kinopoiskId} />
+            <PosterFilmPage poster={poster} favorite={favorite} kinopoiskId={kinopoiskId} />
           </div>
           <div className={style.filmDescription}>{description}</div>
           <div className={style.filmDetails}>
