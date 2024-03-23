@@ -3,17 +3,17 @@ import { FirebaseError } from 'firebase/app';
 import { getAuth, updatePassword } from 'firebase/auth';
 
 interface fetchUpdatePasswordParams {
-  password: string;
+  newPassword: string;
 }
 
 export const fetchUpdatePassword = createAsyncThunk(
   'fetchUpdatePassword',
-  async ({ password }: fetchUpdatePasswordParams, { rejectWithValue }) => {
+  async ({ newPassword }: fetchUpdatePasswordParams, { rejectWithValue }) => {
     try {
       const auth = getAuth();
       const user = auth.currentUser;
       if (user) {
-        await updatePassword(user, password);
+        await updatePassword(user, newPassword);
       }
     } catch (error) {
       const firebaseError = error as FirebaseError;

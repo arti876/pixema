@@ -40,7 +40,6 @@ export default function User() {
   function logOut() {
     navigate(RoutePath.SIGN_IN);
     localStorage.removeItem('user');
-    // window.location.reload();
   }
 
   return (

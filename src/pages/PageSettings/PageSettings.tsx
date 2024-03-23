@@ -82,7 +82,7 @@ export default function PageSettings() {
       });
     }
     if (checkPassword) {
-      dispatch(fetchUpdatePassword({ password })).then((value: any) => {
+      dispatch(fetchUpdatePassword({ newPassword })).then((value: any) => {
         if (value?.error?.message === 'Rejected') {
           textError.current = {
             title: 'Password error',
@@ -92,7 +92,7 @@ export default function PageSettings() {
         } else {
           updateUserData('password', newPassword);
           reset({ password: '', newPassword: '' });
-          navigate(-1);
+          // navigate(-1);
         }
       });
     } else if (password !== '') {
