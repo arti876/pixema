@@ -109,7 +109,7 @@ export default function PageFilm() {
                 ))}
               </div>
             </div>
-            {production.length > 0 && (
+            {production && (
               <div className={style.filmDetailsItem}>
                 <div className={style.filmDetailsLeft}>{Locales.PRODUCTION}</div>
                 <div className={style.filmDetailsRight}>
